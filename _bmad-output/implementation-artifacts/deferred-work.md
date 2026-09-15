@@ -17,3 +17,11 @@
 - source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-fundacao-portal.md`
   summary: Não há teste automatizado de que, sem hash, as três seções permanecem visíveis com o CSS compilado.
   evidence: `tools/test_build_tables.py` não aplica stylesheet; o Verification da spec trata CAP-4 como passagem manual e o intent deixou CI de fora. Restaurar `.aba-painel:not(:target) { display: none; }` deixaria pytest e `npm run build` verdes.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-organograma.md`
+  summary: O contrato de aba e scroll do organograma (375 px, quatro painéis, `:target`) pode regredir com pytest verde.
+  evidence: `tools/test_render_organograma.py` só exercita a conversão em `tmp_path`; não há harness de browser no repositório. Confere-se hoje no Chrome à mão. Mover `#organograma` para fora de `.abas` deixaria os 8 testes verdes.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-organograma.md`
+  summary: Tirar `npm run organograma` de `build` não quebra os testes da conversão.
+  evidence: Os testes importam o módulo e fazem monkeypatch de `SRC`/`OUT`; nenhum lê `package.json` nem dispara o script npm. O mesmo vale para `tabelas` na spec da fundação.

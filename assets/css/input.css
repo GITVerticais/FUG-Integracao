@@ -21,17 +21,37 @@
   /* Abas em CSS puro, sem JavaScript.
 
      Estado padrao (URL sem hash): nenhum painel esta em :target, o :has() do
-     ancestral .abas nao casa e os tres paineis permanecem visiveis na ordem do
+     ancestral .abas nao casa e os quatro paineis permanecem visiveis na ordem do
      documento. So quando um painel entra em :target a filtragem liga e os
      demais somem. E o inverso de esconder por padrao: em navegador sem :has()
      a pagina degrada para a lista completa, nunca para uma pagina vazia. */
+  .abas {
+    min-width: 0;
+  }
+
   .abas:has(.aba-painel:target) .aba-painel:not(:target) {
     display: none;
   }
 
-  /* CSS nao consegue casar o href de um link com o :target corrente, entao o
-     destaque da aba precisa de uma regra por secao. Sao tres: repetir sai mais
-     barato que introduzir JavaScript. */
+  /* Contem o scroll horizontal na figura do organograma. O img tem
+     min-width: 900px para forcar overflow em telas estreitas; sem
+     min-width: 0 no ancestral, essa minima infla o body. */
+  .organograma-figura {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .organograma-figura-scroll {
+    overflow-x: auto;
+    min-width: 0;
+  }
+}
+
+/* Destaque da aba ativa. Precisa viver em utilities: os links ja carregam
+   text-on-surface-variant e border-transparent, que ganhariam de qualquer
+   regra em components. CSS nao casa href com :target, entao uma regra por secao. */
+@layer utilities {
+  .abas:has(#organograma:target) .aba-link[href="#organograma"],
   .abas:has(#diretorias:target) .aba-link[href="#diretorias"],
   .abas:has(#corpo-funcional:target) .aba-link[href="#corpo-funcional"],
   .abas:has(#estrutura-remuneratoria:target) .aba-link[href="#estrutura-remuneratoria"] {
