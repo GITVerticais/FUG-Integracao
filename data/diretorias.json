@@ -1,0 +1,1706 @@
+{
+  "ano": 2025,
+  "colegiados": [
+    {
+      "id": "diretorias-estaduais",
+      "nome": "Diretorias Estaduais",
+      "total": 108,
+      "registros": [
+        {
+          "unidade": "Acre",
+          "cargo": "PRESIDENTE",
+          "nome": "Oséias de Souza Silva",
+          "cpf": "826.XXX.XXX-06",
+          "vago": false
+        },
+        {
+          "unidade": "Acre",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Francisco Ibertom Medeiros Calixto",
+          "cpf": "736.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Acre",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Atevaldo Santana do Nascimento",
+          "cpf": "217.XXX.XXX-53",
+          "vago": false
+        },
+        {
+          "unidade": "Acre",
+          "cargo": "SUPLENTE",
+          "nome": "Italo Diego Branco da Costa",
+          "cpf": "945.XXX.XXX-68",
+          "vago": false
+        },
+        {
+          "unidade": "Alagoas",
+          "cargo": "PRESIDENTE",
+          "nome": "José Wanderley Neto",
+          "cpf": "061.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Alagoas",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "George André Palermo Santoro",
+          "cpf": "964.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Alagoas",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Rafael de Goes Brito",
+          "cpf": "010.XXX.XXX-73",
+          "vago": false
+        },
+        {
+          "unidade": "Alagoas",
+          "cargo": "SUPLENTE",
+          "nome": "Claudio Alexandre Ayres da Costa",
+          "cpf": "010.XXX.XXX-92",
+          "vago": false
+        },
+        {
+          "unidade": "Amapá",
+          "cargo": "PRESIDENTE",
+          "nome": "Aracicleuma Costa dos Santos Pinheiro",
+          "cpf": "182.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Amapá",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Alison Diego dos Santos Pinheiro",
+          "cpf": "768.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Amapá",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Aleno de Oliveira Conceição",
+          "cpf": "342.XXX.XXX-53",
+          "vago": false
+        },
+        {
+          "unidade": "Amapá",
+          "cargo": "SUPLENTE",
+          "nome": "Evandro Cunha Menezes",
+          "cpf": "703.XXX.XXX-53",
+          "vago": false
+        },
+        {
+          "unidade": "Amazonas",
+          "cargo": "PRESIDENTE",
+          "nome": "Miguel Capobiango Neto",
+          "cpf": "785.XXX.XXX-34",
+          "vago": false
+        },
+        {
+          "unidade": "Amazonas",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Cliferthon Lucas Maia",
+          "cpf": "794.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "Amazonas",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Rosinaldo Fonseca Moreira",
+          "cpf": "336.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Amazonas",
+          "cargo": "SUPLENTE",
+          "nome": "Rikson Pereira de Oliveira",
+          "cpf": "619.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Bahia",
+          "cargo": "PRESIDENTE",
+          "nome": "Belisa Cruz de Morais",
+          "cpf": "071.XXX.XXX-09",
+          "vago": false
+        },
+        {
+          "unidade": "Bahia",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Ricardo Grey de Araújo Lemos",
+          "cpf": "071.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Bahia",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Diego Pitanga dos Santos",
+          "cpf": "027.XXX.XXX-62",
+          "vago": false
+        },
+        {
+          "unidade": "Bahia",
+          "cargo": "SUPLENTE",
+          "nome": "Larissa Gomes Moraes",
+          "cpf": "014.XXX.XXX-97",
+          "vago": false
+        },
+        {
+          "unidade": "Ceará",
+          "cargo": "PRESIDENTE",
+          "nome": "Felipe Aguiar de Meneses",
+          "cpf": "024.XXX.XXX-88",
+          "vago": false
+        },
+        {
+          "unidade": "Ceará",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "José Eronildo Narciso da Silva",
+          "cpf": "644.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Ceará",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Não preenchido",
+          "cpf": "—",
+          "vago": true
+        },
+        {
+          "unidade": "Ceará",
+          "cargo": "SUPLENTE",
+          "nome": "Lyziane Cristina Malta Bitar",
+          "cpf": "002.XXX.XXX-58",
+          "vago": false
+        },
+        {
+          "unidade": "Distrito Federal",
+          "cargo": "PRESIDENTE",
+          "nome": "Nelson Tadeu Filippelli",
+          "cpf": "042.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Distrito Federal",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "João Monteiro Neto",
+          "cpf": "245.XXX.XXX-68",
+          "vago": false
+        },
+        {
+          "unidade": "Distrito Federal",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Bruno Montes Silva",
+          "cpf": "043.XXX.XXX-67",
+          "vago": false
+        },
+        {
+          "unidade": "Distrito Federal",
+          "cargo": "SUPLENTE",
+          "nome": "Pollyanna Vaz Cavalcante Prudente",
+          "cpf": "720.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Espírito Santo",
+          "cargo": "PRESIDENTE",
+          "nome": "Mario Joao Baldotto Sarnaglia",
+          "cpf": "112.XXX.XXX-70",
+          "vago": false
+        },
+        {
+          "unidade": "Espírito Santo",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Elisete de Paula Pires",
+          "cpf": "862.XXX.XXX-49",
+          "vago": false
+        },
+        {
+          "unidade": "Espírito Santo",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Alcione Tonini da Silva",
+          "cpf": "857.XXX.XXX-49",
+          "vago": false
+        },
+        {
+          "unidade": "Espírito Santo",
+          "cargo": "SUPLENTE",
+          "nome": "Sérgio Murilo Lemos Rodrigues",
+          "cpf": "450.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Goiás",
+          "cargo": "PRESIDENTE",
+          "nome": "Pedro Antônio de Oliveira Gonçalves",
+          "cpf": "003.XXX.XXX-43",
+          "vago": false
+        },
+        {
+          "unidade": "Goiás",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Antônio Carlos de Oliveira",
+          "cpf": "124.XXX.XXX-49",
+          "vago": false
+        },
+        {
+          "unidade": "Goiás",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Robert Bonifácio da Silva",
+          "cpf": "556.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Goiás",
+          "cargo": "SUPLENTE",
+          "nome": "Raquel Mendes Rodrigues",
+          "cpf": "218.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "Maranhão",
+          "cargo": "PRESIDENTE",
+          "nome": "Francisco de Assis Costa Filho",
+          "cpf": "020.XXX.XXX-31",
+          "vago": false
+        },
+        {
+          "unidade": "Maranhão",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Amanda Xavier Macedo Costa",
+          "cpf": "051.XXX.XXX-26",
+          "vago": false
+        },
+        {
+          "unidade": "Maranhão",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Deryck Passos Pinheiro",
+          "cpf": "042.XXX.XXX-05",
+          "vago": false
+        },
+        {
+          "unidade": "Maranhão",
+          "cargo": "SUPLENTE",
+          "nome": "Fábio Alexandre da Silva Serra",
+          "cpf": "060.XXX.XXX-01",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso",
+          "cargo": "PRESIDENTE",
+          "nome": "Rafael Bello Bastos",
+          "cpf": "902.XXX.XXX-34",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Aparecida Maria Borges Bezerra",
+          "cpf": "571.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Luiz Artur de Oliveira Ribeiro",
+          "cpf": "910.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso",
+          "cargo": "SUPLENTE",
+          "nome": "Edd Wilson Pereira",
+          "cpf": "673.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso do Sul",
+          "cargo": "PRESIDENTE",
+          "nome": "Maria Emília Ramalho Sulzer",
+          "cpf": "142.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso do Sul",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Wilson João Bittencourt Bellincanta",
+          "cpf": "886.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso do Sul",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Tânia Francini Steinle Melo",
+          "cpf": "067.XXX.XXX-83",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso do Sul",
+          "cargo": "SUPLENTE",
+          "nome": "Alfredo Luiz Martins",
+          "cpf": "163.XXX.XXX-49",
+          "vago": false
+        },
+        {
+          "unidade": "Minas Gerais",
+          "cargo": "PRESIDENTE",
+          "nome": "Gabriel Sousa Marques de Azevedo",
+          "cpf": "014.XXX.XXX-22",
+          "vago": false
+        },
+        {
+          "unidade": "Minas Gerais",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Antônio Carlos Silva Nunes",
+          "cpf": "437.XXX.XXX-30",
+          "vago": false
+        },
+        {
+          "unidade": "Minas Gerais",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Neidson Dias Freitas",
+          "cpf": "046.XXX.XXX-77",
+          "vago": false
+        },
+        {
+          "unidade": "Minas Gerais",
+          "cargo": "SUPLENTE",
+          "nome": "Ivania Maria Maia",
+          "cpf": "762.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "Pará",
+          "cargo": "PRESIDENTE",
+          "nome": "Andreia Serra Melo",
+          "cpf": "515.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Pará",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Não preenchido",
+          "cpf": "—",
+          "vago": true
+        },
+        {
+          "unidade": "Pará",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Não preenchido",
+          "cpf": "—",
+          "vago": true
+        },
+        {
+          "unidade": "Pará",
+          "cargo": "SUPLENTE",
+          "nome": "Alda Conceição Dantas de Souza Tocantins",
+          "cpf": "153.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Paraíba",
+          "cargo": "PRESIDENTE",
+          "nome": "André Avelino de Paiva Gadelha Neto",
+          "cpf": "840.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "Paraíba",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Marcos Eron Nogueira",
+          "cpf": "918.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Paraíba",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Anderson Monteiro da Costa",
+          "cpf": "052.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "Paraíba",
+          "cargo": "SUPLENTE",
+          "nome": "Romualdo Antonio Quirino de Souza",
+          "cpf": "646.XXX.XXX-78",
+          "vago": false
+        },
+        {
+          "unidade": "Paraná",
+          "cargo": "PRESIDENTE",
+          "nome": "Orlando Pessuti",
+          "cpf": "157.XXX.XXX-53",
+          "vago": false
+        },
+        {
+          "unidade": "Paraná",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Ademir Antonio Osmar Bier",
+          "cpf": "080.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Paraná",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Mariana Baggio Annibelli",
+          "cpf": "028.XXX.XXX-51",
+          "vago": false
+        },
+        {
+          "unidade": "Paraná",
+          "cargo": "SUPLENTE",
+          "nome": "Adriane Rosa Pachulski",
+          "cpf": "708.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Pernambuco",
+          "cargo": "PRESIDENTE",
+          "nome": "Adriana de Andrade Vasconcelos",
+          "cpf": "670.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Pernambuco",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "André Gustavo Carneiro Leão",
+          "cpf": "835.XXX.XXX-06",
+          "vago": false
+        },
+        {
+          "unidade": "Pernambuco",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Rafael Silva Pereira de Arruda",
+          "cpf": "036.XXX.XXX-64",
+          "vago": false
+        },
+        {
+          "unidade": "Pernambuco",
+          "cargo": "SUPLENTE",
+          "nome": "Isaac Freire Cazé",
+          "cpf": "040.XXX.XXX-96",
+          "vago": false
+        },
+        {
+          "unidade": "Piauí",
+          "cargo": "PRESIDENTE",
+          "nome": "Antônio Henrique de Carvalho Pires",
+          "cpf": "767.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "Piauí",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Felipe de Souza Rezende Sampaio",
+          "cpf": "036.XXX.XXX-93",
+          "vago": false
+        },
+        {
+          "unidade": "Piauí",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Vanessa Angeline Tapety",
+          "cpf": "669.XXX.XXX-34",
+          "vago": false
+        },
+        {
+          "unidade": "Piauí",
+          "cargo": "SUPLENTE",
+          "nome": "Simone Pereira Farias Araújo",
+          "cpf": "834.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Rio de Janeiro",
+          "cargo": "PRESIDENTE",
+          "nome": "Celso Alencar Ramos Jacob",
+          "cpf": "381.XXX.XXX-53",
+          "vago": false
+        },
+        {
+          "unidade": "Rio de Janeiro",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Katia Damiana Alves Pereira Lobo",
+          "cpf": "773.XXX.XXX–04",
+          "vago": false
+        },
+        {
+          "unidade": "Rio de Janeiro",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "João Nunes de Sousa Júnior",
+          "cpf": "086.XXX.XXX-61",
+          "vago": false
+        },
+        {
+          "unidade": "Rio de Janeiro",
+          "cargo": "SUPLENTE",
+          "nome": "Jorge Crispiniano Santos Nascimento",
+          "cpf": "102.XXX.XXX-07",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Norte",
+          "cargo": "PRESIDENTE",
+          "nome": "Allan Jefferson da Silveira",
+          "cpf": "061.XXX.XXX-39",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Norte",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Saint Clair Câmara dos Santos Linhares",
+          "cpf": "460.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Norte",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Luis Carlos Noronha e Sousa",
+          "cpf": "473.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Norte",
+          "cargo": "SUPLENTE",
+          "nome": "Glaydson Macedo",
+          "cpf": "047.XXX.XXX-85",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Sul",
+          "cargo": "PRESIDENTE",
+          "nome": "Paulo Ricardo Salerno",
+          "cpf": "001.XXX.XXX-07",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Sul",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Joel Ernesto Lopes Maraschin",
+          "cpf": "008.XXX.XXX-25",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Sul",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Edgar Paulo Marmentini",
+          "cpf": "433.XXX.XXX-68",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Sul",
+          "cargo": "SUPLENTE",
+          "nome": "Tânia Terezinha da Silva",
+          "cpf": "386.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Rondônia",
+          "cargo": "PRESIDENTE",
+          "nome": "Elizeu Lira Corrêa",
+          "cpf": "252.XXX.XXX-53",
+          "vago": false
+        },
+        {
+          "unidade": "Rondônia",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Josafá Piauhy Marreiro",
+          "cpf": "035.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Rondônia",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Rui Vieira de Sousa",
+          "cpf": "218.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Rondônia",
+          "cargo": "SUPLENTE",
+          "nome": "Alex Teixeira Andrade",
+          "cpf": "680.XXX.XXX-34",
+          "vago": false
+        },
+        {
+          "unidade": "Roraima",
+          "cargo": "PRESIDENTE",
+          "nome": "Rosilene de Brito Pereira",
+          "cpf": "602.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Roraima",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Janini Vieira Marques",
+          "cpf": "803.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Roraima",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Bruno Oliveira de Magalhães Queiroz",
+          "cpf": "023.XXX.XXX-08",
+          "vago": false
+        },
+        {
+          "unidade": "Roraima",
+          "cargo": "SUPLENTE",
+          "nome": "Bruno Perez de Sales",
+          "cpf": "054.XXX.XXX-07",
+          "vago": false
+        },
+        {
+          "unidade": "Santa Catarina",
+          "cargo": "PRESIDENTE",
+          "nome": "Valdir Vital Cobalchini",
+          "cpf": "339.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Santa Catarina",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Kleberson Luciano Lima",
+          "cpf": "000.XXX.XXX-94",
+          "vago": false
+        },
+        {
+          "unidade": "Santa Catarina",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Adélcio Machado dos Santos",
+          "cpf": "533.XXX.XXX-34",
+          "vago": false
+        },
+        {
+          "unidade": "Santa Catarina",
+          "cargo": "SUPLENTE",
+          "nome": "FERNANDA MElO BAYER",
+          "cpf": "019.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "São Paulo",
+          "cargo": "PRESIDENTE",
+          "nome": "Adriana Valéria Silva Lossani",
+          "cpf": "142.XXX.XXX-27",
+          "vago": false
+        },
+        {
+          "unidade": "São Paulo",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Maria Rita Carra Navarro",
+          "cpf": "564.XXX.XXX-34",
+          "vago": false
+        },
+        {
+          "unidade": "São Paulo",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Fausto Guilherme Longo",
+          "cpf": "723.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "São Paulo",
+          "cargo": "SUPLENTE",
+          "nome": "Carlos Abdo Muanis",
+          "cpf": "064.XXX.XXX-57",
+          "vago": false
+        },
+        {
+          "unidade": "Sergipe",
+          "cargo": "PRESIDENTE",
+          "nome": "Fernando Luiz Prado Carvalho Junior",
+          "cpf": "017.XXX.XXX-76",
+          "vago": false
+        },
+        {
+          "unidade": "Sergipe",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Camila Argolo Godinho",
+          "cpf": "918.XXX.XXX-68",
+          "vago": false
+        },
+        {
+          "unidade": "Sergipe",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Magno Lima Santos Fontes Correia",
+          "cpf": "038.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "Sergipe",
+          "cargo": "SUPLENTE",
+          "nome": "Silberlan Bruno das Neves Junior",
+          "cpf": "060.XXX.XXX-02",
+          "vago": false
+        },
+        {
+          "unidade": "Tocantins",
+          "cargo": "PRESIDENTE",
+          "nome": "Hérica Cristiane Inácia",
+          "cpf": "823.XXX.XXX-78",
+          "vago": false
+        },
+        {
+          "unidade": "Tocantins",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Gutemberg Quirino Lacerda",
+          "cpf": "009.XXX.XXX-01",
+          "vago": false
+        },
+        {
+          "unidade": "Tocantins",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Dálcio Rosário Alves",
+          "cpf": "877.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "Tocantins",
+          "cargo": "SUPLENTE",
+          "nome": "Cristina da Costa Pereira",
+          "cpf": "649.XXX.XXX-34",
+          "vago": false
+        }
+      ]
+    },
+    {
+      "id": "diretoria-administrativa",
+      "nome": "Diretoria Administrativa",
+      "total": 9,
+      "registros": [
+        {
+          "unidade": "Nacional",
+          "cargo": "PRESIDENTE",
+          "nome": "Alceu Moreira da Silva (RS)",
+          "cpf": "179.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Reinaldo Takarabe",
+          "cpf": "076.XXX.XXX-30",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Caio Vinicius de Moura",
+          "cpf": "358.XXX.XXX-03",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "DIRETOR(A) DE RELAÇÕES INSTITUCIONAIS",
+          "nome": "Rafael de Goes Brito (AL)",
+          "cpf": "010.XXX.XXX-73",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "SECRETÁRIO GERAL",
+          "nome": "Welington Coimbra (ES)",
+          "cpf": "343.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Hildo Augusto da Rocha Neto (MA)",
+          "cpf": "175.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "SUPLENTE",
+          "nome": "Renato Guimaraes Adur (PR)",
+          "cpf": "017.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "SUPLENTE",
+          "nome": "Valdir Vital Cobalchini (SC)",
+          "cpf": "339.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "SUPLENTE",
+          "nome": "Joane Machado Chiodini",
+          "cpf": "047.XXX.XXX-40",
+          "vago": false
+        }
+      ]
+    },
+    {
+      "id": "conselho-curador",
+      "nome": "Conselho Curador",
+      "total": 108,
+      "registros": [
+        {
+          "unidade": "Nacional",
+          "cargo": "PRESIDENTE",
+          "nome": "Wellington Moreira Franco",
+          "cpf": "103.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Carlos Alberto Chiodini",
+          "cpf": "005.XXX.XXX-42",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Palmínio Altimari Filho",
+          "cpf": "036.XXX.XXX-08",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Nelson Tadeu Filippelli",
+          "cpf": "042.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Gabriel Vieira de Souza",
+          "cpf": "000.XXX.XXX-80",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Veneziano Vital do Rego Segundo Neto",
+          "cpf": "713.XXX.XXX-68",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Regina Heurich Perondi",
+          "cpf": "063.XXX.XXX-63",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Juliana Moreira Sanchez Ruscher",
+          "cpf": "189.XXX.XXX-05",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Henrique Rassi Rossi",
+          "cpf": "491.XXX.XXX-82",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Janaína Greyce Riva Fagundes",
+          "cpf": "026.XXX.XXX-58",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO SUPLENTE",
+          "nome": "Washington Aparecido dos Santos",
+          "cpf": "038.XXX.XXX-66",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO SUPLENTE",
+          "nome": "Romero Jucá Filho",
+          "cpf": "095.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO SUPLENTE",
+          "nome": "Ângelo Girotto Netto",
+          "cpf": "425.XXX.XXX-97",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO SUPLENTE",
+          "nome": "Mariana Baggio Annibelli",
+          "cpf": "028.XXX.XXX-51",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO SUPLENTE",
+          "nome": "José Martinho dos Santos Barros",
+          "cpf": "175.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "Amazonas",
+          "cargo": "SUPLENTE",
+          "nome": "Rikson Pereira de Oliveira",
+          "cpf": "619.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Bahia",
+          "cargo": "PRESIDENTE",
+          "nome": "Belisa Cruz de Morais",
+          "cpf": "071.XXX.XXX-09",
+          "vago": false
+        },
+        {
+          "unidade": "Bahia",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Ricardo Grey de Araújo Lemos",
+          "cpf": "071.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Bahia",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Diego Pitanga dos Santos",
+          "cpf": "027.XXX.XXX-62",
+          "vago": false
+        },
+        {
+          "unidade": "Bahia",
+          "cargo": "SUPLENTE",
+          "nome": "Larissa Gomes Moraes",
+          "cpf": "014.XXX.XXX-97",
+          "vago": false
+        },
+        {
+          "unidade": "Ceará",
+          "cargo": "PRESIDENTE",
+          "nome": "Felipe Aguiar de Meneses",
+          "cpf": "024.XXX.XXX-88",
+          "vago": false
+        },
+        {
+          "unidade": "Ceará",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Rondinelle Pereira de Freitas",
+          "cpf": "639.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Ceará",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "José Eronildo Narciso da Silva",
+          "cpf": "644.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Ceará",
+          "cargo": "SUPLENTE",
+          "nome": "Lyziane Cristina Malta Bitar",
+          "cpf": "002.XXX.XXX-58",
+          "vago": false
+        },
+        {
+          "unidade": "Distrito Federal",
+          "cargo": "PRESIDENTE",
+          "nome": "Nelson Tadeu Filippelli",
+          "cpf": "042.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Distrito Federal",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "João Monteiro Neto",
+          "cpf": "245.XXX.XXX-68",
+          "vago": false
+        },
+        {
+          "unidade": "Distrito Federal",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Bruno Montes Silva",
+          "cpf": "043.XXX.XXX-67",
+          "vago": false
+        },
+        {
+          "unidade": "Distrito Federal",
+          "cargo": "SUPLENTE",
+          "nome": "Pollyanna Vaz Cavalcante Prudente",
+          "cpf": "720.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Espírito Santo",
+          "cargo": "PRESIDENTE",
+          "nome": "Luciano Miranda Salgado",
+          "cpf": "093.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Espírito Santo",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Mario Joao Baldotto Sarnaglia",
+          "cpf": "112.XXX.XXX-70",
+          "vago": false
+        },
+        {
+          "unidade": "Espírito Santo",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Nubia Rocha dos Passos",
+          "cpf": "078.XXX.XXX-60",
+          "vago": false
+        },
+        {
+          "unidade": "Espírito Santo",
+          "cargo": "SUPLENTE",
+          "nome": "Francisco Saulo Belisario",
+          "cpf": "742.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Goiás",
+          "cargo": "PRESIDENTE",
+          "nome": "Pedro Antônio de Oliveira Gonçalves",
+          "cpf": "003.XXX.XXX-43",
+          "vago": false
+        },
+        {
+          "unidade": "Goiás",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Antônio Carlos de Oliveira",
+          "cpf": "124.XXX.XXX-49",
+          "vago": false
+        },
+        {
+          "unidade": "Goiás",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Robert Bonifácio da Silva",
+          "cpf": "556.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Goiás",
+          "cargo": "SUPLENTE",
+          "nome": "Raquel Mendes Rodrigues",
+          "cpf": "218.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "Maranhão",
+          "cargo": "PRESIDENTE",
+          "nome": "Francisco de Assis Costa Filho",
+          "cpf": "020.XXX.XXX-31",
+          "vago": false
+        },
+        {
+          "unidade": "Maranhão",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Amanda Xavier Macedo Costa",
+          "cpf": "051.XXX.XXX-26",
+          "vago": false
+        },
+        {
+          "unidade": "Maranhão",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Deryck Passos Pinheiro",
+          "cpf": "042.XXX.XXX-05",
+          "vago": false
+        },
+        {
+          "unidade": "Maranhão",
+          "cargo": "SUPLENTE",
+          "nome": "Fábio Alexandre da Silva Serra",
+          "cpf": "060.XXX.XXX-01",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso",
+          "cargo": "PRESIDENTE",
+          "nome": "Rafael Bello Bastos",
+          "cpf": "902.XXX.XXX-34",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Aparecida Maria Borges Bezerra",
+          "cpf": "571.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Luiz Artur de Oliveira Ribeiro",
+          "cpf": "910.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso",
+          "cargo": "SUPLENTE",
+          "nome": "Edd Wilson Pereira",
+          "cpf": "673.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso do Sul",
+          "cargo": "PRESIDENTE",
+          "nome": "Maria Emília Ramalho Sulzer",
+          "cpf": "142.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso do Sul",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Wilson João Bittencourt Bellincanta",
+          "cpf": "886.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso do Sul",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Tânia Francini Steinle Melo",
+          "cpf": "067.XXX.XXX-83",
+          "vago": false
+        },
+        {
+          "unidade": "Mato Grosso do Sul",
+          "cargo": "SUPLENTE",
+          "nome": "Alfredo Luiz Martins",
+          "cpf": "163.XXX.XXX-49",
+          "vago": false
+        },
+        {
+          "unidade": "Minas Gerais",
+          "cargo": "PRESIDENTE",
+          "nome": "Gabriel Sousa Marques de Azevedo",
+          "cpf": "014.XXX.XXX-22",
+          "vago": false
+        },
+        {
+          "unidade": "Minas Gerais",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Antônio Carlos Silva Nunes",
+          "cpf": "437.XXX.XXX-30",
+          "vago": false
+        },
+        {
+          "unidade": "Minas Gerais",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Neidson Dias Freitas",
+          "cpf": "046.XXX.XXX-77",
+          "vago": false
+        },
+        {
+          "unidade": "Minas Gerais",
+          "cargo": "SUPLENTE",
+          "nome": "Ivania Maria Maia",
+          "cpf": "762.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "Pará",
+          "cargo": "PRESIDENTE",
+          "nome": "Andreia Serra Melo",
+          "cpf": "515.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Pará",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Antônia Diana Mota de Oliveira",
+          "cpf": "779.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Pará",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Paula Cristina Titan Rebello",
+          "cpf": "791.XXX.XXX-68",
+          "vago": false
+        },
+        {
+          "unidade": "Pará",
+          "cargo": "SUPLENTE",
+          "nome": "Alda Conceição Dantas de Souza Tocantins",
+          "cpf": "153.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Paraíba",
+          "cargo": "PRESIDENTE",
+          "nome": "André Avelino de Paiva Gadelha Neto",
+          "cpf": "840.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "Paraíba",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Marcos Eron Nogueira",
+          "cpf": "918.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Paraíba",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Anderson Monteiro da Costa",
+          "cpf": "052.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "Paraíba",
+          "cargo": "SUPLENTE",
+          "nome": "Romualdo Antonio Quirino de Souza",
+          "cpf": "646.XXX.XXX-78",
+          "vago": false
+        },
+        {
+          "unidade": "Paraná",
+          "cargo": "PRESIDENTE",
+          "nome": "Orlando Pessuti",
+          "cpf": "157.XXX.XXX-53",
+          "vago": false
+        },
+        {
+          "unidade": "Paraná",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Ademir Antonio Osmar Bier",
+          "cpf": "080.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Paraná",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Mariana Baggio Annibelli",
+          "cpf": "028.XXX.XXX-51",
+          "vago": false
+        },
+        {
+          "unidade": "Paraná",
+          "cargo": "SUPLENTE",
+          "nome": "Adriane Rosa Pachulski",
+          "cpf": "708.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Pernambuco",
+          "cargo": "PRESIDENTE",
+          "nome": "Adriana de Andrade Vasconcelos",
+          "cpf": "670.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Pernambuco",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "André Gustavo Carneiro Leão",
+          "cpf": "835.XXX.XXX-06",
+          "vago": false
+        },
+        {
+          "unidade": "Pernambuco",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Rafael Silva Pereira de Arruda",
+          "cpf": "036.XXX.XXX-64",
+          "vago": false
+        },
+        {
+          "unidade": "Pernambuco",
+          "cargo": "SUPLENTE",
+          "nome": "Isaac Freire Cazé",
+          "cpf": "040.XXX.XXX-96",
+          "vago": false
+        },
+        {
+          "unidade": "Piauí",
+          "cargo": "PRESIDENTE",
+          "nome": "Antônio Henrique de Carvalho Pires",
+          "cpf": "767.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "Piauí",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Felipe de Souza Rezende Sampaio",
+          "cpf": "036.XXX.XXX-93",
+          "vago": false
+        },
+        {
+          "unidade": "Piauí",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Vanessa Angeline Tapety",
+          "cpf": "669.XXX.XXX-34",
+          "vago": false
+        },
+        {
+          "unidade": "Piauí",
+          "cargo": "SUPLENTE",
+          "nome": "Simone Pereira Farias Araújo",
+          "cpf": "834.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Rio de Janeiro",
+          "cargo": "PRESIDENTE",
+          "nome": "Celso Alencar Ramos Jacob",
+          "cpf": "381.XXX.XXX-53",
+          "vago": false
+        },
+        {
+          "unidade": "Rio de Janeiro",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Katia Damiana Alves Pereira Lobo",
+          "cpf": "773.XXX.XXX–04",
+          "vago": false
+        },
+        {
+          "unidade": "Rio de Janeiro",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "João Nunes de Sousa Júnior",
+          "cpf": "086.XXX.XXX-61",
+          "vago": false
+        },
+        {
+          "unidade": "Rio de Janeiro",
+          "cargo": "SUPLENTE",
+          "nome": "Jorge Crispiniano Santos Nascimento",
+          "cpf": "102.XXX.XXX-07",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Norte",
+          "cargo": "PRESIDENTE",
+          "nome": "Allan Jefferson da Silveira",
+          "cpf": "061.XXX.XXX-39",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Norte",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Saint Clair Câmara dos Santos Linhares",
+          "cpf": "460.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Norte",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Luis Carlos Noronha e Sousa",
+          "cpf": "473.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Norte",
+          "cargo": "SUPLENTE",
+          "nome": "Glaydson Macedo",
+          "cpf": "047.XXX.XXX-85",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Sul",
+          "cargo": "PRESIDENTE",
+          "nome": "Paulo Ricardo Salerno",
+          "cpf": "001.XXX.XXX-07",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Sul",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Joel Ernesto Lopes Maraschin",
+          "cpf": "008.XXX.XXX-25",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Sul",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Edgar Paulo Marmentini",
+          "cpf": "433.XXX.XXX-68",
+          "vago": false
+        },
+        {
+          "unidade": "Rio Grande do Sul",
+          "cargo": "SUPLENTE",
+          "nome": "Tânia Terezinha da Silva",
+          "cpf": "386.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Rondônia",
+          "cargo": "PRESIDENTE",
+          "nome": "Elizeu Lira Corrêa",
+          "cpf": "252.XXX.XXX-53",
+          "vago": false
+        },
+        {
+          "unidade": "Rondônia",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Josafá Piauhy Marreiro",
+          "cpf": "035.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Rondônia",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Rui Vieira de Sousa",
+          "cpf": "218.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Rondônia",
+          "cargo": "SUPLENTE",
+          "nome": "Alex Teixeira Andrade",
+          "cpf": "680.XXX.XXX-34",
+          "vago": false
+        },
+        {
+          "unidade": "Roraima",
+          "cargo": "PRESIDENTE",
+          "nome": "Rosilene de Brito Pereira",
+          "cpf": "602.XXX.XXX-91",
+          "vago": false
+        },
+        {
+          "unidade": "Roraima",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Janini Vieira Marques",
+          "cpf": "803.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Roraima",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Bruno Oliveira de Magalhães Queiroz",
+          "cpf": "023.XXX.XXX-08",
+          "vago": false
+        },
+        {
+          "unidade": "Roraima",
+          "cargo": "SUPLENTE",
+          "nome": "Bruno Perez de Sales",
+          "cpf": "054.XXX.XXX-07",
+          "vago": false
+        },
+        {
+          "unidade": "Santa Catarina",
+          "cargo": "PRESIDENTE",
+          "nome": "Valdir Vital Cobalchini",
+          "cpf": "339.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Santa Catarina",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Kleberson Luciano Lima",
+          "cpf": "000.XXX.XXX-94",
+          "vago": false
+        },
+        {
+          "unidade": "Santa Catarina",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Adélcio Machado dos Santos",
+          "cpf": "533.XXX.XXX-34",
+          "vago": false
+        },
+        {
+          "unidade": "Santa Catarina",
+          "cargo": "SUPLENTE",
+          "nome": "FERNANDA MElO BAYER",
+          "cpf": "019.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "São Paulo",
+          "cargo": "PRESIDENTE",
+          "nome": "Adriana Valéria Silva Lossani",
+          "cpf": "142.XXX.XXX-27",
+          "vago": false
+        },
+        {
+          "unidade": "São Paulo",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Maria Rita Carra Navarro",
+          "cpf": "FUG - Administrativo 2 adm2: não tem o CPF na planilha que tenho acesso",
+          "vago": false
+        },
+        {
+          "unidade": "São Paulo",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Fausto Guilherme Longo",
+          "cpf": "723.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "São Paulo",
+          "cargo": "SUPLENTE",
+          "nome": "Carlos Abdo Muanis",
+          "cpf": "064.XXX.XXX-57",
+          "vago": false
+        },
+        {
+          "unidade": "Sergipe",
+          "cargo": "PRESIDENTE",
+          "nome": "Fernando Luiz Prado Carvalho Junior",
+          "cpf": "017.XXX.XXX-76",
+          "vago": false
+        },
+        {
+          "unidade": "Sergipe",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Camila Argolo Godinho",
+          "cpf": "918.XXX.XXX-68",
+          "vago": false
+        },
+        {
+          "unidade": "Sergipe",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Magno Lima Santos Fontes Correia",
+          "cpf": "038.XXX.XXX-04",
+          "vago": false
+        },
+        {
+          "unidade": "Sergipe",
+          "cargo": "SUPLENTE",
+          "nome": "Silberlan Bruno das Neves Junior",
+          "cpf": "060.XXX.XXX-02",
+          "vago": false
+        },
+        {
+          "unidade": "Tocantins",
+          "cargo": "PRESIDENTE",
+          "nome": "Adriana da Costa Pereira Aguiar",
+          "cpf": "644.XXX.XXX-68",
+          "vago": false
+        },
+        {
+          "unidade": "Tocantins",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Gutemberg Quirino Lacerda",
+          "cpf": "009.XXX.XXX-01",
+          "vago": false
+        },
+        {
+          "unidade": "Tocantins",
+          "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+          "nome": "Dálcio Rosário Alves",
+          "cpf": "877.XXX.XXX-72",
+          "vago": false
+        },
+        {
+          "unidade": "Tocantins",
+          "cargo": "SUPLENTE",
+          "nome": "Cristina da Costa Pereira",
+          "cpf": "649.XXX.XXX-34",
+          "vago": false
+        }
+      ]
+    },
+    {
+      "id": "conselho-fiscal",
+      "nome": "Conselho Fiscal",
+      "total": 6,
+      "registros": [
+        {
+          "unidade": "Nacional",
+          "cargo": "PRESIDENTE",
+          "nome": "Bruno Gabriel Mesquita - Sp",
+          "cpf": "368.XXX.XXX-02",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Dirce Heiderssheidt",
+          "cpf": "707.XXX.XXX-53",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "José Fernando Desideri",
+          "cpf": "026.XXX.XXX-42",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "SUPLENTE",
+          "nome": "Carlos Ricardo Santa Rita - Al",
+          "cpf": "101.XXX.XXX-15",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "SUPLENTE",
+          "nome": "Aloisio Justino do Nascimento",
+          "cpf": "020.XXX.XXX-08",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "SUPLENTE",
+          "nome": "Robert Bonifácio da Silva",
+          "cpf": "556.XXX.XXX-20",
+          "vago": false
+        }
+      ]
+    },
+    {
+      "id": "conselho-editorial",
+      "nome": "Conselho Editorial",
+      "total": 7,
+      "registros": [
+        {
+          "unidade": "Nacional",
+          "cargo": "PRESIDENTE",
+          "nome": "José Alberto Fogaça de Medeiros",
+          "cpf": "063.XXX.XXX-00",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "VICE-PRESIDENTE",
+          "nome": "Raul Jean Louis Henry Júnior",
+          "cpf": "458.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Luís Felipe Loro",
+          "cpf": "026.XXX.XXX-20",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Gabriel Sousa Marques de Azevedo",
+          "cpf": "014.XXX.XXX-22",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "CONSELHEIRO TITULAR",
+          "nome": "Margareth Ocioli",
+          "cpf": "535.XXX.XXX-87",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "SUPLENTE",
+          "nome": "Veluma Vitória Menezes Faria",
+          "cpf": "022.XXX.XXX-14",
+          "vago": false
+        },
+        {
+          "unidade": "Nacional",
+          "cargo": "SUPLENTE",
+          "nome": "Mariana Barbalho da Silva",
+          "cpf": "401.XXX.XXX-00",
+          "vago": false
+        }
+      ]
+    }
+  ]
+}

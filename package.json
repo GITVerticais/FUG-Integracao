@@ -1,0 +1,17 @@
+{
+  "name": "fug-integracao",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portal Espaço de Integridade — Fundação Ulysses Guimarães",
+  "scripts": {
+    "css": "tailwindcss -i assets/css/input.css -o assets/css/main.css --minify",
+    "css:watch": "tailwindcss -i assets/css/input.css -o assets/css/main.css --watch",
+    "dados": "python tools/xlsx_to_json.py && python tools/pdf_to_json.py",
+    "tabelas": "python tools/build_tables.py",
+    "build": "npm run dados && npm run tabelas && npm run css"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "tailwindcss": "^3.4.17"
+  }
+}
