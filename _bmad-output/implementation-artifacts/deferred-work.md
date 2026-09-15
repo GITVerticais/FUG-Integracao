@@ -30,3 +30,7 @@
   summary: Os testes de `xlsx_to_json` e `build_tables` não leem `data/diretorias.json` nem o HTML publicado, então CI verde não impede o Conselho Curador da Maria Rita voltar a `—` após um regen parcial.
   evidence: Os testes isolam em `tmp_path` por contrato; esta correção só regenerou os artefatos na sessão. Uma suíte que abra `data/` e `estrutura-organizacional/index.html` travaria as duas linhas publicadas.
 
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-exportacao-xlsx-downloads.md`
+  summary: SPEC-exportacao-dados e notas de specs done ainda pedem SheetJS / não tocar as tags de exportação do rodapé.
+  evidence: CAP-1/CAP-2 e as tags cdnjs continuam no contrato canônico; um agente posterior pode recolocar `xlsx.full.min.js` e `exportar-xlsx.js`.
+
