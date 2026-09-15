@@ -29,6 +29,10 @@ CORRECOES_NOME = {
     "Elaíne Santos deJesus": "Elaíne Santos de Jesus",
 }
 
+CORRECOES_UNIDADE = {
+    "RORAIMA RR": "Roraima",
+}
+
 # CPF mascarado conhecido quando a celula da planilha traz nota interna
 # em vez da mascara. So se aplica se sanitizar_cpf cair em "—" — mascara
 # valida na propria linha nao e sobrescrita.
@@ -95,11 +99,12 @@ def corpo_funcional():
         if not nome:
             continue
         estado_atual = estado or estado_atual
+        unidade = CORRECOES_UNIDADE.get(estado_atual, estado_atual)
         cargo = CORRECOES_CARGO.get(cargo, cargo)
         nome = CORRECOES_NOME.get(nome, nome)
         registros.append(
             {
-                "unidade": nome_proprio(estado_atual),
+                "unidade": nome_proprio(unidade),
                 "nome": nome_proprio(nome),
                 "cargo": cargo,
             }

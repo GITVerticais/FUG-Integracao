@@ -44,6 +44,35 @@ def test_secoes_com_xlsx_oferecem_o_arquivo_oficial():
         assert (RAIZ / "downloads" / nome).is_file(), nome
 
 
+def test_corpo_funcional_aponta_estrutura_remuneratoria_antes_do_bloco():
+    html = _html()
+    bloco = re.search(
+        r'<section\b[^>]*\bid="corpo-funcional"[\s\S]*?<!-- BLOCO:corpo-funcional:INICIO -->',
+        html,
+    )
+    assert bloco, "corpo-funcional"
+    markup = bloco.group(0)
+    assert re.search(r'<a\b[^>]*\bhref="#estrutura-remuneratoria"', markup)
+    assert re.search(
+        r'<a\b[^>]*\bhref="../downloads/corpo-funcional-2025.xlsx"[^>]*\bdownload\b',
+        markup,
+    )
+
+
+def test_corpo_funcional_publica_29_linhas_e_legenda():
+    html = _html()
+    bloco = re.search(
+        r"<!-- BLOCO:corpo-funcional:INICIO -->([\s\S]*?)<!-- BLOCO:corpo-funcional:FIM -->",
+        html,
+    )
+    assert bloco, "corpo-funcional"
+    markup = bloco.group(1)
+    assert "29 registros." in markup
+    tbody = re.search(r"<tbody>([\s\S]*?)</tbody>", markup)
+    assert tbody
+    assert len(re.findall(r"<tr\b", tbody.group(1))) == 29
+
+
 def test_nao_carrega_sheetjs_nem_exportar_xlsx():
     html = _html()
     assert "xlsx.full.min.js" not in html

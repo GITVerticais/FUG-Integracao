@@ -128,24 +128,24 @@ def bloco_diretorias(dados):
 
 
 def bloco_corpo_funcional(dados):
-    """Tabela unica: unidade, nome e cargo de cada empregado."""
-    colunas = [("Unidade", False), ("Nome", False), ("Cargo", False)]
+    """Tabela unica: nome, cargo e unidade de cada empregado."""
+    colunas = [("Nome", False), ("Cargo", False), ("Unidade", False)]
     registros = dados.get("registros", [])
     linhas = [
         f'<p class="{CLS_LEGENDA}">{esc(dados.get("total", ""))} registros.</p>',
         f'<div class="{CLS_MOLDURA}">',
         f'<table class="{CLS_TABELA}">',
-        '<caption class="sr-only">Corpo funcional: unidade de representação, '
-        "nome e cargo de cada empregado.</caption>",
+        '<caption class="sr-only">Corpo funcional: nome, cargo e unidade de '
+        "representação de cada empregado.</caption>",
     ]
     linhas += _cabecalho(colunas)
     linhas.append("<tbody>")
     for registro in registros:
         linhas += [
             f'<tr class="{CLS_LINHA}">',
-            f'<td class="{CLS_TD}">{esc(registro.get("unidade", ""))}</td>',
             f'<td class="{CLS_TD}">{_celula_nome(registro)}</td>',
             f'<td class="{CLS_TD}">{esc(registro.get("cargo", ""))}</td>',
+            f'<td class="{CLS_TD}">{esc(registro.get("unidade", ""))}</td>',
             "</tr>",
         ]
     linhas += ["</tbody>", "</table>", "</div>"]

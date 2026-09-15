@@ -416,3 +416,79 @@ def test_cpf_completo_ocupado_nao_aparece_no_html(tmp_path):
     assert "Fulano Completo" in trecho
     assert 'whitespace-nowrap">—</td>' in trecho
     assert "data-vago" not in trecho
+
+
+def test_corpo_funcional_colunas_nome_cargo_unidade(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    cf = bloco(pagina.read_text(encoding="utf-8"), "corpo-funcional")
+
+    cabecalhos = re.findall(
+        r'<th class="[^"]*" scope="col">(Nome|Cargo|Unidade)</th>', cf
+    )
+    assert cabecalhos == ["Nome", "Cargo", "Unidade"]
+    assert cf.count('scope="col"') == 3
+
+    celulas = re.findall(r'<td class="[^"]*">([^<]*)</td>', cf)
+    assert celulas == ["João da Silva", "Copeiro", "Distrito Federal"]
+
+
+def test_corpo_funcional_bloco_sem_dinheiro_nem_cpf(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    cf = bloco(pagina.read_text(encoding="utf-8"), "corpo-funcional")
+
+    assert "R$" not in cf
+    assert "CPF" not in cf
+    assert "cpf" not in cf
+
+
+def test_corpo_funcional_injeta_29_linhas_nome_cargo_unidade(tmp_path):
+    registros = [
+        {
+            "unidade": f"Unidade {i:02d}",
+            "nome": f"Pessoa {i:02d}",
+            "cargo": f"Cargo {i:02d}",
+        }
+        for i in range(29)
+    ]
+    dados = escrever_dados(
+        tmp_path / "data",
+        ajustes={
+            "corpo-funcional.json": {
+                "ano": 2025,
+                "total": 29,
+                "registros": registros,
+            }
+        },
+    )
+    pagina = escrever_pagina(tmp_path / "index.html")
+    build_tables.gerar(dados, pagina)
+    cf = bloco(pagina.read_text(encoding="utf-8"), "corpo-funcional")
+
+    assert cf.count("<table") == 1
+    miolo = re.search(r"<tbody>([\s\S]*)</tbody>", cf)
+    assert miolo is not None
+    assert miolo.group(1).count("<tr") == 29
+    cabecalhos = re.findall(
+        r'<th class="[^"]*" scope="col">(Nome|Cargo|Unidade)</th>', cf
+    )
+    assert cabecalhos == ["Nome", "Cargo", "Unidade"]
+    assert [r["nome"] for r in registros] == re.findall(
+        r'<td class="[^"]*">(Pessoa \d{2})</td>', cf
+    )
+    assert "29 registros." in cf
+
+
+def test_json_ausente_corpo_funcional_aborta_sem_escrever(tmp_path, capsys):
+    dados = escrever_dados(tmp_path / "data", omitir=("corpo-funcional.json",))
+    pagina = escrever_pagina(tmp_path / "index.html")
+    antes = pagina.read_bytes()
+
+    codigo = build_tables.main(["--dados", str(dados), "--pagina", str(pagina)])
+
+    assert codigo == 1
+    err = capsys.readouterr().err
+    assert "corpo-funcional.json" in err
+    assert "npm run dados" in err
+    assert pagina.read_bytes() == antes
