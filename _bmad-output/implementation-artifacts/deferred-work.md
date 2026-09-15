@@ -34,3 +34,7 @@
   summary: SPEC-exportacao-dados e notas de specs done ainda pedem SheetJS / não tocar as tags de exportação do rodapé.
   evidence: CAP-1/CAP-2 e as tags cdnjs continuam no contrato canônico; um agente posterior pode recolocar `xlsx.full.min.js` e `exportar-xlsx.js`.
 
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-remover-frase-estrutura-remuneratoria.md`
+  summary: `spec-estrutura-remuneratoria.md` (status done) ainda exige as notas CAP-4 com a transcrição do PDF de 2025 e o significado de vagas previstas/preenchidas.
+  evidence: Um agente posterior pode recolocar o parágrafo para satisfazer o AC antigo; atualizar aquele spec sairia do escopo desta correção.
+

@@ -1,4 +1,4 @@
-"""Trava o download dos XLSX oficiais em estrutura-organizacional/index.html.
+"""Trava o download dos XLSX oficiais e o PDF da remuneratória em estrutura-organizacional/index.html.
 
 Rodar com: python -m pytest tools/test_exportacao_xlsx.py -q
 """
@@ -79,8 +79,19 @@ def test_nao_carrega_sheetjs_nem_exportar_xlsx():
     assert "exportar-xlsx.js" not in html
 
 
-def test_estrutura_remuneratoria_oferece_pdf_oficial_com_notas():
+def test_estrutura_remuneratoria_oferece_pdf_oficial_sem_notas_de_transcricao():
     html = _html()
+    secao = re.search(
+        r'<section\b[^>]*\bid="estrutura-remuneratoria"[\s\S]*?</section>',
+        html,
+    )
+    assert secao, "estrutura-remuneratoria"
+    frase = (
+        "Transcrição do PDF oficial de 2025. "
+        "Vagas previstas são as posições do cargo no quadro; "
+        "vagas preenchidas são as posições ocupadas segundo o mesmo PDF."
+    )
+    assert frase not in re.sub(r"\s+", " ", secao.group(0))
     bloco = re.search(
         r'<section\b[^>]*\bid="estrutura-remuneratoria"[\s\S]*?<!-- BLOCO:estrutura-remuneratoria:INICIO -->',
         html,
@@ -97,9 +108,6 @@ def test_estrutura_remuneratoria_oferece_pdf_oficial_com_notas():
     assert re.search(r"</span>Baixar o PDF oficial\s*</a>", markup)
     assert (RAIZ / "downloads" / "estrutura-remuneratoria-2025.pdf").is_file()
     assert "xlsx" not in markup.lower()
-    assert "PDF oficial de 2025" in markup
-    assert "posições do cargo no quadro" in markup
-    assert "posições ocupadas" in markup
     assert "29" not in markup
     assert "35" not in markup
     assert "Q.T." not in markup
