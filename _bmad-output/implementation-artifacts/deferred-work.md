@@ -25,3 +25,8 @@
 - source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-organograma.md`
   summary: Tirar `npm run organograma` de `build` não quebra os testes da conversão.
   evidence: Os testes importam o módulo e fazem monkeypatch de `SRC`/`OUT`; nenhum lê `package.json` nem dispara o script npm. O mesmo vale para `tabelas` na spec da fundação.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-cpf-maria-rita-ordem-abas.md`
+  summary: Os testes de `xlsx_to_json` e `build_tables` não leem `data/diretorias.json` nem o HTML publicado, então CI verde não impede o Conselho Curador da Maria Rita voltar a `—` após um regen parcial.
+  evidence: Os testes isolam em `tmp_path` por contrato; esta correção só regenerou os artefatos na sessão. Uma suíte que abra `data/` e `estrutura-organizacional/index.html` travaria as duas linhas publicadas.
+

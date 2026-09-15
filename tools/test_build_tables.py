@@ -78,6 +78,13 @@ COLEGIADOS_MODELO = [
                 "unidade": "São Paulo",
                 "cargo": "VICE-PRESIDENTE",
                 "nome": "Maria Rita Carra Navarro",
+                "cpf": "564.XXX.XXX-34",
+                "vago": False,
+            },
+            {
+                "unidade": "Nacional",
+                "cargo": "SUPLENTE",
+                "nome": "Fulano Nota Interna",
                 "cpf": "FUG - Administrativo 2 adm2: não tem o CPF na planilha que tenho acesso",
                 "vago": False,
             },
@@ -362,13 +369,25 @@ def test_traco_unicode_no_cpf_vira_hifen_ascii(repo):
     assert "data-vago" not in trecho
 
 
-def test_cpf_ocupado_fora_do_formato_vira_traco_sem_marcar_vago(repo):
+def test_cpf_mascarado_da_maria_rita_sai_identico_na_celula(repo):
     dados, pagina = repo
     build_tables.gerar(dados, pagina)
     saida = pagina.read_text(encoding="utf-8")
     trecho = trecho_da_linha(saida, "Maria Rita Carra Navarro")
 
     assert "Maria Rita Carra Navarro" in trecho
+    assert "564.XXX.XXX-34" in trecho
+    assert "data-vago" not in trecho
+    assert "Não preenchido" not in trecho
+
+
+def test_cpf_ocupado_fora_do_formato_vira_traco_sem_marcar_vago(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    saida = pagina.read_text(encoding="utf-8")
+    trecho = trecho_da_linha(saida, "Fulano Nota Interna")
+
+    assert "Fulano Nota Interna" in trecho
     assert "whitespace-nowrap\">—</td>" in trecho
     assert "data-vago" not in trecho
     assert "FUG - Administrativo" not in saida

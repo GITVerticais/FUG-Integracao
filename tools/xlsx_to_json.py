@@ -29,6 +29,13 @@ CORRECOES_NOME = {
     "Elaíne Santos deJesus": "Elaíne Santos de Jesus",
 }
 
+# CPF mascarado conhecido quando a celula da planilha traz nota interna
+# em vez da mascara. So se aplica se sanitizar_cpf cair em "—" — mascara
+# valida na propria linha nao e sobrescrita.
+CORRECOES_CPF = {
+    "Maria Rita Carra Navarro": "564.XXX.XXX-34",
+}
+
 # Exibido quando a planilha traz o cargo sem titular associado.
 CARGO_VAGO = "Não preenchido"
 
@@ -110,12 +117,16 @@ def diretorias():
             unidade, cargo, nome, cpf = (limpar(c) for c in linha[:4])
             if not cargo:
                 continue
+            nome_pub = nome_proprio(nome) if nome else CARGO_VAGO
+            cpf_pub = sanitizar_cpf(cpf) if nome else "—"
+            if nome and cpf_pub == "—":
+                cpf_pub = sanitizar_cpf(CORRECOES_CPF.get(nome_pub, cpf))
             registros.append(
                 {
                     "unidade": unidade,
                     "cargo": cargo,
-                    "nome": nome_proprio(nome) if nome else CARGO_VAGO,
-                    "cpf": sanitizar_cpf(cpf) if nome else "—",
+                    "nome": nome_pub,
+                    "cpf": cpf_pub,
                     "vago": not nome,
                 }
             )
