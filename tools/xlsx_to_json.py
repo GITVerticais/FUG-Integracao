@@ -32,6 +32,10 @@ CORRECOES_NOME = {
 # Exibido quando a planilha traz o cargo sem titular associado.
 CARGO_VAGO = "Não preenchido"
 
+# CPF ocupado publicado: mascara da planilha, com hifen ASCII. Qualquer outro
+# valor (nota interna, vazio, lixo) vira o mesmo traco dos cargos vagos.
+_MASCARA_CPF = re.compile(r"^\d{3}\.XXX\.XXX-\d{2}$")
+
 
 def limpar(valor):
     if valor is None:
@@ -57,6 +61,14 @@ def nome_proprio(texto):
     # Siglas de UF entre parenteses voltam para maiusculas: "(rs)" -> "(RS)".
     convertido = re.sub(r"\((\w{2})\)", lambda m: f"({m.group(1).upper()})", convertido)
     return convertido[0].upper() + convertido[1:] if convertido else convertido
+
+
+def sanitizar_cpf(cpf):
+    """Hifen Unicode vira ASCII; ocupado fora de ddd.XXX.XXX-dd vira —."""
+    texto = ("" if cpf is None else str(cpf)).replace("\u2013", "-")
+    if _MASCARA_CPF.fullmatch(texto):
+        return texto
+    return "—"
 
 
 def escrever(nome, conteudo):
@@ -103,7 +115,7 @@ def diretorias():
                     "unidade": unidade,
                     "cargo": cargo,
                     "nome": nome_proprio(nome) if nome else CARGO_VAGO,
-                    "cpf": cpf or "—",
+                    "cpf": sanitizar_cpf(cpf) if nome else "—",
                     "vago": not nome,
                 }
             )

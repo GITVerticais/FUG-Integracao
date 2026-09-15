@@ -7,6 +7,7 @@ Rodar com: python -m pytest tools/test_build_tables.py -q
 """
 import json
 import pathlib
+import re
 import sys
 
 import pytest
@@ -25,32 +26,111 @@ PAGINA_MODELO = """<!DOCTYPE html>
 </html>
 """
 
+COLEGIADOS_MODELO = [
+    {
+        "id": "diretorias-estaduais",
+        "nome": "Diretorias Estaduais",
+        "total": 3,
+        "registros": [
+            {
+                "unidade": "Acre",
+                "cargo": "PRESIDENTE",
+                "nome": "Ana Acre",
+                "cpf": "826.XXX.XXX-06",
+                "vago": False,
+            },
+            {
+                "unidade": "Ceará",
+                "cargo": "PRESIDENTE",
+                "nome": "Bruno Ceará",
+                "cpf": "111.XXX.XXX-11",
+                "vago": False,
+            },
+            {
+                "unidade": "Ceará",
+                "cargo": "DIRETOR(A) DE FORMAÇÃO POLÍTICA",
+                "nome": "Não preenchido",
+                "cpf": "—",
+                "vago": True,
+            },
+        ],
+    },
+    {
+        "id": "diretoria-administrativa",
+        "nome": "Diretoria Administrativa",
+        "total": 9,
+        "registros": [
+            {
+                "unidade": "Nacional",
+                "cargo": "PRESIDENTE",
+                "nome": "Carla Admin",
+                "cpf": "222.XXX.XXX-22",
+                "vago": False,
+            },
+        ],
+    },
+    {
+        "id": "conselho-curador",
+        "nome": "Conselho Curador",
+        "total": 108,
+        "registros": [
+            {
+                "unidade": "São Paulo",
+                "cargo": "VICE-PRESIDENTE",
+                "nome": "Maria Rita Carra Navarro",
+                "cpf": "FUG - Administrativo 2 adm2: não tem o CPF na planilha que tenho acesso",
+                "vago": False,
+            },
+            {
+                "unidade": "Rio de Janeiro",
+                "cargo": "VICE-PRESIDENTE",
+                "nome": "Katia Damiana Alves Pereira Lobo",
+                "cpf": "773.XXX.XXX–04",
+                "vago": False,
+            },
+        ],
+    },
+    {
+        "id": "conselho-fiscal",
+        "nome": "Conselho Fiscal",
+        "total": 2,
+        "registros": [
+            {
+                "unidade": "Nacional",
+                "cargo": "PRESIDENTE",
+                "nome": "Maria de Souza",
+                "cpf": "000.XXX.XXX-00",
+                "vago": False,
+            },
+            {
+                "unidade": "Ceará",
+                "cargo": "SUPLENTE",
+                "nome": "Maria Residual",
+                "cpf": "—",
+                "vago": True,
+            },
+        ],
+    },
+    {
+        "id": "conselho-editorial",
+        "nome": "Conselho Editorial",
+        "total": 7,
+        "registros": [
+            {
+                "unidade": "Nacional",
+                "cargo": "PRESIDENTE",
+                "nome": "Elena Editorial",
+                "cpf": "333.XXX.XXX-33",
+                "vago": False,
+            },
+        ],
+    },
+]
+
 DADOS_MODELO = {
     "diretorias.json": {
         "ano": 2025,
-        "colegiados": [
-            {
-                "id": "conselho-fiscal",
-                "nome": "Conselho Fiscal",
-                "total": 2,
-                "registros": [
-                    {
-                        "unidade": "Nacional",
-                        "cargo": "PRESIDENTE",
-                        "nome": "Maria de Souza",
-                        "cpf": "000.XXX.XXX-00",
-                        "vago": False,
-                    },
-                    {
-                        "unidade": "Ceará",
-                        "cargo": "SUPLENTE",
-                        "nome": "Maria Residual",
-                        "cpf": "—",
-                        "vago": True,
-                    },
-                ],
-            }
-        ],
+        "colegiados": COLEGIADOS_MODELO,
     },
     "corpo-funcional.json": {
         "ano": 2025,
@@ -100,6 +180,18 @@ def escrever_pagina(caminho, secoes=SECOES, sem_fim=()):
         PAGINA_MODELO.format(blocos="\n".join(blocos)), encoding="utf-8", newline="\n"
     )
     return caminho
+
+
+def bloco(saida, secao):
+    inicio = saida.index(f"<!-- BLOCO:{secao}:INICIO -->")
+    fim = saida.index(f"<!-- BLOCO:{secao}:FIM -->")
+    return saida[inicio:fim]
+
+
+def trecho_da_linha(saida, texto, antes=5, depois=2):
+    linhas = saida.splitlines()
+    idx = next(i for i, linha in enumerate(linhas) if texto in linha)
+    return "\n".join(linhas[max(0, idx - antes) : idx + depois + 1])
 
 
 @pytest.fixture
@@ -183,13 +275,15 @@ def test_registro_vago_exibe_nao_preenchido_e_marca_a_linha(repo):
     assert linha_vaga.strip().startswith("<tr")
     assert "<em class=\"text-on-surface-variant\">Não preenchido</em>" in saida
     assert "Maria Residual" not in saida
+    trecho_vago = trecho_da_linha(saida, 'data-vago="true"', depois=5)
+    assert 'whitespace-nowrap">—</td>' in trecho_vago
     # A linha preenchida ao lado nao herda a marcacao.
-    assert saida.count('data-vago="true"') == 1
+    assert saida.count('data-vago="true"') == 2
 
 
 def test_legenda_transcreve_total_da_origem(tmp_path):
     ajuste_dir = json.loads(json.dumps(DADOS_MODELO["diretorias.json"]))
-    ajuste_dir["colegiados"][0]["total"] = 99
+    ajuste_dir["colegiados"][3]["total"] = 99
     ajuste_cf = json.loads(json.dumps(DADOS_MODELO["corpo-funcional.json"]))
     ajuste_cf["total"] = 77
     dados = escrever_dados(
@@ -225,3 +319,81 @@ def test_main_devolve_1_e_nao_escreve_quando_falta_json(tmp_path, capsys):
 def test_main_devolve_0_no_caminho_feliz(repo):
     dados, pagina = repo
     assert build_tables.main(["--dados", str(dados), "--pagina", str(pagina)]) == 0
+
+
+def test_cinco_colegiados_viram_cinco_tabelas_com_quatro_colunas(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    diretorias = bloco(pagina.read_text(encoding="utf-8"), "diretorias")
+
+    assert diretorias.count("<table") == 5
+    for nome, total in (
+        ("Diretorias Estaduais", "3 registros."),
+        ("Diretoria Administrativa", "9 registros."),
+        ("Conselho Curador", "108 registros."),
+        ("Conselho Fiscal", "2 registros."),
+        ("Conselho Editorial", "7 registros."),
+    ):
+        assert f">{nome}</h3>" in diretorias
+        assert total in diretorias
+
+    cabecalhos = re.findall(
+        r'<th class="[^"]*" scope="col">(Unidade|Cargo|Nome|CPF)</th>', diretorias
+    )
+    assert cabecalhos == ["Unidade", "Cargo", "Nome", "CPF"] * 5
+    assert diretorias.count('scope="col"') == 20
+
+
+def test_cpf_mascarado_sai_identico_na_celula(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    trecho = trecho_da_linha(pagina.read_text(encoding="utf-8"), "Ana Acre")
+    assert "826.XXX.XXX-06" in trecho
+    assert "data-vago" not in trecho
+
+
+def test_traco_unicode_no_cpf_vira_hifen_ascii(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    saida = pagina.read_text(encoding="utf-8")
+    trecho = trecho_da_linha(saida, "Katia Damiana Alves Pereira Lobo")
+    assert "773.XXX.XXX-04" in trecho
+    assert "773.XXX.XXX–04" not in saida
+    assert "data-vago" not in trecho
+
+
+def test_cpf_ocupado_fora_do_formato_vira_traco_sem_marcar_vago(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    saida = pagina.read_text(encoding="utf-8")
+    trecho = trecho_da_linha(saida, "Maria Rita Carra Navarro")
+
+    assert "Maria Rita Carra Navarro" in trecho
+    assert "whitespace-nowrap\">—</td>" in trecho
+    assert "data-vago" not in trecho
+    assert "FUG - Administrativo" not in saida
+    assert "Não preenchido" not in trecho
+
+
+def test_cpf_completo_ocupado_nao_aparece_no_html(tmp_path):
+    ajuste = json.loads(json.dumps(DADOS_MODELO["diretorias.json"]))
+    ajuste["colegiados"][1]["registros"].append(
+        {
+            "unidade": "Nacional",
+            "cargo": "SUPLENTE",
+            "nome": "Fulano Completo",
+            "cpf": "123.456.789-00",
+            "vago": False,
+        }
+    )
+    dados = escrever_dados(tmp_path / "data", ajustes={"diretorias.json": ajuste})
+    pagina = escrever_pagina(tmp_path / "index.html")
+
+    build_tables.gerar(dados, pagina)
+    saida = pagina.read_text(encoding="utf-8")
+    trecho = trecho_da_linha(saida, "Fulano Completo")
+
+    assert "123.456.789-00" not in saida
+    assert "Fulano Completo" in trecho
+    assert 'whitespace-nowrap">—</td>' in trecho
+    assert "data-vago" not in trecho

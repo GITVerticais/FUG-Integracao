@@ -27,6 +27,10 @@ PAGINA = RAIZ / "estrutura-organizacional" / "index.html"
 # Exibido no lugar do nome quando o registro de origem vem sem titular.
 CARGO_VAGO = "Não preenchido"
 
+# CPF ocupado publicado: mascara da planilha, com hifen ASCII. Qualquer outro
+# valor (nota interna, vazio, lixo) vira o mesmo traco dos cargos vagos.
+_MASCARA_CPF = re.compile(r"^\d{3}\.XXX\.XXX-\d{2}$")
+
 # Classes de apresentacao, em tokens do tailwind.config.js. Concentradas aqui
 # para que a tabela inteira mude de aparencia num ponto so.
 CLS_MOLDURA = "mt-6 overflow-x-auto rounded-lg border border-outline-variant/40 bg-surface-container-lowest"
@@ -71,6 +75,14 @@ def _celula_nome(registro):
     return esc(registro.get("nome", ""))
 
 
+def sanitizar_cpf(cpf):
+    """Hifen Unicode vira ASCII; ocupado fora de ddd.XXX.XXX-dd vira —."""
+    texto = ("" if cpf is None else str(cpf)).replace("\u2013", "-")
+    if _MASCARA_CPF.fullmatch(texto):
+        return texto
+    return "—"
+
+
 def _cabecalho(colunas):
     """colunas: lista de (rotulo, numerica)."""
     linhas = [f'<thead class="{CLS_CABECALHO}">', "<tr>"]
@@ -107,7 +119,7 @@ def bloco_diretorias(dados):
                 f'<td class="{CLS_TD}">{esc(registro.get("unidade", ""))}</td>',
                 f'<td class="{CLS_TD}">{esc(registro.get("cargo", ""))}</td>',
                 f'<td class="{CLS_TD}">{_celula_nome(registro)}</td>',
-                f'<td class="{CLS_TD} whitespace-nowrap">{esc(registro.get("cpf", ""))}</td>',
+                f'<td class="{CLS_TD} whitespace-nowrap">{esc(sanitizar_cpf(registro.get("cpf", "")))}</td>',
                 "</tr>",
             ]
         linhas += ["</tbody>", "</table>", "</div>", "</section>"]
