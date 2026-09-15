@@ -8,7 +8,8 @@
     "css:watch": "tailwindcss -i assets/css/input.css -o assets/css/main.css --watch",
     "dados": "python tools/xlsx_to_json.py && python tools/pdf_to_json.py",
     "tabelas": "python tools/build_tables.py",
-    "build": "npm run dados && npm run tabelas && npm run css"
+    "organograma": "python tools/render_organograma.py",
+    "build": "npm run dados && npm run tabelas && npm run organograma && npm run css"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.9",
