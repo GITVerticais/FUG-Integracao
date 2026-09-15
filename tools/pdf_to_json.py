@@ -56,7 +56,12 @@ def main():
     DESTINO.write_text(
         json.dumps(saida, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print(f"  {DESTINO.relative_to(RAIZ)} — {len(cargos)} cargos")
+    caminho = DESTINO
+    try:
+        caminho = DESTINO.relative_to(RAIZ)
+    except ValueError:
+        pass
+    print(f"  {caminho} — {len(cargos)} cargos")
 
 
 if __name__ == "__main__":

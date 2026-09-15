@@ -159,10 +159,76 @@ DADOS_MODELO = {
                 "faixa_media": "R$ 17.000,00",
                 "faixa_maxima": "R$ 20.000,00",
                 "adicionais": "—",
-            }
+            },
+            {
+                "cargo": "Trainee",
+                "nivel": 3,
+                "quadro_total": 5,
+                "quadro_preenchido": 0,
+                "salario_base": "R$ 1.848,00",
+                "faixa_media": "—",
+                "faixa_maxima": "—",
+                "adicionais": "—",
+            },
         ],
     },
 }
+
+CABECALHOS_ER = (
+    "Cargo",
+    "Nível",
+    "Vagas previstas",
+    "Vagas preenchidas",
+    "Salário base",
+    "Faixa média",
+    "Faixa máxima",
+    "Adicionais",
+)
+
+CARGOS_ER_20 = [
+    ("Secretário Executivo", 10, 1, 0, "R$ 25.000,00", "R$ 35.000,00", "R$ 45.000,00"),
+    ("Secretário Executivo Adjunto", 10, 1, 0, "R$ 20.000,00", "R$ 30.000,00", "R$ 35.000,00"),
+    ("Procurador Jurídico", 9, 1, 0, "R$ 14.000,00", "R$ 17.000,00", "R$ 20.000,00"),
+    ("Gerente", 8, 3, 0, "R$ 14.000,00", "R$ 17.000,00", "R$ 20.000,00"),
+    ("Chefe de Gabinete Diretoria Executiva", 7, 1, 1, "R$ 12.000,00", "R$ 15.000,00", "R$ 18.000,00"),
+    ("Supervisor", 6, 10, 6, "R$ 11.000,00", "R$ 13.000,00", "R$ 16.000,00"),
+    ("Coordenador", 5, 10, 6, "R$ 8.820,00", "R$ 13.000,00", "R$ 16.000,00"),
+    ("Assistente Administrativo I", 4, 35, 0, "R$ 5.200,00", "R$ 6.000,00", "R$ 6.540,00"),
+    ("Assistente Administrativo II", 4, 35, 0, "R$ 6.549,38", "R$ 6.900,00", "R$ 7.280,00"),
+    ("Assistente Administrativo III", 4, 35, 1, "R$ 7.285,32", "R$ 7.900,00", "R$ 8.500,00"),
+    ("Auxiliar Administrativo Junior", 3, 35, 6, "R$ 3.106,68", "R$ 3.500,00", "R$ 3.790,00"),
+    ("Auxiliar Administrativo Pleno", 3, 35, 1, "R$ 3.800,00", "R$ 4.000,00", "R$ 4.400,00"),
+    ("Auxiliar Administrativo Sênior", 3, 35, 3, "R$ 4.480,72", "R$ 4.900,00", "R$ 5.100,00"),
+    ("Trainee", 3, 5, 0, "R$ 1.848,00", "—", "—"),
+    ("Estagiário Ensino Médio", 2, 5, 2, "R$ 1.300,00", "—", "—"),
+    ("Estagiário Superior", 2, 5, 2, "R$ 1.400,00", "—", "—"),
+    ("Motorista", 2, 2, 2, "R$ 5.309,64", "R$ 5.900,00", "R$ 6.500,00"),
+    ("Aux. Serv. Gerais", 1, 2, 1, "R$ 1.892,94", "R$ 2.100,00", "R$ 3.000,00"),
+    ("Copeiro", 1, 1, 1, "R$ 3.704,40", "R$ 4.100,00", "R$ 5.000,00"),
+    ("Jovem Aprendiz", 1, 5, 3, "R$ 713,00", "—", "—"),
+]
+
+
+def _cargo_er(cargo, nivel, qt, qp, base, media, maxima):
+    return {
+        "cargo": cargo,
+        "nivel": nivel,
+        "quadro_total": qt,
+        "quadro_preenchido": qp,
+        "salario_base": base,
+        "faixa_media": media,
+        "faixa_maxima": maxima,
+        "adicionais": "—",
+    }
+
+
+def _celulas_er(markup, nome):
+    achado = re.search(
+        rf'<th class="[^"]*" scope="row">{re.escape(nome)}</th>([\s\S]*?)</tr>',
+        markup,
+    )
+    assert achado, nome
+    return re.findall(r"<td class=\"[^\"]*\">([^<]*)</td>", achado.group(1))
 
 
 def escrever_dados(destino, ajustes=None, omitir=()):
@@ -492,3 +558,78 @@ def test_json_ausente_corpo_funcional_aborta_sem_escrever(tmp_path, capsys):
     assert "corpo-funcional.json" in err
     assert "npm run dados" in err
     assert pagina.read_bytes() == antes
+
+
+def test_estrutura_remuneratoria_oito_cabecalhos_incluindo_adicionais(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    er = bloco(pagina.read_text(encoding="utf-8"), "estrutura-remuneratoria")
+
+    cabecalhos = re.findall(r'<th class="[^"]*" scope="col">([^<]+)</th>', er)
+    assert cabecalhos == list(CABECALHOS_ER)
+    assert er.count('scope="col"') == 8
+    assert er.count("<table") == 1
+
+
+def test_estrutura_remuneratoria_travessao_e_adicionais_nao_sao_zero(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    er = bloco(pagina.read_text(encoding="utf-8"), "estrutura-remuneratoria")
+
+    gerente = _celulas_er(er, "Gerente")
+    assert gerente[5] == "R$ 20.000,00"
+    assert gerente[6] == "—"
+
+    trainee = _celulas_er(er, "Trainee")
+    assert trainee[3] == "R$ 1.848,00"
+    assert trainee[4] == "—"
+    assert trainee[5] == "—"
+    assert trainee[6] == "—"
+    assert trainee[4] not in ("0", "R$ 0", "R$ 0,00")
+    assert trainee[5] not in ("0", "R$ 0", "R$ 0,00")
+
+    for nome in ("Gerente", "Trainee"):
+        assert _celulas_er(er, nome)[6] == "—"
+
+
+def test_estrutura_remuneratoria_injeta_20_linhas_na_ordem_do_json(tmp_path):
+    cargos = [_cargo_er(*linha) for linha in CARGOS_ER_20]
+    dados = escrever_dados(
+        tmp_path / "data",
+        ajustes={
+            "estrutura-remuneratoria.json": {
+                "ano": 2025,
+                "total_quadro_preenchido": 35,
+                "cargos": cargos,
+            }
+        },
+    )
+    pagina = escrever_pagina(tmp_path / "index.html")
+    build_tables.gerar(dados, pagina)
+    er = bloco(pagina.read_text(encoding="utf-8"), "estrutura-remuneratoria")
+
+    assert er.count("<table") == 1
+    miolo = re.search(r"<tbody>([\s\S]*)</tbody>", er)
+    assert miolo is not None
+    assert miolo.group(1).count("<tr") == 20
+
+    nomes = re.findall(r'<th class="[^"]*" scope="row">([^<]+)</th>', er)
+    assert nomes[0] == "Secretário Executivo"
+    assert nomes[-1] == "Jovem Aprendiz"
+    assert nomes == [c["cargo"] for c in cargos]
+
+    for nome, esperado in zip(nomes, CARGOS_ER_20, strict=True):
+        cargo, nivel, qt, qp, base, media, maxima = esperado
+        assert nome == cargo
+        assert _celulas_er(er, nome) == [
+            str(nivel),
+            str(qt),
+            str(qp),
+            base,
+            media,
+            maxima,
+            "—",
+        ]
+
+    cabecalhos = re.findall(r'<th class="[^"]*" scope="col">([^<]+)</th>', er)
+    assert cabecalhos == list(CABECALHOS_ER)

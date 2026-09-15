@@ -77,3 +77,33 @@ def test_nao_carrega_sheetjs_nem_exportar_xlsx():
     html = _html()
     assert "xlsx.full.min.js" not in html
     assert "exportar-xlsx.js" not in html
+
+
+def test_estrutura_remuneratoria_oferece_pdf_oficial_com_notas():
+    html = _html()
+    bloco = re.search(
+        r'<section\b[^>]*\bid="estrutura-remuneratoria"[\s\S]*?<!-- BLOCO:estrutura-remuneratoria:INICIO -->',
+        html,
+    )
+    assert bloco, "estrutura-remuneratoria"
+    markup = bloco.group(0)
+    href = "../downloads/estrutura-remuneratoria-2025.pdf"
+    rotulo = "Baixar o PDF oficial da Estrutura Remuneratória"
+    assert re.search(
+        rf'<a\b[^>]*\bhref="{re.escape(href)}"[^>]*\bdownload\b',
+        markup,
+    ), href
+    assert f'aria-label="{rotulo}"' in markup
+    assert re.search(r"</span>Baixar o PDF oficial\s*</a>", markup)
+    assert (RAIZ / "downloads" / "estrutura-remuneratoria-2025.pdf").is_file()
+    assert "xlsx" not in markup.lower()
+    assert "PDF oficial de 2025" in markup
+    assert "posições do cargo no quadro" in markup
+    assert "posições ocupadas" in markup
+    assert "29" not in markup
+    assert "35" not in markup
+    assert "Q.T." not in markup
+    assert "Q.P." not in markup
+    assert re.search(r"atualiza[cç][aã]o", markup, re.I) is None
+    assert "base normativa" not in markup.lower()
+    assert "acordo coletivo" not in markup.lower()
