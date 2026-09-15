@@ -5,7 +5,10 @@ Rodar com: python -m pytest tools/test_abas.py -q
 import pathlib
 import re
 
-PAGINA = pathlib.Path(__file__).resolve().parent.parent / "estrutura-organizacional" / "index.html"
+RAIZ = pathlib.Path(__file__).resolve().parent.parent
+PAGINA = RAIZ / "estrutura-organizacional" / "index.html"
+CSS = RAIZ / "assets" / "css" / "input.css"
+MAIN = RAIZ / "assets" / "css" / "main.css"
 
 ORDEM = (
     "diretorias",
@@ -24,3 +27,18 @@ def test_organograma_e_a_ultima_aba():
     )
     assert hrefs == list(ORDEM)
     assert paineis == list(ORDEM)
+
+
+def test_filtro_de_abas_cobre_target_interno_em_diretorias():
+    css = CSS.read_text(encoding="utf-8")
+    assert ":has(.aba-painel :target)" in css
+    assert ":has(#diretorias :target)" in css
+
+    main = MAIN.read_text(encoding="utf-8")
+    assert re.search(
+        r"\.aba-painel:not\(:has\(:target\)\)[^{]*\{[^}]*display:\s*none",
+        main,
+    )
+    for painel in ORDEM:
+        assert f".abas:has(#{painel} :target)" in main
+

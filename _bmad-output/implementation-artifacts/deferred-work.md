@@ -38,3 +38,7 @@
   summary: `spec-estrutura-remuneratoria.md` (status done) ainda exige as notas CAP-4 com a transcrição do PDF de 2025 e o significado de vagas previstas/preenchidas.
   evidence: Um agente posterior pode recolocar o parágrafo para satisfazer o AC antigo; atualizar aquele spec sairia do escopo desta correção.
 
+- source_spec: `C:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-indice-colegiados-diretorias.md`
+  summary: `html { scroll-behavior: smooth }` não respeita `prefers-reduced-motion`.
+  evidence: A regra já existia em `assets/css/input.css` L6–8; o índice só aumenta os saltos in-page. Override `scroll-behavior: auto` no media query não faz parte deste contrato.
+

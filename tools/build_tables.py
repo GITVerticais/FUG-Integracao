@@ -96,8 +96,20 @@ def _cabecalho(colunas):
 def bloco_diretorias(dados):
     """Uma tabela por colegiado: unidade, cargo, nome e CPF parcial."""
     colunas = [("Unidade", False), ("Cargo", False), ("Nome", False), ("CPF", False)]
+    colegiados = dados.get("colegiados", [])
     linhas = ['<div class="mt-8 space-y-12">']
-    for colegiado in dados.get("colegiados", []):
+    linhas.append(
+        '<nav aria-label="Colegiados desta seção" class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6">'
+    )
+    for colegiado in colegiados:
+        nome = colegiado.get("nome", "")
+        id_titulo = f'titulo-colegiado-{colegiado.get("id", "")}'
+        linhas.append(
+            f'<a class="text-sm font-semibold text-primary hover:underline" '
+            f'href="#{esc(id_titulo)}">{esc(nome)}</a>'
+        )
+    linhas.append("</nav>")
+    for colegiado in colegiados:
         nome = colegiado.get("nome", "")
         id_titulo = f'titulo-colegiado-{colegiado.get("id", "")}'
         linhas += [

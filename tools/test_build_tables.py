@@ -417,6 +417,51 @@ def test_cinco_colegiados_viram_cinco_tabelas_com_quatro_colunas(repo):
     assert diretorias.count('scope="col"') == 20
 
 
+def _ancoras_indice(diretorias):
+    nav = re.search(
+        r'<nav aria-label="Colegiados desta seção"[^>]*>([\s\S]*?)</nav>',
+        diretorias,
+    )
+    assert nav is not None
+    return re.findall(r'<a\b[^>]*\bhref="#([^"]+)"[^>]*>([^<]*)</a>', nav.group(1))
+
+
+def _titulos_h3(diretorias):
+    return re.findall(
+        r'<h3 class="[^"]*" id="([^"]+)">([^<]*)</h3>',
+        diretorias,
+    )
+
+
+def test_indice_com_cinco_ancoras_na_ordem_dos_h3(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    diretorias = bloco(pagina.read_text(encoding="utf-8"), "diretorias")
+
+    hrefs = _ancoras_indice(diretorias)
+    h3s = _titulos_h3(diretorias)
+    assert len(hrefs) == 5
+    assert hrefs == h3s
+    assert diretorias.index("<nav") < diretorias.index("<h3")
+    assert diretorias.count("<table") == 5
+
+
+def test_indice_com_um_colegiado(tmp_path):
+    ajuste = json.loads(json.dumps(DADOS_MODELO["diretorias.json"]))
+    ajuste["colegiados"] = ajuste["colegiados"][:1]
+    dados = escrever_dados(tmp_path / "data", ajustes={"diretorias.json": ajuste})
+    pagina = escrever_pagina(tmp_path / "index.html")
+
+    build_tables.gerar(dados, pagina)
+    diretorias = bloco(pagina.read_text(encoding="utf-8"), "diretorias")
+
+    hrefs = _ancoras_indice(diretorias)
+    h3s = _titulos_h3(diretorias)
+    assert hrefs == h3s == [("titulo-colegiado-diretorias-estaduais", "Diretorias Estaduais")]
+    assert diretorias.count("<h3") == 1
+    assert diretorias.count("<table") == 1
+
+
 def test_cpf_mascarado_sai_identico_na_celula(repo):
     dados, pagina = repo
     build_tables.gerar(dados, pagina)
