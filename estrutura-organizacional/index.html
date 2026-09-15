@@ -86,50 +86,1960 @@
                 </figure>
             </section>
 
-            <!-- Navegação entre as seções -->
-            <nav aria-label="Seções da estrutura organizacional"
-                class="mt-14 border-b border-outline-variant/40 flex flex-wrap gap-x-2">
-                <a class="aba-link px-4 py-3 font-semibold border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors"
-                    href="#diretorias">Dirigentes e Órgãos Colegiados</a>
-                <a class="aba-link px-4 py-3 font-semibold border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors"
-                    href="#corpo-funcional">Corpo Funcional</a>
-                <a class="aba-link px-4 py-3 font-semibold border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors"
-                    href="#estrutura-remuneratoria">Estrutura Remuneratória</a>
-            </nav>
+            <!-- Abas em CSS puro. A nav e os três painéis precisam de um ancestral .abas: é nele que o
+                 :has() de main.css detecta o painel em :target e esconde os demais. Sem hash na URL
+                 nenhum painel está em :target e as três seções aparecem na ordem do documento. -->
+            <div class="abas">
+                <nav aria-label="Seções da estrutura organizacional"
+                    class="mt-14 border-b border-outline-variant/40 flex flex-wrap gap-x-2">
+                    <a class="aba-link px-4 py-3 font-semibold border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors"
+                        href="#diretorias">Dirigentes e Órgãos Colegiados</a>
+                    <a class="aba-link px-4 py-3 font-semibold border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors"
+                        href="#corpo-funcional">Corpo Funcional</a>
+                    <a class="aba-link px-4 py-3 font-semibold border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors"
+                        href="#estrutura-remuneratoria">Estrutura Remuneratória</a>
+                </nav>
 
-            <!-- Dirigentes e órgãos colegiados -->
-            <section aria-labelledby="titulo-diretorias" class="aba-painel pt-10" id="diretorias">
-                <h2 class="text-2xl font-bold text-primary font-headline mb-3" id="titulo-diretorias">Dirigentes e Órgãos
-                    Colegiados</h2>
-                <p class="text-on-surface-variant leading-relaxed max-w-3xl">Relação dos dirigentes e dos membros dos órgãos
-                    colegiados da Fundação Ulysses Guimarães, organizada por colegiado e por unidade de representação. Os
-                    números de CPF são exibidos de forma parcial, em conformidade com a Lei Geral de Proteção de Dados (Lei
-                    nº 13.709/2018).</p>
-                <!-- BLOCO:diretorias:INICIO -->
-                <!-- BLOCO:diretorias:FIM -->
-            </section>
+                <!-- Dirigentes e órgãos colegiados -->
+                <section aria-labelledby="titulo-diretorias" class="aba-painel pt-10" id="diretorias">
+                    <h2 class="text-2xl font-bold text-primary font-headline mb-3" id="titulo-diretorias">Dirigentes e
+                        Órgãos Colegiados</h2>
+                    <p class="text-on-surface-variant leading-relaxed max-w-3xl">Relação dos dirigentes e dos membros dos
+                        órgãos colegiados da Fundação Ulysses Guimarães, organizada por colegiado e por unidade de
+                        representação. Os números de CPF são exibidos de forma parcial, em conformidade com a Lei Geral de
+                        Proteção de Dados (Lei nº 13.709/2018).</p>
+                    <!-- BLOCO:diretorias:INICIO -->
+                    <div class="mt-8 space-y-12">
+                        <section aria-labelledby="titulo-colegiado-diretorias-estaduais">
+                            <h3 class="text-xl font-bold text-primary font-headline" id="titulo-colegiado-diretorias-estaduais">Diretorias Estaduais</h3>
+                            <p class="mt-1 text-sm text-on-surface-variant">108 registros.</p>
+                            <div class="mt-6 overflow-x-auto rounded-lg border border-outline-variant/40 bg-surface-container-lowest">
+                                <table class="w-full text-left text-sm">
+                                    <caption class="sr-only">Diretorias Estaduais: unidade de representação, cargo, nome e CPF parcial de cada integrante.</caption>
+                                    <thead class="bg-surface-container text-on-surface-variant">
+                                        <tr>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Unidade</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Cargo</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Nome</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">CPF</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Acre</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Oséias de Souza Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">826.XXX.XXX-06</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Acre</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Francisco Ibertom Medeiros Calixto</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">736.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Acre</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Atevaldo Santana do Nascimento</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">217.XXX.XXX-53</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Acre</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Italo Diego Branco da Costa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">945.XXX.XXX-68</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Alagoas</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">José Wanderley Neto</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">061.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Alagoas</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">George André Palermo Santoro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">964.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Alagoas</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Rafael de Goes Brito</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">010.XXX.XXX-73</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Alagoas</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Claudio Alexandre Ayres da Costa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">010.XXX.XXX-92</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Amapá</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Aracicleuma Costa dos Santos Pinheiro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">182.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Amapá</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Alison Diego dos Santos Pinheiro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">768.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Amapá</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Aleno de Oliveira Conceição</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">342.XXX.XXX-53</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Amapá</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Evandro Cunha Menezes</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">703.XXX.XXX-53</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Amazonas</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Miguel Capobiango Neto</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">785.XXX.XXX-34</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Amazonas</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Cliferthon Lucas Maia</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">794.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Amazonas</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Rosinaldo Fonseca Moreira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">336.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Amazonas</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Rikson Pereira de Oliveira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">619.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Bahia</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Belisa Cruz de Morais</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">071.XXX.XXX-09</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Bahia</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Ricardo Grey de Araújo Lemos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">071.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Bahia</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Diego Pitanga dos Santos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">027.XXX.XXX-62</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Bahia</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Larissa Gomes Moraes</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">014.XXX.XXX-97</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Ceará</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Felipe Aguiar de Meneses</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">024.XXX.XXX-88</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Ceará</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">José Eronildo Narciso da Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">644.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30 bg-surface-container-low" data-vago="true">
+                                            <td class="px-4 py-3 align-top">Ceará</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top"><em class="text-on-surface-variant">Não preenchido</em></td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">—</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Ceará</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Lyziane Cristina Malta Bitar</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">002.XXX.XXX-58</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Nelson Tadeu Filippelli</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">042.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">João Monteiro Neto</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">245.XXX.XXX-68</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Bruno Montes Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">043.XXX.XXX-67</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Pollyanna Vaz Cavalcante Prudente</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">720.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Espírito Santo</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Mario Joao Baldotto Sarnaglia</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">112.XXX.XXX-70</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Espírito Santo</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Elisete de Paula Pires</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">862.XXX.XXX-49</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Espírito Santo</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Alcione Tonini da Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">857.XXX.XXX-49</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Espírito Santo</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Sérgio Murilo Lemos Rodrigues</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">450.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Goiás</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Pedro Antônio de Oliveira Gonçalves</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">003.XXX.XXX-43</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Goiás</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Antônio Carlos de Oliveira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">124.XXX.XXX-49</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Goiás</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Robert Bonifácio da Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">556.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Goiás</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Raquel Mendes Rodrigues</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">218.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Maranhão</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Francisco de Assis Costa Filho</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">020.XXX.XXX-31</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Maranhão</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Amanda Xavier Macedo Costa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">051.XXX.XXX-26</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Maranhão</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Deryck Passos Pinheiro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">042.XXX.XXX-05</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Maranhão</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Fábio Alexandre da Silva Serra</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">060.XXX.XXX-01</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Rafael Bello Bastos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">902.XXX.XXX-34</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Aparecida Maria Borges Bezerra</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">571.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Luiz Artur de Oliveira Ribeiro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">910.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Edd Wilson Pereira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">673.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso do Sul</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Maria Emília Ramalho Sulzer</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">142.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso do Sul</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Wilson João Bittencourt Bellincanta</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">886.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso do Sul</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Tânia Francini Steinle Melo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">067.XXX.XXX-83</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso do Sul</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Alfredo Luiz Martins</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">163.XXX.XXX-49</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Minas Gerais</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Gabriel Sousa Marques de Azevedo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">014.XXX.XXX-22</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Minas Gerais</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Antônio Carlos Silva Nunes</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">437.XXX.XXX-30</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Minas Gerais</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Neidson Dias Freitas</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">046.XXX.XXX-77</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Minas Gerais</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Ivania Maria Maia</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">762.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pará</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Andreia Serra Melo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">515.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30 bg-surface-container-low" data-vago="true">
+                                            <td class="px-4 py-3 align-top">Pará</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top"><em class="text-on-surface-variant">Não preenchido</em></td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">—</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30 bg-surface-container-low" data-vago="true">
+                                            <td class="px-4 py-3 align-top">Pará</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top"><em class="text-on-surface-variant">Não preenchido</em></td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">—</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pará</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Alda Conceição Dantas de Souza Tocantins</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">153.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraíba</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">André Avelino de Paiva Gadelha Neto</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">840.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraíba</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Marcos Eron Nogueira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">918.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraíba</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Anderson Monteiro da Costa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">052.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraíba</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Romualdo Antonio Quirino de Souza</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">646.XXX.XXX-78</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraná</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Orlando Pessuti</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">157.XXX.XXX-53</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraná</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Ademir Antonio Osmar Bier</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">080.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraná</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Mariana Baggio Annibelli</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">028.XXX.XXX-51</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraná</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Adriane Rosa Pachulski</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">708.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pernambuco</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Adriana de Andrade Vasconcelos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">670.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pernambuco</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">André Gustavo Carneiro Leão</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">835.XXX.XXX-06</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pernambuco</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Rafael Silva Pereira de Arruda</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">036.XXX.XXX-64</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pernambuco</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Isaac Freire Cazé</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">040.XXX.XXX-96</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Piauí</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Antônio Henrique de Carvalho Pires</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">767.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Piauí</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Felipe de Souza Rezende Sampaio</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">036.XXX.XXX-93</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Piauí</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Vanessa Angeline Tapety</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">669.XXX.XXX-34</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Piauí</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Simone Pereira Farias Araújo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">834.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio de Janeiro</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Celso Alencar Ramos Jacob</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">381.XXX.XXX-53</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio de Janeiro</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Katia Damiana Alves Pereira Lobo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">773.XXX.XXX–04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio de Janeiro</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">João Nunes de Sousa Júnior</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">086.XXX.XXX-61</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio de Janeiro</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Jorge Crispiniano Santos Nascimento</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">102.XXX.XXX-07</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Norte</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Allan Jefferson da Silveira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">061.XXX.XXX-39</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Norte</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Saint Clair Câmara dos Santos Linhares</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">460.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Norte</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Luis Carlos Noronha e Sousa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">473.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Norte</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Glaydson Macedo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">047.XXX.XXX-85</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Sul</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Paulo Ricardo Salerno</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">001.XXX.XXX-07</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Sul</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Joel Ernesto Lopes Maraschin</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">008.XXX.XXX-25</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Sul</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Edgar Paulo Marmentini</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">433.XXX.XXX-68</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Sul</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Tânia Terezinha da Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">386.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rondônia</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Elizeu Lira Corrêa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">252.XXX.XXX-53</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rondônia</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Josafá Piauhy Marreiro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">035.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rondônia</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Rui Vieira de Sousa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">218.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rondônia</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Alex Teixeira Andrade</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">680.XXX.XXX-34</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Roraima</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Rosilene de Brito Pereira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">602.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Roraima</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Janini Vieira Marques</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">803.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Roraima</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Bruno Oliveira de Magalhães Queiroz</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">023.XXX.XXX-08</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Roraima</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Bruno Perez de Sales</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">054.XXX.XXX-07</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Santa Catarina</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Valdir Vital Cobalchini</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">339.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Santa Catarina</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Kleberson Luciano Lima</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">000.XXX.XXX-94</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Santa Catarina</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Adélcio Machado dos Santos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">533.XXX.XXX-34</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Santa Catarina</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">FERNANDA MElO BAYER</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">019.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">São Paulo</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Adriana Valéria Silva Lossani</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">142.XXX.XXX-27</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">São Paulo</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Maria Rita Carra Navarro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">564.XXX.XXX-34</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">São Paulo</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Fausto Guilherme Longo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">723.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">São Paulo</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Carlos Abdo Muanis</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">064.XXX.XXX-57</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Sergipe</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Fernando Luiz Prado Carvalho Junior</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">017.XXX.XXX-76</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Sergipe</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Camila Argolo Godinho</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">918.XXX.XXX-68</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Sergipe</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Magno Lima Santos Fontes Correia</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">038.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Sergipe</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Silberlan Bruno das Neves Junior</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">060.XXX.XXX-02</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Tocantins</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Hérica Cristiane Inácia</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">823.XXX.XXX-78</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Tocantins</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Gutemberg Quirino Lacerda</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">009.XXX.XXX-01</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Tocantins</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Dálcio Rosário Alves</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">877.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Tocantins</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Cristina da Costa Pereira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">649.XXX.XXX-34</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <section aria-labelledby="titulo-colegiado-diretoria-administrativa">
+                            <h3 class="text-xl font-bold text-primary font-headline" id="titulo-colegiado-diretoria-administrativa">Diretoria Administrativa</h3>
+                            <p class="mt-1 text-sm text-on-surface-variant">9 registros.</p>
+                            <div class="mt-6 overflow-x-auto rounded-lg border border-outline-variant/40 bg-surface-container-lowest">
+                                <table class="w-full text-left text-sm">
+                                    <caption class="sr-only">Diretoria Administrativa: unidade de representação, cargo, nome e CPF parcial de cada integrante.</caption>
+                                    <thead class="bg-surface-container text-on-surface-variant">
+                                        <tr>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Unidade</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Cargo</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Nome</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">CPF</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Alceu Moreira da Silva (RS)</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">179.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Reinaldo Takarabe</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">076.XXX.XXX-30</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Caio Vinicius de Moura</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">358.XXX.XXX-03</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE RELAÇÕES INSTITUCIONAIS</td>
+                                            <td class="px-4 py-3 align-top">Rafael de Goes Brito (AL)</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">010.XXX.XXX-73</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">SECRETÁRIO GERAL</td>
+                                            <td class="px-4 py-3 align-top">Welington Coimbra (ES)</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">343.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Hildo Augusto da Rocha Neto (MA)</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">175.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Renato Guimaraes Adur (PR)</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">017.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Valdir Vital Cobalchini (SC)</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">339.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Joane Machado Chiodini</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">047.XXX.XXX-40</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <section aria-labelledby="titulo-colegiado-conselho-curador">
+                            <h3 class="text-xl font-bold text-primary font-headline" id="titulo-colegiado-conselho-curador">Conselho Curador</h3>
+                            <p class="mt-1 text-sm text-on-surface-variant">108 registros.</p>
+                            <div class="mt-6 overflow-x-auto rounded-lg border border-outline-variant/40 bg-surface-container-lowest">
+                                <table class="w-full text-left text-sm">
+                                    <caption class="sr-only">Conselho Curador: unidade de representação, cargo, nome e CPF parcial de cada integrante.</caption>
+                                    <thead class="bg-surface-container text-on-surface-variant">
+                                        <tr>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Unidade</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Cargo</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Nome</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">CPF</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Wellington Moreira Franco</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">103.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Carlos Alberto Chiodini</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">005.XXX.XXX-42</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Palmínio Altimari Filho</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">036.XXX.XXX-08</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Nelson Tadeu Filippelli</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">042.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Gabriel Vieira de Souza</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">000.XXX.XXX-80</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Veneziano Vital do Rego Segundo Neto</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">713.XXX.XXX-68</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Regina Heurich Perondi</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">063.XXX.XXX-63</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Juliana Moreira Sanchez Ruscher</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">189.XXX.XXX-05</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Henrique Rassi Rossi</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">491.XXX.XXX-82</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Janaína Greyce Riva Fagundes</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">026.XXX.XXX-58</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Washington Aparecido dos Santos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">038.XXX.XXX-66</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Romero Jucá Filho</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">095.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Ângelo Girotto Netto</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">425.XXX.XXX-97</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Mariana Baggio Annibelli</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">028.XXX.XXX-51</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">José Martinho dos Santos Barros</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">175.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Amazonas</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Rikson Pereira de Oliveira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">619.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Bahia</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Belisa Cruz de Morais</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">071.XXX.XXX-09</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Bahia</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Ricardo Grey de Araújo Lemos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">071.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Bahia</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Diego Pitanga dos Santos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">027.XXX.XXX-62</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Bahia</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Larissa Gomes Moraes</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">014.XXX.XXX-97</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Ceará</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Felipe Aguiar de Meneses</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">024.XXX.XXX-88</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Ceará</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Rondinelle Pereira de Freitas</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">639.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Ceará</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">José Eronildo Narciso da Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">644.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Ceará</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Lyziane Cristina Malta Bitar</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">002.XXX.XXX-58</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Nelson Tadeu Filippelli</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">042.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">João Monteiro Neto</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">245.XXX.XXX-68</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Bruno Montes Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">043.XXX.XXX-67</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Pollyanna Vaz Cavalcante Prudente</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">720.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Espírito Santo</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Luciano Miranda Salgado</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">093.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Espírito Santo</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Mario Joao Baldotto Sarnaglia</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">112.XXX.XXX-70</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Espírito Santo</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Nubia Rocha dos Passos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">078.XXX.XXX-60</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Espírito Santo</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Francisco Saulo Belisario</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">742.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Goiás</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Pedro Antônio de Oliveira Gonçalves</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">003.XXX.XXX-43</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Goiás</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Antônio Carlos de Oliveira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">124.XXX.XXX-49</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Goiás</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Robert Bonifácio da Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">556.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Goiás</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Raquel Mendes Rodrigues</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">218.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Maranhão</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Francisco de Assis Costa Filho</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">020.XXX.XXX-31</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Maranhão</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Amanda Xavier Macedo Costa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">051.XXX.XXX-26</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Maranhão</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Deryck Passos Pinheiro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">042.XXX.XXX-05</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Maranhão</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Fábio Alexandre da Silva Serra</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">060.XXX.XXX-01</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Rafael Bello Bastos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">902.XXX.XXX-34</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Aparecida Maria Borges Bezerra</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">571.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Luiz Artur de Oliveira Ribeiro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">910.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Edd Wilson Pereira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">673.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso do Sul</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Maria Emília Ramalho Sulzer</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">142.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso do Sul</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Wilson João Bittencourt Bellincanta</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">886.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso do Sul</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Tânia Francini Steinle Melo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">067.XXX.XXX-83</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Mato Grosso do Sul</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Alfredo Luiz Martins</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">163.XXX.XXX-49</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Minas Gerais</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Gabriel Sousa Marques de Azevedo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">014.XXX.XXX-22</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Minas Gerais</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Antônio Carlos Silva Nunes</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">437.XXX.XXX-30</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Minas Gerais</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Neidson Dias Freitas</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">046.XXX.XXX-77</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Minas Gerais</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Ivania Maria Maia</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">762.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pará</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Andreia Serra Melo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">515.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pará</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Antônia Diana Mota de Oliveira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">779.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pará</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Paula Cristina Titan Rebello</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">791.XXX.XXX-68</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pará</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Alda Conceição Dantas de Souza Tocantins</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">153.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraíba</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">André Avelino de Paiva Gadelha Neto</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">840.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraíba</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Marcos Eron Nogueira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">918.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraíba</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Anderson Monteiro da Costa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">052.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraíba</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Romualdo Antonio Quirino de Souza</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">646.XXX.XXX-78</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraná</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Orlando Pessuti</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">157.XXX.XXX-53</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraná</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Ademir Antonio Osmar Bier</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">080.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraná</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Mariana Baggio Annibelli</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">028.XXX.XXX-51</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Paraná</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Adriane Rosa Pachulski</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">708.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pernambuco</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Adriana de Andrade Vasconcelos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">670.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pernambuco</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">André Gustavo Carneiro Leão</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">835.XXX.XXX-06</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pernambuco</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Rafael Silva Pereira de Arruda</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">036.XXX.XXX-64</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Pernambuco</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Isaac Freire Cazé</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">040.XXX.XXX-96</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Piauí</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Antônio Henrique de Carvalho Pires</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">767.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Piauí</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Felipe de Souza Rezende Sampaio</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">036.XXX.XXX-93</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Piauí</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Vanessa Angeline Tapety</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">669.XXX.XXX-34</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Piauí</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Simone Pereira Farias Araújo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">834.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio de Janeiro</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Celso Alencar Ramos Jacob</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">381.XXX.XXX-53</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio de Janeiro</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Katia Damiana Alves Pereira Lobo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">773.XXX.XXX–04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio de Janeiro</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">João Nunes de Sousa Júnior</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">086.XXX.XXX-61</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio de Janeiro</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Jorge Crispiniano Santos Nascimento</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">102.XXX.XXX-07</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Norte</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Allan Jefferson da Silveira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">061.XXX.XXX-39</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Norte</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Saint Clair Câmara dos Santos Linhares</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">460.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Norte</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Luis Carlos Noronha e Sousa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">473.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Norte</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Glaydson Macedo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">047.XXX.XXX-85</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Sul</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Paulo Ricardo Salerno</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">001.XXX.XXX-07</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Sul</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Joel Ernesto Lopes Maraschin</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">008.XXX.XXX-25</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Sul</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Edgar Paulo Marmentini</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">433.XXX.XXX-68</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rio Grande do Sul</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Tânia Terezinha da Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">386.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rondônia</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Elizeu Lira Corrêa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">252.XXX.XXX-53</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rondônia</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Josafá Piauhy Marreiro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">035.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rondônia</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Rui Vieira de Sousa</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">218.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Rondônia</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Alex Teixeira Andrade</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">680.XXX.XXX-34</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Roraima</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Rosilene de Brito Pereira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">602.XXX.XXX-91</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Roraima</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Janini Vieira Marques</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">803.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Roraima</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Bruno Oliveira de Magalhães Queiroz</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">023.XXX.XXX-08</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Roraima</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Bruno Perez de Sales</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">054.XXX.XXX-07</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Santa Catarina</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Valdir Vital Cobalchini</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">339.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Santa Catarina</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Kleberson Luciano Lima</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">000.XXX.XXX-94</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Santa Catarina</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Adélcio Machado dos Santos</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">533.XXX.XXX-34</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Santa Catarina</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">FERNANDA MElO BAYER</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">019.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">São Paulo</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Adriana Valéria Silva Lossani</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">142.XXX.XXX-27</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">São Paulo</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Maria Rita Carra Navarro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">FUG - Administrativo 2 adm2: não tem o CPF na planilha que tenho acesso</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">São Paulo</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Fausto Guilherme Longo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">723.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">São Paulo</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Carlos Abdo Muanis</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">064.XXX.XXX-57</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Sergipe</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Fernando Luiz Prado Carvalho Junior</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">017.XXX.XXX-76</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Sergipe</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Camila Argolo Godinho</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">918.XXX.XXX-68</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Sergipe</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Magno Lima Santos Fontes Correia</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">038.XXX.XXX-04</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Sergipe</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Silberlan Bruno das Neves Junior</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">060.XXX.XXX-02</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Tocantins</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Adriana da Costa Pereira Aguiar</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">644.XXX.XXX-68</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Tocantins</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Gutemberg Quirino Lacerda</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">009.XXX.XXX-01</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Tocantins</td>
+                                            <td class="px-4 py-3 align-top">DIRETOR(A) DE FORMAÇÃO POLÍTICA</td>
+                                            <td class="px-4 py-3 align-top">Dálcio Rosário Alves</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">877.XXX.XXX-72</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Tocantins</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Cristina da Costa Pereira</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">649.XXX.XXX-34</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <section aria-labelledby="titulo-colegiado-conselho-fiscal">
+                            <h3 class="text-xl font-bold text-primary font-headline" id="titulo-colegiado-conselho-fiscal">Conselho Fiscal</h3>
+                            <p class="mt-1 text-sm text-on-surface-variant">6 registros.</p>
+                            <div class="mt-6 overflow-x-auto rounded-lg border border-outline-variant/40 bg-surface-container-lowest">
+                                <table class="w-full text-left text-sm">
+                                    <caption class="sr-only">Conselho Fiscal: unidade de representação, cargo, nome e CPF parcial de cada integrante.</caption>
+                                    <thead class="bg-surface-container text-on-surface-variant">
+                                        <tr>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Unidade</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Cargo</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Nome</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">CPF</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Bruno Gabriel Mesquita - Sp</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">368.XXX.XXX-02</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Dirce Heiderssheidt</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">707.XXX.XXX-53</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">José Fernando Desideri</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">026.XXX.XXX-42</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Carlos Ricardo Santa Rita - Al</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">101.XXX.XXX-15</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Aloisio Justino do Nascimento</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">020.XXX.XXX-08</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Robert Bonifácio da Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">556.XXX.XXX-20</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <section aria-labelledby="titulo-colegiado-conselho-editorial">
+                            <h3 class="text-xl font-bold text-primary font-headline" id="titulo-colegiado-conselho-editorial">Conselho Editorial</h3>
+                            <p class="mt-1 text-sm text-on-surface-variant">7 registros.</p>
+                            <div class="mt-6 overflow-x-auto rounded-lg border border-outline-variant/40 bg-surface-container-lowest">
+                                <table class="w-full text-left text-sm">
+                                    <caption class="sr-only">Conselho Editorial: unidade de representação, cargo, nome e CPF parcial de cada integrante.</caption>
+                                    <thead class="bg-surface-container text-on-surface-variant">
+                                        <tr>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Unidade</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Cargo</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Nome</th>
+                                            <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">CPF</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">José Alberto Fogaça de Medeiros</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">063.XXX.XXX-00</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">VICE-PRESIDENTE</td>
+                                            <td class="px-4 py-3 align-top">Raul Jean Louis Henry Júnior</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">458.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Luís Felipe Loro</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">026.XXX.XXX-20</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Gabriel Sousa Marques de Azevedo</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">014.XXX.XXX-22</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">CONSELHEIRO TITULAR</td>
+                                            <td class="px-4 py-3 align-top">Margareth Ocioli</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">535.XXX.XXX-87</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Veluma Vitória Menezes Faria</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">022.XXX.XXX-14</td>
+                                        </tr>
+                                        <tr class="border-t border-outline-variant/30">
+                                            <td class="px-4 py-3 align-top">Nacional</td>
+                                            <td class="px-4 py-3 align-top">SUPLENTE</td>
+                                            <td class="px-4 py-3 align-top">Mariana Barbalho da Silva</td>
+                                            <td class="px-4 py-3 align-top whitespace-nowrap">401.XXX.XXX-00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- BLOCO:diretorias:FIM -->
+                </section>
 
-            <!-- Corpo funcional -->
-            <section aria-labelledby="titulo-corpo-funcional" class="aba-painel pt-10" id="corpo-funcional">
-                <h2 class="text-2xl font-bold text-primary font-headline mb-3" id="titulo-corpo-funcional">Corpo Funcional
-                </h2>
-                <p class="text-on-surface-variant leading-relaxed max-w-3xl">Relação dos membros do corpo funcional
-                    (empregados) da Fundação Ulysses Guimarães, com o respectivo cargo e a unidade de representação em que
-                    atuam.</p>
-                <!-- BLOCO:corpo-funcional:INICIO -->
-                <!-- BLOCO:corpo-funcional:FIM -->
-            </section>
+                <!-- Corpo funcional -->
+                <section aria-labelledby="titulo-corpo-funcional" class="aba-painel pt-10" id="corpo-funcional">
+                    <h2 class="text-2xl font-bold text-primary font-headline mb-3" id="titulo-corpo-funcional">Corpo
+                        Funcional</h2>
+                    <p class="text-on-surface-variant leading-relaxed max-w-3xl">Relação dos membros do corpo funcional
+                        (empregados) da Fundação Ulysses Guimarães, com o respectivo cargo e a unidade de representação em
+                        que atuam.</p>
+                    <!-- BLOCO:corpo-funcional:INICIO -->
+                    <p class="mt-1 text-sm text-on-surface-variant">29 registros.</p>
+                    <div class="mt-6 overflow-x-auto rounded-lg border border-outline-variant/40 bg-surface-container-lowest">
+                        <table class="w-full text-left text-sm">
+                            <caption class="sr-only">Corpo funcional: unidade de representação, nome e cargo de cada empregado.</caption>
+                            <thead class="bg-surface-container text-on-surface-variant">
+                                <tr>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Unidade</th>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Nome</th>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Cargo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">São Paulo</td>
+                                    <td class="px-4 py-3 align-top">Alessandra Haga Sonohara</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Sênior</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Anderson Cleider da Costa Vieira</td>
+                                    <td class="px-4 py-3 align-top">Copeiro</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Deiselene Nascimento de Bastos</td>
+                                    <td class="px-4 py-3 align-top">Supervisor de departamento</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Dionne Coelho</td>
+                                    <td class="px-4 py-3 align-top">Supervisor Financeiro</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Elaíne Santos de Jesus</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Sênior</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Elissângela Magalhães Vieira dos Santos</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar de Serviços Gerais</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">São Paulo</td>
+                                    <td class="px-4 py-3 align-top">Fabio Alves Moreira</td>
+                                    <td class="px-4 py-3 align-top">Assistente Administrativo III</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Roraima Rr</td>
+                                    <td class="px-4 py-3 align-top">Fabiola dos Santos Lima</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Júnior</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Gustavo Torquato Cabral de Araujo</td>
+                                    <td class="px-4 py-3 align-top">Coordenador de Comunicação</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Janeth de Jesus Carneiro Lopes</td>
+                                    <td class="px-4 py-3 align-top">Assistente Administrativo II</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Amazonas</td>
+                                    <td class="px-4 py-3 align-top">Jefferson Ronald da Silva Pereira</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Júnior</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">João Manoel Santos Souza</td>
+                                    <td class="px-4 py-3 align-top">Assistente Administrativo III</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Ceará</td>
+                                    <td class="px-4 py-3 align-top">Luana Aguiar Recamonde Oliveira</td>
+                                    <td class="px-4 py-3 align-top">Assistente Administrativo III</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Luciana Gralouw Zanini</td>
+                                    <td class="px-4 py-3 align-top">Assistente Administrativo I</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Rio Grande do Sul</td>
+                                    <td class="px-4 py-3 align-top">Luiz Fernando Rodrigues da Rosa</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar de Serviços Gerais</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Magna Alves Fernandes</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Júnior</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Marcela Nunes Fernandes</td>
+                                    <td class="px-4 py-3 align-top">Coordenadora de Publicidade</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">São Paulo</td>
+                                    <td class="px-4 py-3 align-top">Marco Antônio Costa Pereira</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Júnior</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Goiás</td>
+                                    <td class="px-4 py-3 align-top">Maria Elizabete Costa Santos</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Sênior</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Maranhão</td>
+                                    <td class="px-4 py-3 align-top">Maria dos Remédios Garcia Reis</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Júnior</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Pará</td>
+                                    <td class="px-4 py-3 align-top">Mauricio Fontes do Vale</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Júnior</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Pedro Barbosa Lima</td>
+                                    <td class="px-4 py-3 align-top">Motorista</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Ricardo Augusto Simões da Costa</td>
+                                    <td class="px-4 py-3 align-top">Assistente Administrativo I</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Alagoas</td>
+                                    <td class="px-4 py-3 align-top">Sabino Fidelis de Oliveira</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Júnior</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Rio Grande do Sul</td>
+                                    <td class="px-4 py-3 align-top">Sanmartin Ciceri</td>
+                                    <td class="px-4 py-3 align-top">Estagiário</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Shara Brogio Ponciano de Arruda</td>
+                                    <td class="px-4 py-3 align-top">Chefe de Gabinete da Diretoria</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Silvia Cristina Araújo Ribeiro</td>
+                                    <td class="px-4 py-3 align-top">Assistente Administrativo I</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Distrito Federal</td>
+                                    <td class="px-4 py-3 align-top">Walter Soares Pereira de Souza</td>
+                                    <td class="px-4 py-3 align-top">Motorista</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <td class="px-4 py-3 align-top">Acre</td>
+                                    <td class="px-4 py-3 align-top">Wellayne Oliveira do Rosário</td>
+                                    <td class="px-4 py-3 align-top">Auxiliar Administrativo Júnior</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- BLOCO:corpo-funcional:FIM -->
+                </section>
 
-            <!-- Estrutura remuneratória -->
-            <section aria-labelledby="titulo-estrutura-remuneratoria" class="aba-painel pt-10" id="estrutura-remuneratoria">
-                <h2 class="text-2xl font-bold text-primary font-headline mb-3" id="titulo-estrutura-remuneratoria">Estrutura
-                    Remuneratória</h2>
-                <p class="text-on-surface-variant leading-relaxed max-w-3xl">Estrutura remuneratória dos cargos da Fundação
-                    Ulysses Guimarães, com o nível hierárquico, o salário base e as faixas média e máxima praticadas, além do
-                    quantitativo de vagas previstas e preenchidas em cada cargo.</p>
-                <!-- BLOCO:estrutura-remuneratoria:INICIO -->
-                <!-- BLOCO:estrutura-remuneratoria:FIM -->
-            </section>
+                <!-- Estrutura remuneratória -->
+                <section aria-labelledby="titulo-estrutura-remuneratoria" class="aba-painel pt-10"
+                    id="estrutura-remuneratoria">
+                    <h2 class="text-2xl font-bold text-primary font-headline mb-3" id="titulo-estrutura-remuneratoria">
+                        Estrutura Remuneratória</h2>
+                    <p class="text-on-surface-variant leading-relaxed max-w-3xl">Estrutura remuneratória dos cargos da
+                        Fundação Ulysses Guimarães, com o nível hierárquico, o salário base e as faixas média e máxima
+                        praticadas, além do quantitativo de vagas previstas e preenchidas em cada cargo.</p>
+                    <!-- BLOCO:estrutura-remuneratoria:INICIO -->
+                    <p class="mt-1 text-sm text-on-surface-variant">Valores transcritos do PDF oficial, sem qualquer cálculo.</p>
+                    <div class="mt-6 overflow-x-auto rounded-lg border border-outline-variant/40 bg-surface-container-lowest">
+                        <table class="w-full text-left text-sm">
+                            <caption class="sr-only">Estrutura remuneratória: cargo, nível, vagas previstas e preenchidas, salário base, faixas média e máxima e adicionais.</caption>
+                            <thead class="bg-surface-container text-on-surface-variant">
+                                <tr>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Cargo</th>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap text-right" scope="col">Nível</th>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap text-right" scope="col">Vagas previstas</th>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap text-right" scope="col">Vagas preenchidas</th>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap text-right" scope="col">Salário base</th>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap text-right" scope="col">Faixa média</th>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap text-right" scope="col">Faixa máxima</th>
+                                    <th class="px-4 py-3 font-semibold whitespace-nowrap" scope="col">Adicionais</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Secretário Executivo</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">10</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">0</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 25.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 35.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 45.000,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Secretário Executivo Adjunto</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">10</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">0</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 20.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 30.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 35.000,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Procurador Jurídico</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">9</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">0</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 14.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 17.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 20.000,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Gerente</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">8</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">3</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">0</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 14.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 17.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 20.000,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Chefe de Gabinete Diretoria Executiva</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">7</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 12.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 15.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 18.000,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Supervisor</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">6</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">10</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">6</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 11.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 13.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 16.000,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Coordenador</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">5</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">10</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">6</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 8.820,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 13.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 16.000,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Assistente Administrativo I</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">4</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">35</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">0</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 5.200,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 6.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 6.540,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Assistente Administrativo II</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">4</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">35</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">0</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 6.549,38</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 6.900,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 7.280,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Assistente Administrativo III</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">4</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">35</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 7.285,32</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 7.900,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 8.500,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Auxiliar Administrativo Junior</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">3</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">35</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">6</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 3.106,68</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 3.500,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 3.790,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Auxiliar Administrativo Pleno</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">3</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">35</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 3.800,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 4.000,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 4.400,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Auxiliar Administrativo Sênior</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">3</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">35</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">3</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 4.480,72</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 4.900,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 5.100,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Trainee</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">3</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">5</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">0</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 1.848,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">—</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">—</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Estagiário Ensino Médio</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">2</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">5</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">2</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 1.300,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">—</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">—</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Estagiário Superior</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">2</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">5</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">2</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 1.400,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">—</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">—</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Motorista</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">2</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">2</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">2</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 5.309,64</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 5.900,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 6.500,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Aux. Serv. Gerais</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">2</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 1.892,94</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 2.100,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 3.000,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Copeiro</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 3.704,40</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 4.100,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 5.000,00</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                                <tr class="border-t border-outline-variant/30">
+                                    <th class="px-4 py-3 align-top font-medium" scope="row">Jovem Aprendiz</th>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">1</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">5</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums">3</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">R$ 713,00</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">—</td>
+                                    <td class="px-4 py-3 align-top text-right tabular-nums whitespace-nowrap">—</td>
+                                    <td class="px-4 py-3 align-top">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- BLOCO:estrutura-remuneratoria:FIM -->
+                </section>
+            </div>
         </div>
     </main>
 

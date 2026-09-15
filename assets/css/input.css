@@ -18,17 +18,23 @@
 }
 
 @layer components {
-  /* Abas em CSS puro: o painel correspondente ao :target da URL vence a regra
-     padrao, o que mantem a navegacao funcional sem JavaScript. */
-  .aba-painel:not(:target) {
+  /* Abas em CSS puro, sem JavaScript.
+
+     Estado padrao (URL sem hash): nenhum painel esta em :target, o :has() do
+     ancestral .abas nao casa e os tres paineis permanecem visiveis na ordem do
+     documento. So quando um painel entra em :target a filtragem liga e os
+     demais somem. E o inverso de esconder por padrao: em navegador sem :has()
+     a pagina degrada para a lista completa, nunca para uma pagina vazia. */
+  .abas:has(.aba-painel:target) .aba-painel:not(:target) {
     display: none;
   }
 
-  .aba-painel:target ~ .aba-painel-padrao {
-    display: none;
-  }
-
-  .aba-link[aria-selected="true"] {
+  /* CSS nao consegue casar o href de um link com o :target corrente, entao o
+     destaque da aba precisa de uma regra por secao. Sao tres: repetir sai mais
+     barato que introduzir JavaScript. */
+  .abas:has(#diretorias:target) .aba-link[href="#diretorias"],
+  .abas:has(#corpo-funcional:target) .aba-link[href="#corpo-funcional"],
+  .abas:has(#estrutura-remuneratoria:target) .aba-link[href="#estrutura-remuneratoria"] {
     @apply border-primary text-primary;
   }
 }
