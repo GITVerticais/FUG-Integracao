@@ -42,3 +42,15 @@
   summary: `html { scroll-behavior: smooth }` não respeita `prefers-reduced-motion`.
   evidence: A regra já existia em `assets/css/input.css` L6–8; o índice só aumenta os saltos in-page. Override `scroll-behavior: auto` no media query não faz parte deste contrato.
 
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-organograma-textos-links-abaixo-titulo.md`
+  summary: O `alt` do organograma agora repete as quatro camadas que o intro acima da figura já descreve.
+  evidence: O intent congelado pede manter o `alt` como alternativa textual; encurtar o texto seria copy nova não pedida.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-organograma-textos-links-abaixo-titulo.md`
+  summary: SPEC-organograma ainda exige texto abaixo do diagrama (CAP-2) e `figure`/`figcaption` (CAP-4).
+  evidence: Esta história moveu o texto para cima do `h2` e removeu a `figcaption`; o contrato canônico em `_bmad-output/specs/spec-organograma/SPEC.md` não foi atualizado.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-organograma-textos-links-abaixo-titulo.md`
+  summary: O link “Ver em tamanho real” segue sem `aria-label`, abre em nova aba sem aviso e aponta para `assets/img/` em vez de `downloads/`.
+  evidence: O markup já era esse na `figcaption`; só mudou de lugar. Corrigir seria acessibilidade/copy além do reorder.
+
