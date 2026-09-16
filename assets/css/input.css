@@ -5,11 +5,10 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-  }
-
-  /* Compensa o cabecalho fixo ao navegar pelas ancoras das abas. */
-  :target {
-    scroll-margin-top: 6rem;
+    /* So o header sticky (~4rem + folga). Nao inclui a nav das abas:
+       paginas sem abas (home, governanca) herdariam folga a mais.
+       scroll-padding no container + scroll-margin no alvo somam. */
+    scroll-padding-top: 6rem;
   }
 
   .material-symbols-outlined {
@@ -28,6 +27,13 @@
      lista completa, nunca para uma pagina vazia. */
   .abas {
     min-width: 0;
+  }
+
+  /* Extra alem do scroll-padding do html: a nav das abas fica na zona
+     acima do painel no salto. Nao usar :target — essa margem e permanente
+     no box de scroll do painel e nao se aplica a hashes internos (h3). */
+  .aba-painel {
+    scroll-margin-top: 2rem;
   }
 
   .abas:has(.aba-painel:target) .aba-painel:not(:target),

@@ -70,3 +70,19 @@ def test_filtro_de_abas_cobre_target_interno_em_diretorias():
     for painel in ORDEM:
         assert f".abas:has(#{painel} :target)" in main
 
+
+def test_scroll_das_ancoras_compensa_header_sticky():
+    css = CSS.read_text(encoding="utf-8")
+    html_bloco = re.search(r"html\s*\{([^}]+)\}", css)
+    assert html_bloco, "html"
+    assert re.search(r"scroll-padding-top:\s*6rem", html_bloco.group(1))
+    assert not re.search(r":target\s*\{[^}]*scroll-margin-top:", css)
+    painel_bloco = re.search(r"\.aba-painel\s*\{([^}]+)\}", css)
+    assert painel_bloco, ".aba-painel"
+    assert re.search(r"scroll-margin-top:\s*2rem", painel_bloco.group(1))
+
+    main = MAIN.read_text(encoding="utf-8")
+    assert re.search(r"html\{[^}]*scroll-padding-top:6rem", main)
+    assert not re.search(r":target\{[^}]*scroll-margin-top:", main)
+    assert re.search(r"\.aba-painel\{[^}]*scroll-margin-top:2rem", main)
+

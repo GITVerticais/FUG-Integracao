@@ -172,6 +172,12 @@ def test_download_entrega_o_pdf_oficial_do_item():
         assert caminho.read_bytes()[:4] == b"%PDF", arquivo
 
 
+def test_artigos_nao_empilham_scroll_margin_no_header():
+    html = _html()
+    for artigo in re.findall(r"<article\b[^>]*>", html):
+        assert "scroll-margin" not in artigo
+
+
 def test_nao_publica_estrutura_remuneratoria():
     html = _html()
     assert "ESTRUTURA REMUNERATÓRIA" not in html
