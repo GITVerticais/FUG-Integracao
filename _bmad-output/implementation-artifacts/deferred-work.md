@@ -90,3 +90,11 @@
   summary: Não está confirmado se o host envia os PDFs de governança com `Content-Disposition` que impeça o iframe.
   evidence: `vercel.json` não declara headers de PDF; Visualizar e Baixar compartilham a mesma URL. Conferir a resposta HTTP de `downloads/*.pdf` em produção.
 
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-ancoras-abaixo-header.md`
+  summary: Specs done ainda descrevem `:target { scroll-margin-top }` como o offset do header.
+  evidence: `spec-indice-colegiados-diretorias.md` e `spec-fundacao-portal.md` citam a regra antiga; atualizá-las sairia do escopo desta correção.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-ancoras-abaixo-header.md`
+  summary: Não está confirmado se o `scroll-padding-top` do `html` re-aplica o salto depois do reflow `:has()` que esconde os painéis irmãos.
+  evidence: maybe-false, medium se verdadeiro. O scroll-into-view consome padding e margin na mesma passagem; só um browser no clique `#organograma` (quatro painéis visíveis) prova se o título ainda entra sob o header.
+
