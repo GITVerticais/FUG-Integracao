@@ -419,7 +419,7 @@ def test_cinco_colegiados_viram_cinco_tabelas_com_quatro_colunas(repo):
 
 def _ancoras_indice(diretorias):
     nav = re.search(
-        r'<nav aria-label="Colegiados desta seção"[^>]*>([\s\S]*?)</nav>',
+        r'<nav[^>]*aria-label="Colegiados desta seção"[^>]*>([\s\S]*?)</nav>',
         diretorias,
     )
     assert nav is not None
@@ -460,6 +460,48 @@ def test_indice_com_um_colegiado(tmp_path):
     assert hrefs == h3s == [("titulo-colegiado-diretorias-estaduais", "Diretorias Estaduais")]
     assert diretorias.count("<h3") == 1
     assert diretorias.count("<table") == 1
+    assert len(_links_voltar_indice(diretorias)) == 1
+    _, _, depois = diretorias.partition("</table")
+    assert "Voltar ao índice" in depois
+    assert diretorias.partition("</table")[0].count("Voltar ao índice") == 0
+
+
+def _links_voltar_indice(diretorias):
+    return re.findall(
+        r'<a class="[^"]*" href="#indice-colegiados">Voltar ao índice</a>',
+        diretorias,
+    )
+
+
+def _secoes_colegiado(diretorias):
+    return re.findall(
+        r'<section aria-labelledby="titulo-colegiado-[^"]+">([\s\S]*?)</section>',
+        diretorias,
+    )
+
+
+def test_voltar_ao_indice_em_cada_colegiado(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    diretorias = bloco(pagina.read_text(encoding="utf-8"), "diretorias")
+
+    nav = re.search(
+        r'<nav id="indice-colegiados" tabindex="-1" aria-label="Colegiados desta seção"[^>]*>([\s\S]*?)</nav>',
+        diretorias,
+    )
+    assert nav is not None
+    assert 'href="#indice-colegiados"' not in nav.group(1)
+
+    secoes = _secoes_colegiado(diretorias)
+    assert len(secoes) == 5
+    assert len(_links_voltar_indice(diretorias)) == 5
+    for secao in secoes:
+        antes, _, depois = secao.partition("</table")
+        assert antes.count('href="#indice-colegiados"') == 0
+        assert depois.count('href="#indice-colegiados"') == 1
+        assert "Voltar ao índice" not in antes
+        assert "Voltar ao índice" in depois
+        assert '<p class="mt-8">' in depois
 
 
 def test_cpf_mascarado_sai_identico_na_celula(repo):

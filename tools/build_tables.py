@@ -44,6 +44,8 @@ CLS_TD = "px-4 py-3 align-top"
 CLS_TD_NUM = "px-4 py-3 align-top text-right tabular-nums"
 CLS_TITULO = "text-xl font-bold text-primary font-headline"
 CLS_LEGENDA = "mt-1 text-sm text-on-surface-variant"
+CLS_LINK = "text-sm font-semibold text-primary hover:underline"
+ID_INDICE_COLEGIADOS = "indice-colegiados"
 
 
 class ErroDeGeracao(Exception):
@@ -93,20 +95,27 @@ def _cabecalho(colunas):
     return linhas
 
 
+def _link_voltar_indice():
+    """Retorno ao índice de colegiados; o alvo fica dentro de #diretorias."""
+    return (
+        f'<a class="{CLS_LINK}" href="#{ID_INDICE_COLEGIADOS}">Voltar ao índice</a>'
+    )
+
+
 def bloco_diretorias(dados):
     """Uma tabela por colegiado: unidade, cargo, nome e CPF parcial."""
     colunas = [("Unidade", False), ("Cargo", False), ("Nome", False), ("CPF", False)]
     colegiados = dados.get("colegiados", [])
     linhas = ['<div class="mt-8 space-y-12">']
     linhas.append(
-        '<nav aria-label="Colegiados desta seção" class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6">'
+        f'<nav id="{ID_INDICE_COLEGIADOS}" tabindex="-1" aria-label="Colegiados desta seção" '
+        f'class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6">'
     )
     for colegiado in colegiados:
         nome = colegiado.get("nome", "")
         id_titulo = f'titulo-colegiado-{colegiado.get("id", "")}'
         linhas.append(
-            f'<a class="text-sm font-semibold text-primary hover:underline" '
-            f'href="#{esc(id_titulo)}">{esc(nome)}</a>'
+            f'<a class="{CLS_LINK}" href="#{esc(id_titulo)}">{esc(nome)}</a>'
         )
     linhas.append("</nav>")
     for colegiado in colegiados:
@@ -134,7 +143,13 @@ def bloco_diretorias(dados):
                 f'<td class="{CLS_TD} whitespace-nowrap">{esc(sanitizar_cpf(registro.get("cpf", "")))}</td>',
                 "</tr>",
             ]
-        linhas += ["</tbody>", "</table>", "</div>", "</section>"]
+        linhas += [
+            "</tbody>",
+            "</table>",
+            "</div>",
+            f'<p class="mt-8">{_link_voltar_indice()}</p>',
+            "</section>",
+        ]
     linhas.append("</div>")
     return linhas
 
