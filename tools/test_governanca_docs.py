@@ -111,8 +111,12 @@ def test_visualizar_aponta_o_pdf_no_iframe_da_pagina():
     attrs_iframe = iframe.group(1)
     assert f'name="{IFRAME_NOME}"' in attrs_iframe
     assert "title=" in attrs_iframe
+    assert re.search(r"(?:^|\s)hidden(?:\s|=|$)", attrs_iframe), "visualizador deve começar oculto"
     assert "pdf.js" not in html.lower()
     assert "pdfjs" not in html.lower()
+    assert re.search(r"</ul>\s*<iframe\b", html) is None, "iframe não pode ficar solto abaixo da lista"
+    iframes = re.findall(r"<iframe\b", html)
+    assert len(iframes) == 1, "um único visualizador nativo"
     for artigo, (nome, arquivo) in zip(_artigos(html), DOCUMENTOS, strict=True):
         href = f"../downloads/{arquivo}"
         visualizar = None
@@ -126,6 +130,23 @@ def test_visualizar_aponta_o_pdf_no_iframe_da_pagina():
         assert f'target="{IFRAME_NOME}"' in visualizar, nome
         assert "target=\"_blank\"" not in visualizar
         assert "download" not in visualizar.split()
+        assert 'data-visualizador-host' in artigo, nome
+        assert "<iframe" not in artigo, f"iframe não começa dentro da box de {nome}"
+
+
+def test_script_move_visualizador_para_a_box_clicada():
+    html = _html()
+    script = re.search(r"<script>([\s\S]*?)</script>", html)
+    assert script, "script do visualizador ausente"
+    corpo = script.group(1)
+    assert 'closest("article")' in corpo
+    assert "data-visualizador-host" in corpo
+    assert "appendChild" in corpo
+    assert "viewer.hidden = false" in corpo
+    assert "article.scrollIntoView" in corpo
+    assert "ctrlKey" in corpo
+    assert "preventDefault" in corpo
+    assert "viewer.src" in corpo
 
 
 def test_download_entrega_o_pdf_oficial_do_item():
