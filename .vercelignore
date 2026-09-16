@@ -1,0 +1,15 @@
+.agents
+.claude
+.pytest_cache
+_bmad
+_bmad-output
+node_modules
+tools
+data
+package.json
+package-lock.json
+requirements.txt
+tailwind.config.js
+__pycache__
+*.pyc
+*.md
