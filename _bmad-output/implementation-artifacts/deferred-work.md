@@ -54,3 +54,39 @@
   summary: O link “Ver em tamanho real” segue sem `aria-label`, abre em nova aba sem aviso e aponta para `assets/img/` em vez de `downloads/`.
   evidence: O markup já era esse na `figcaption`; só mudou de lugar. Corrigir seria acessibilidade/copy além do reorder.
 
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-governanca.md`
+  summary: `tools/pdf_to_json.py` aborta sem mensagem se o PDF oficial de remuneração faltar ou tiver zero páginas.
+  evidence: Pré-existente da EO (`pdf_to_json.py:31`); esta história só entrou via merge.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-governanca.md`
+  summary: `tools/pdf_to_json.py` pode sobrescrever o JSON com `cargos` vazio se nenhuma linha casar o regex.
+  evidence: Pré-existente da EO (`pdf_to_json.py:32-56`); não há guarda `if not cargos`.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-governanca.md`
+  summary: `tools/xlsx_to_json.py` levanta `FileNotFoundError` se o xlsx oficial não estiver em disco.
+  evidence: Pré-existente da EO (`xlsx_to_json.py:94`); o merge não introduziu a guarda.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-governanca.md`
+  summary: `tools/xlsx_to_json.py` aborta com `ValueError` se a linha da planilha for mais curta que o unpack.
+  evidence: Pré-existente da EO (`xlsx_to_json.py:97-122`); falta `if len(linha) < 4: continue`.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-governanca.md`
+  summary: `tools/render_organograma.py` pode deixar SVG/PNG parciais se o save do pixmap falhar depois do SVG.
+  evidence: Pré-existente da EO (`render_organograma.py:19-28`); escrita não é atômica.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-governanca.md`
+  summary: `html { scroll-behavior: smooth }` ignora `prefers-reduced-motion`.
+  evidence: A regra já existia em `assets/css/input.css`; o merge da EO só a trouxe para esta branch.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-governanca.md`
+  summary: Clique repetido no overlay `js-dev-button` antes de 1500ms deixa o primeiro timeout esconder o overlay ainda ativo.
+  evidence: Script pré-existente da home (`index.html:163-178`); esta história não o alterou.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-governanca.md`
+  summary: `tools/test_pdf_to_json.py` falha em vez de skip se o PDF de remuneração não estiver em `downloads/`.
+  evidence: Pré-existente da EO (`test_pdf_to_json.py:68`); não há `pytest.skip` por arquivo ausente.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-governanca.md`
+  summary: Não está confirmado se o host envia os PDFs de governança com `Content-Disposition` que impeça o iframe.
+  evidence: `vercel.json` não declara headers de PDF; Visualizar e Baixar compartilham a mesma URL. Conferir a resposta HTTP de `downloads/*.pdf` em produção.
+
