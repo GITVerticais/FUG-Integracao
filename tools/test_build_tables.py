@@ -72,7 +72,7 @@ COLEGIADOS_MODELO = [
     {
         "id": "conselho-curador",
         "nome": "Conselho Curador",
-        "total": 108,
+        "total": 15,
         "registros": [
             {
                 "unidade": "São Paulo",
@@ -403,7 +403,7 @@ def test_cinco_colegiados_viram_cinco_tabelas_com_quatro_colunas(repo):
     for nome, total in (
         ("Diretorias Estaduais", "3 registros."),
         ("Diretoria Administrativa", "9 registros."),
-        ("Conselho Curador", "108 registros."),
+        ("Conselho Curador", "15 registros."),
         ("Conselho Fiscal", "2 registros."),
         ("Conselho Editorial", "7 registros."),
     ):

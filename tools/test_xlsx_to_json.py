@@ -54,7 +54,7 @@ def test_diretorias_sanitiza_cpf_ocupado_sem_marcar_vago(tmp_path, monkeypatch):
         {
             "Conselho Curador": [
                 (
-                    "Rio de Janeiro",
+                    "Nacional",
                     "VICE-PRESIDENTE",
                     "Katia Damiana Alves Pereira Lobo",
                     "773.XXX.XXX–04",
@@ -98,6 +98,12 @@ def test_diretorias_publica_mascara_conhecida_da_maria_rita(tmp_path, monkeypatc
                     "MARIA RITA CARRA NAVARRO",
                     NOTA_INTERNA,
                 ),
+                (
+                    "Nacional",
+                    "PRESIDENTE",
+                    "WELLINGTON MOREIRA FRANCO",
+                    "103.XXX.XXX-91",
+                ),
             ],
         },
     )
@@ -107,16 +113,50 @@ def test_diretorias_publica_mascara_conhecida_da_maria_rita(tmp_path, monkeypatc
         for r in colegiados["diretorias-estaduais"]
         if r["nome"] == "Maria Rita Carra Navarro"
     )
-    curador = next(
-        r
-        for r in colegiados["conselho-curador"]
-        if r["nome"] == "Maria Rita Carra Navarro"
-    )
+    nomes_curador = [r["nome"] for r in colegiados["conselho-curador"]]
 
     assert estaduais["cpf"] == MASCARA_RITA
     assert estaduais["vago"] is False
-    assert curador["cpf"] == MASCARA_RITA
-    assert curador["vago"] is False
+    assert "Maria Rita Carra Navarro" not in nomes_curador
+    assert "Wellington Moreira Franco" in nomes_curador
+
+
+def test_conselho_curador_mantem_so_unidade_nacional(tmp_path, monkeypatch):
+    colegiados = _registros_por_colegiado(
+        tmp_path,
+        monkeypatch,
+        {
+            "CONSELHO CURADOR": [
+                ("Nacional", "PRESIDENTE", "WELLINGTON MOREIRA FRANCO", "103.XXX.XXX-91"),
+                ("nacional", "VICE-PRESIDENTE", "CARLOS ALBERTO CHIODINI", "005.XXX.XXX-42"),
+                ("São Paulo", "VICE-PRESIDENTE", "MARIA RITA CARRA NAVARRO", MASCARA_RITA),
+                ("Rio de Janeiro", "CONSELHEIRO TITULAR", "ALGUEM ESTADUAL", "111.XXX.XXX-11"),
+            ],
+            "DIRETORIAS ESTADUAIS": [
+                ("São Paulo", "PRESIDENTE", "ALGUEM ESTADUAL", "111.XXX.XXX-11"),
+            ],
+        },
+    )
+    curador = colegiados["conselho-curador"]
+    assert [r["nome"] for r in curador] == [
+        "Wellington Moreira Franco",
+        "Carlos Alberto Chiodini",
+    ]
+    assert all(r["unidade"].casefold() == "nacional" for r in curador)
+    assert [r["unidade"] for r in colegiados["diretorias-estaduais"]] == ["São Paulo"]
+
+
+def test_conselho_curador_oficial_tem_15_nacionais():
+    curador = next(
+        c for c in xlsx_to_json.diretorias()["colegiados"] if c["id"] == "conselho-curador"
+    )
+    assert curador["total"] == 15
+    assert len(curador["registros"]) == 15
+    assert all(r["unidade"].casefold() == "nacional" for r in curador["registros"])
+    nomes = [r["nome"] for r in curador["registros"]]
+    assert "Wellington Moreira Franco" in nomes
+    assert "Maria Rita Carra Navarro" not in nomes
+
 
 
 def planilha_corpo_funcional(caminho, linhas):

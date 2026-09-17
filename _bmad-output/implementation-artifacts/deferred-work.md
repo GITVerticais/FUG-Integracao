@@ -98,3 +98,11 @@
   summary: Não está confirmado se o `scroll-padding-top` do `html` re-aplica o salto depois do reflow `:has()` que esconde os painéis irmãos.
   evidence: maybe-false, medium se verdadeiro. O scroll-into-view consome padding e margin na mesma passagem; só um browser no clique `#organograma` (quatro painéis visíveis) prova se o título ainda entra sob o header.
 
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-conselho-curador-apenas-nacional.md`
+  summary: A página ainda oferece o XLSX oficial sem explicar que o Conselho Curador publicado tem 15 linhas Nacionais e a aba da planilha continua com as 93 de UF.
+  evidence: `downloads/diretorias-2025.xlsx` não foi editado por contrato; quem baixar o arquivo oficial vê 108 no Curador. Texto de aviso seria decisão editorial.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-conselho-curador-apenas-nacional.md`
+  summary: Specs done ainda dizem Conselho Curador (108) e 238 dirigentes.
+  evidence: `spec-dirigentes-colegiados.md` e `spec-indice-colegiados-diretorias.md` (status done); atualizá-las sairia do escopo desta correção.
+
