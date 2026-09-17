@@ -106,3 +106,7 @@
   summary: Specs done ainda dizem Conselho Curador (108) e 238 dirigentes.
   evidence: `spec-dirigentes-colegiados.md` e `spec-indice-colegiados-diretorias.md` (status done); atualizá-las sairia do escopo desta correção.
 
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-footers-remover-em-desenvolvimento.md`
+  summary: Links Privacidade, Termos e Suporte do footer da home continuam com `href="#"`.
+  evidence: Já era assim antes desta correção; o clique ainda leva ao topo. Destinos reais seriam páginas novas, fora do contrato de só limpar o texto e o pinning.
+
