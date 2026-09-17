@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* So o header sticky (~4rem + folga). Nao inclui a nav das abas:
+       paginas sem abas (home, governanca) herdariam folga a mais.
+       scroll-padding no container + scroll-margin no alvo somam. */
+    scroll-padding-top: 6rem;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  }
+}
+
+@layer components {
+  /* Abas em CSS puro, sem JavaScript.
+
+     Estado padrao (URL sem hash): nenhum painel esta em :target, o :has() do
+     ancestral .abas nao casa e os quatro paineis permanecem visiveis na ordem do
+     documento. So quando um painel entra em :target — ou um descendente dele,
+     como o h3 de um colegiado — a filtragem liga e os demais somem. E o inverso
+     de esconder por padrao: em navegador sem :has() a pagina degrada para a
+     lista completa, nunca para uma pagina vazia. */
+  .abas {
+    min-width: 0;
+  }
+
+  /* Extra alem do scroll-padding do html: a nav das abas fica na zona
+     acima do painel no salto. Nao usar :target — essa margem e permanente
+     no box de scroll do painel e nao se aplica a hashes internos (h3). */
+  .aba-painel {
+    scroll-margin-top: 2rem;
+  }
+
+  .abas:has(.aba-painel:target) .aba-painel:not(:target),
+  .abas:has(.aba-painel :target) .aba-painel:not(:has(:target)) {
+    display: none;
+  }
+
+  /* Contem o scroll horizontal na figura do organograma. O img tem
+     min-width: 900px para forcar overflow em telas estreitas; sem
+     min-width: 0 no ancestral, essa minima infla o body. */
+  .organograma-figura {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .organograma-figura-scroll {
+    overflow-x: auto;
+    min-width: 0;
+  }
+}
+
+/* Destaque da aba ativa. Precisa viver em utilities: os links ja carregam
+   text-on-surface-variant e border-transparent, que ganhariam de qualquer
+   regra em components. CSS nao casa href com :target, entao uma regra por secao. */
+@layer utilities {
+  .abas:has(#organograma:target) .aba-link[href="#organograma"],
+  .abas:has(#organograma :target) .aba-link[href="#organograma"],
+  .abas:has(#diretorias:target) .aba-link[href="#diretorias"],
+  .abas:has(#diretorias :target) .aba-link[href="#diretorias"],
+  .abas:has(#corpo-funcional:target) .aba-link[href="#corpo-funcional"],
+  .abas:has(#corpo-funcional :target) .aba-link[href="#corpo-funcional"],
+  .abas:has(#estrutura-remuneratoria:target) .aba-link[href="#estrutura-remuneratoria"],
+  .abas:has(#estrutura-remuneratoria :target) .aba-link[href="#estrutura-remuneratoria"] {
+    @apply border-primary text-primary;
+  }
+}

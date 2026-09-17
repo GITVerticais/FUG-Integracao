@@ -1,0 +1,15 @@
+# Dependencias Python do pipeline de dados do portal.
+# Instale com: pip install -r requirements.txt
+# Versoes fixadas para que `npm run dados` produza o mesmo JSON em qualquer maquina.
+
+# tools/xlsx_to_json.py - leitura das planilhas oficiais em downloads/*.xlsx
+openpyxl==3.1.5
+
+# tools/pdf_to_json.py - extracao da estrutura remuneratoria de downloads/*.pdf
+pypdf==6.18.0
+
+# tools/render_organograma.py - rasteriza o organograma oficial para assets/img/
+pymupdf==1.28.2
+
+# tools/test_build_tables.py - verificacao do gerador
+pytest==9.1.1
