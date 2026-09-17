@@ -135,11 +135,15 @@ def diretorias():
                     "vago": not nome,
                 }
             )
+        id_colegiado = re.sub(r"[^a-z0-9]+", "-", nome_proprio(ws.title).lower()).strip("-")
+        # A aba mistura o colegiado nacional com linhas de UF coladas por engano.
+        if id_colegiado == "conselho-curador":
+            registros = [r for r in registros if r["unidade"].casefold() == "nacional"]
         if not registros:
             continue
         colegiados.append(
             {
-                "id": re.sub(r"[^a-z0-9]+", "-", nome_proprio(ws.title).lower()).strip("-"),
+                "id": id_colegiado,
                 "nome": nome_proprio(ws.title),
                 "total": len(registros),
                 "registros": registros,
