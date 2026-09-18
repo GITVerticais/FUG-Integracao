@@ -1,4 +1,4 @@
-"""Trava footers sem 'em desenvolvimento' e o da home no fluxo da página.
+"""Trava footers sem 'em desenvolvimento', copyright 2026 e o da home no fluxo.
 
 Rodar com: python -m pytest tools/test_footers.py -q
 """
@@ -41,6 +41,12 @@ def test_footers_sem_em_desenvolvimento():
         texto = _texto(footer)
         assert "em desenvolvimento" not in texto, _rel(pagina)
         assert "espaço de integridade" in texto, _rel(pagina)
+
+
+def test_footers_copyright_2026():
+    for pagina in PAGINAS:
+        _attrs, footer = _footer(pagina)
+        assert re.search(r"(?:©|&copy;)\s*2026", footer), _rel(pagina)
 
 
 def test_footer_home_nao_fica_fixo():
