@@ -1,9 +1,11 @@
-"""Trava o download dos XLSX oficiais e o PDF da remuneratória em estrutura-organizacional/index.html.
+"""Trava o download dos XLSX oficiais em estrutura-organizacional/index.html.
 
 Rodar com: python -m pytest tools/test_exportacao_xlsx.py -q
 """
 import pathlib
 import re
+
+import openpyxl
 
 PAGINA = pathlib.Path(__file__).resolve().parent.parent / "estrutura-organizacional" / "index.html"
 RAIZ = PAGINA.parent.parent
@@ -79,7 +81,7 @@ def test_nao_carrega_sheetjs_nem_exportar_xlsx():
     assert "exportar-xlsx.js" not in html
 
 
-def test_estrutura_remuneratoria_oferece_pdf_oficial_sem_notas_de_transcricao():
+def test_estrutura_remuneratoria_oferece_xlsx_oficial_sem_notas_de_transcricao():
     html = _html()
     secao = re.search(
         r'<section\b[^>]*\bid="estrutura-remuneratoria"[\s\S]*?</section>',
@@ -98,16 +100,17 @@ def test_estrutura_remuneratoria_oferece_pdf_oficial_sem_notas_de_transcricao():
     )
     assert bloco, "estrutura-remuneratoria"
     markup = bloco.group(0)
-    href = "../downloads/estrutura-remuneratoria-2025.pdf"
-    rotulo = "Baixar o PDF oficial da Estrutura Remuneratória"
+    href = "../downloads/estrutura-remuneratoria-2026.xlsx"
+    rotulo = "Baixar o XLSX oficial da Estrutura Remuneratória"
     assert re.search(
         rf'<a\b[^>]*\bhref="{re.escape(href)}"[^>]*\bdownload\b',
         markup,
     ), href
     assert f'aria-label="{rotulo}"' in markup
-    assert re.search(r"</span>Baixar o PDF oficial\s*</a>", markup)
-    assert (RAIZ / "downloads" / "estrutura-remuneratoria-2025.pdf").is_file()
-    assert "xlsx" not in markup.lower()
+    assert re.search(r"</span>Baixar o XLSX oficial\s*</a>", markup)
+    caminho = RAIZ / "downloads" / "estrutura-remuneratoria-2026.xlsx"
+    assert caminho.is_file()
+    assert "pdf" not in secao.group(0).lower()
     assert "29" not in markup
     assert "35" not in markup
     assert "Q.T." not in markup
@@ -115,3 +118,16 @@ def test_estrutura_remuneratoria_oferece_pdf_oficial_sem_notas_de_transcricao():
     assert re.search(r"atualiza[cç][aã]o", markup, re.I) is None
     assert "base normativa" not in markup.lower()
     assert "acordo coletivo" not in markup.lower()
+
+    ws = openpyxl.load_workbook(caminho, data_only=True).active
+    qp_por_cargo = {}
+    for linha in ws.iter_rows(min_row=2, max_col=3, values_only=True):
+        cargo = (linha[2] or "").strip() if isinstance(linha[2], str) else linha[2]
+        if cargo:
+            qp_por_cargo[cargo] = int(linha[1] or 0)
+    for nome in (
+        "Secretário Executivo",
+        "Secretário Executivo Adjunto",
+        "Procurador Jurídico",
+    ):
+        assert qp_por_cargo[nome] == 1

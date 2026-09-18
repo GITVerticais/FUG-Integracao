@@ -1,7 +1,7 @@
 """Injeta as tabelas de estrutura organizacional no HTML publicado.
 
-Le os JSON normalizados de data/ (produzidos por tools/xlsx_to_json.py e
-tools/pdf_to_json.py a partir dos arquivos oficiais em downloads/) e substitui
+Le os JSON normalizados de data/ (produzidos por tools/xlsx_to_json.py
+a partir dos arquivos oficiais em downloads/) e substitui
 o conteudo entre os marcadores
 
     <!-- BLOCO:<secao>:INICIO -->
@@ -25,7 +25,7 @@ DADOS = RAIZ / "data"
 PAGINA = RAIZ / "estrutura-organizacional" / "index.html"
 
 # Exibido no lugar do nome quando o registro de origem vem sem titular.
-CARGO_VAGO = "Não preenchido"
+CARGO_VAGO = "VACÂNCIA"
 
 # CPF ocupado publicado: mascara da planilha, com hifen ASCII. Qualquer outro
 # valor (nota interna, vazio, lixo) vira o mesmo traco dos cargos vagos.
@@ -71,7 +71,7 @@ def carregar(dados_dir, arquivo):
 
 
 def _celula_nome(registro):
-    """Cargo vago vira `Não preenchido`, com enfase que o distingue de um nome."""
+    """Cargo vago vira `VACÂNCIA`, com enfase que o distingue de um nome."""
     if registro.get("vago"):
         return f'<em class="text-on-surface-variant">{esc(CARGO_VAGO)}</em>'
     return esc(registro.get("nome", ""))
@@ -180,7 +180,7 @@ def bloco_corpo_funcional(dados):
 
 
 def bloco_estrutura_remuneratoria(dados):
-    """Tabela unica, transcrita do PDF oficial coluna a coluna."""
+    """Tabela unica, transcrita da planilha oficial coluna a coluna."""
     colunas = [
         ("Cargo", False),
         ("Nível", True),
@@ -193,7 +193,7 @@ def bloco_estrutura_remuneratoria(dados):
     ]
     cargos = dados.get("cargos", [])
     linhas = [
-        f'<p class="{CLS_LEGENDA}">Valores transcritos do PDF oficial, sem qualquer cálculo.</p>',
+        f'<p class="{CLS_LEGENDA}">Valores transcritos da planilha oficial, sem qualquer cálculo.</p>',
         f'<div class="{CLS_MOLDURA}">',
         f'<table class="{CLS_TABELA}">',
         '<caption class="sr-only">Estrutura remuneratória: cargo, nível, vagas '
