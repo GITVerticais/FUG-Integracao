@@ -28,6 +28,15 @@ def _html():
     return PAGINA.read_text(encoding="utf-8")
 
 
+def _celulas_er(markup, nome):
+    achado = re.search(
+        rf'<th class="[^"]*" scope="row">{re.escape(nome)}</th>([\s\S]*?)</tr>',
+        markup,
+    )
+    assert achado, nome
+    return re.findall(r'<td class="[^"]*">([^<]*)</td>', achado.group(1))
+
+
 def test_secoes_com_xlsx_oferecem_o_arquivo_oficial():
     html = _html()
     for secao, href, rotulo in LINKS:
@@ -131,3 +140,40 @@ def test_estrutura_remuneratoria_oferece_xlsx_oficial_sem_notas_de_transcricao()
         "Procurador Jurídico",
     ):
         assert qp_por_cargo[nome] == 1
+
+
+def test_estrutura_remuneratoria_bloco_publicado_tem_20_cargos_2026():
+    html = _html()
+    bloco = re.search(
+        r"<!-- BLOCO:estrutura-remuneratoria:INICIO -->([\s\S]*?)<!-- BLOCO:estrutura-remuneratoria:FIM -->",
+        html,
+    )
+    assert bloco, "estrutura-remuneratoria"
+    markup = bloco.group(1)
+    tbody = re.search(r"<tbody>([\s\S]*?)</tbody>", markup)
+    assert tbody
+    assert len(re.findall(r"<tr\b", tbody.group(1))) == 20
+
+    for nome in (
+        "Secretário Executivo",
+        "Secretário Executivo Adjunto",
+        "Procurador Jurídico",
+    ):
+        assert _celulas_er(markup, nome)[2] == "1"
+    for nome in (
+        "Gerente",
+        "Assistente Administrativo I",
+        "Assistente Administrativo II",
+        "Trainee",
+    ):
+        assert _celulas_er(markup, nome)[2] == "0"
+    assert _celulas_er(markup, "Secretário Executivo")[5] == "R$ 50.000,00"
+
+
+def test_pagina_real_exibe_vacancia_nas_linhas_vagas():
+    html = _html()
+    linhas = re.findall(r'<tr\b[^>]*data-vago="true"[^>]*>[\s\S]*?</tr>', html)
+    assert linhas
+    for linha in linhas:
+        assert "VACÂNCIA" in linha
+    assert "Não preenchido" not in html

@@ -2,7 +2,7 @@
 title: 'Hotfix: tabela de cargos/salários 2026 e rótulo VACÂNCIA'
 type: 'bugfix'
 created: '2026-09-18'
-status: 'in-progress'
+status: 'done'
 route: 'dispatch'
 review_loop_iteration: 0
 context: []
@@ -88,3 +88,29 @@ baseline_commit: '3e5895a40d80f5364a79f61507d4dc7c1a6cf4bd'
 ## Spec Change Log
 
 ## Review Triage Log
+
+- BH1 logs vazios — **false**. Primeira passagem de review; o processo é que preenche estes logs. Corrigir agora seria editar o spec desta build.
+- BH2 specs parentes ainda citam PDF 2025 — **low**. Artefato de stories `done`; a página já aponta o XLSX 2026. Não é regressão deste hotfix.
+- BH3 specs parentes ainda definem `Não preenchido` — **low**. Idem: rótulo publicado já é `VACÂNCIA`; os specs fechados não são lidos pelo build.
+- BH4 origem no Desktop — **false**. A cópia durável está em `downloads/estrutura-remuneratoria-2026.xlsx`; o caminho Desktop foi a origem única da cópia.
+- BH5 “oficial” com Q.P. editado — **false**. Decisão 2B: o XLSX versionado com Q.P. 1 nos 3 cargos é o arquivo oficial publicado.
+- BH6 ano 2026 ausente no copy da tabela — **false**. `ano` vai para o JSON; a UI já não exibia o exercício depois da remoção das notas CAP-4. O spec não pede o ano no cabeçalho visível.
+- BH7 `R$ —` (em dash) — **false**. A planilha usa U+2013; `valor_monetario` casa `R\$\s*[–\-]` e os testes de travessão passaram.
+- BH8 planilha sem cargos — **false**. O XLSX versionado tem 20 linhas com cargo; folha vazia não foi apresentada ao programa.
+- BH9 JSON obsoleto se o XLSX faltar — **false**. A matriz pede abortar sem escrever `estrutura-remuneratoria.json`, não apagar o derivado anterior.
+- BH10 exportacao não trava Q.P. 0 no XLSX — **false**. `test_estrutura_remuneratoria_transcreve_20_cargos_do_xlsx_oficial` já afirma Gerente/Assistente I/II/Trainee = 0 contra o arquivo oficial.
+- BH11 Code Map com nomes velhos de teste — **false**. Correção seria editar o spec desta build.
+- BH12 fixture `nome: "Não preenchido"` — **false**. Com `vago: true`, `_celula_nome` publica `CARGO_VAGO`, não o campo `nome`.
+- BH13 docstring do extrator — **false**. O módulo já declara `downloads/*.xlsx` como fonte; a remuneratória passou a ser um desses arquivos.
+- BH14 `deferred-work.md` cita `pdf_to_json.py` — **low**. Entradas de stories anteriores; o arquivo foi apagado neste hotfix, mas o deferred não é contrato de execução.
+- BH15 filename 2026 vs `ano` parseado — **false**. Spec fixa o nome `estrutura-remuneratoria-2026.xlsx`; o header da planilha é `Salário Base 2026`.
+- BH16 matriz sem folha vazia — **false**. Completar a matriz seria editar o spec desta build; o arquivo real não é vazio.
+- EC1 Q.T./Q.P./nível não numérico — **false**. Todas as 20 linhas oficiais são numéricas; `int()` não é alcançado com lixo.
+- EC2 salário só com espaço — **false**. Nenhuma célula monetária da planilha é whitespace-only.
+- EC3 em dash / minus unicode — **false**. Travessões da origem são U+2013, cobertos pelo regex atual.
+- EC4 salário dígitos em string — **false**. A origem traz `float` ou texto `R$ …`, não dígitos crus.
+- EC5 XLSX corrompido — **false**. A matriz cobre ausência do arquivo; zip inválido não foi apresentado.
+- EC6 aba só com cabeçalho — **false**. A origem tem 20 cargos; `if not cargo: continue` só descarta linhas vazias abaixo.
+- EC7 regex do PDF não pula linha malformada — **false**. O extrator XLSX ignora linha sem cargo; headers/notas sem nome não viram cargo.
+- VG1 BLOCO remuneratória publicado sem assert — **medium**. `test_exportacao_xlsx.py` corta o markup no INICIO do BLOCO e não lê as `<td>`; restaurar Q.P. 0 / `R$ 45.000,00` no HTML deixa pytest verde.
+- VG2 VACÂNCIA publicada sem assert — **medium**. Só fixtures isoladas cobrem o rótulo; `Não preenchido` de volta nas três `<em>` da página real não quebra a suíte.
