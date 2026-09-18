@@ -1,22 +1,22 @@
 {
-  "ano": 2025,
-  "total_quadro_preenchido": 35,
+  "ano": 2026,
+  "total_quadro_preenchido": 38,
   "cargos": [
     {
       "cargo": "Secretário Executivo",
       "nivel": 10,
       "quadro_total": 1,
-      "quadro_preenchido": 0,
+      "quadro_preenchido": 1,
       "salario_base": "R$ 25.000,00",
       "faixa_media": "R$ 35.000,00",
-      "faixa_maxima": "R$ 45.000,00",
+      "faixa_maxima": "R$ 50.000,00",
       "adicionais": "—"
     },
     {
       "cargo": "Secretário Executivo Adjunto",
       "nivel": 10,
       "quadro_total": 1,
-      "quadro_preenchido": 0,
+      "quadro_preenchido": 1,
       "salario_base": "R$ 20.000,00",
       "faixa_media": "R$ 30.000,00",
       "faixa_maxima": "R$ 35.000,00",
@@ -26,7 +26,7 @@
       "cargo": "Procurador Jurídico",
       "nivel": 9,
       "quadro_total": 1,
-      "quadro_preenchido": 0,
+      "quadro_preenchido": 1,
       "salario_base": "R$ 14.000,00",
       "faixa_media": "R$ 17.000,00",
       "faixa_maxima": "R$ 20.000,00",
@@ -47,7 +47,7 @@
       "nivel": 7,
       "quadro_total": 1,
       "quadro_preenchido": 1,
-      "salario_base": "R$ 12.000,00",
+      "salario_base": "R$ 12.511,20",
       "faixa_media": "R$ 15.000,00",
       "faixa_maxima": "R$ 18.000,00",
       "adicionais": "—"
@@ -57,7 +57,7 @@
       "nivel": 6,
       "quadro_total": 10,
       "quadro_preenchido": 6,
-      "salario_base": "R$ 11.000,00",
+      "salario_base": "R$ 11.468,60",
       "faixa_media": "R$ 13.000,00",
       "faixa_maxima": "R$ 16.000,00",
       "adicionais": "—"
@@ -67,9 +67,9 @@
       "nivel": 5,
       "quadro_total": 10,
       "quadro_preenchido": 6,
-      "salario_base": "R$ 8.820,00",
-      "faixa_media": "R$ 13.000,00",
-      "faixa_maxima": "R$ 16.000,00",
+      "salario_base": "R$ 9.195,74",
+      "faixa_media": "R$ 11.000,00",
+      "faixa_maxima": "R$ 14.000,00",
       "adicionais": "—"
     },
     {
@@ -78,7 +78,7 @@
       "quadro_total": 35,
       "quadro_preenchido": 0,
       "salario_base": "R$ 5.200,00",
-      "faixa_media": "R$ 6.000,00",
+      "faixa_media": "R$ 6.234,75",
       "faixa_maxima": "R$ 6.540,00",
       "adicionais": "—"
     },
@@ -87,7 +87,7 @@
       "nivel": 4,
       "quadro_total": 35,
       "quadro_preenchido": 0,
-      "salario_base": "R$ 6.549,38",
+      "salario_base": "R$ 6.828,39",
       "faixa_media": "R$ 6.900,00",
       "faixa_maxima": "R$ 7.280,00",
       "adicionais": "—"
@@ -97,7 +97,7 @@
       "nivel": 4,
       "quadro_total": 35,
       "quadro_preenchido": 1,
-      "salario_base": "R$ 7.285,32",
+      "salario_base": "R$ 7.595,68",
       "faixa_media": "R$ 7.900,00",
       "faixa_maxima": "R$ 8.500,00",
       "adicionais": "—"
@@ -107,7 +107,7 @@
       "nivel": 3,
       "quadro_total": 35,
       "quadro_preenchido": 6,
-      "salario_base": "R$ 3.106,68",
+      "salario_base": "R$ 3.239,03",
       "faixa_media": "R$ 3.500,00",
       "faixa_maxima": "R$ 3.790,00",
       "adicionais": "—"
@@ -127,7 +127,7 @@
       "nivel": 3,
       "quadro_total": 35,
       "quadro_preenchido": 3,
-      "salario_base": "R$ 4.480,72",
+      "salario_base": "R$ 4.671,60",
       "faixa_media": "R$ 4.900,00",
       "faixa_maxima": "R$ 5.100,00",
       "adicionais": "—"
@@ -157,7 +157,7 @@
       "nivel": 2,
       "quadro_total": 5,
       "quadro_preenchido": 2,
-      "salario_base": "R$ 1.400,00",
+      "salario_base": "R$ 1.500,00",
       "faixa_media": "—",
       "faixa_maxima": "—",
       "adicionais": "—"
@@ -167,7 +167,7 @@
       "nivel": 2,
       "quadro_total": 2,
       "quadro_preenchido": 2,
-      "salario_base": "R$ 5.309,64",
+      "salario_base": "R$ 5.535,83",
       "faixa_media": "R$ 5.900,00",
       "faixa_maxima": "R$ 6.500,00",
       "adicionais": "—"
@@ -177,7 +177,7 @@
       "nivel": 1,
       "quadro_total": 2,
       "quadro_preenchido": 1,
-      "salario_base": "R$ 1.892,94",
+      "salario_base": "R$ 1.973,58",
       "faixa_media": "R$ 2.100,00",
       "faixa_maxima": "R$ 3.000,00",
       "adicionais": "—"
@@ -189,7 +189,7 @@
       "quadro_preenchido": 1,
       "salario_base": "R$ 3.704,40",
       "faixa_media": "R$ 4.100,00",
-      "faixa_maxima": "R$ 5.000,00",
+      "faixa_maxima": "R$ 5.947,41",
       "adicionais": "—"
     },
     {

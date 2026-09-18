@@ -1,8 +1,9 @@
-"""Cobre a sanitizacao de CPF em tools/xlsx_to_json.diretorias() e a
-normalizacao de tools/xlsx_to_json.corpo_funcional().
+"""Cobre a sanitizacao de CPF em tools/xlsx_to_json.diretorias(), a
+normalizacao de tools/xlsx_to_json.corpo_funcional() e a transcricao da
+estrutura remuneratoria a partir do XLSX.
 
 Cada teste monta uma planilha minima em tmp_path e aponta ORIGEM para la:
-nada aqui toca downloads/ ou data/.
+nada aqui toca downloads/ ou data/, salvo os que leem a planilha oficial.
 
 Rodar com: python -m pytest tools/test_xlsx_to_json.py -q
 """
@@ -11,6 +12,7 @@ import pathlib
 import sys
 
 import openpyxl
+import pytest
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
@@ -254,3 +256,222 @@ def test_corpo_funcional_transcreve_29_registros_da_planilha_oficial():
     assert dados["total"] == 29
     assert len(dados["registros"]) == 29
     assert dados["total"] == len(dados["registros"])
+
+
+def test_diretorias_nome_vazio_publica_vacancia(tmp_path, monkeypatch):
+    registros = _registros_por_colegiado(
+        tmp_path,
+        monkeypatch,
+        {"Diretorias Estaduais": [("Ceará", "PRESIDENTE", "", "")]},
+    )["diretorias-estaduais"]
+
+    assert len(registros) == 1
+    assert registros[0]["nome"] == "VACÂNCIA"
+    assert registros[0]["vago"] is True
+    assert registros[0]["cpf"] == "—"
+    assert xlsx_to_json.CARGO_VAGO == "VACÂNCIA"
+
+
+CARGOS_ER_2026 = [
+    ("Secretário Executivo", 10, 1, 1, "R$ 25.000,00", "R$ 35.000,00", "R$ 50.000,00"),
+    ("Secretário Executivo Adjunto", 10, 1, 1, "R$ 20.000,00", "R$ 30.000,00", "R$ 35.000,00"),
+    ("Procurador Jurídico", 9, 1, 1, "R$ 14.000,00", "R$ 17.000,00", "R$ 20.000,00"),
+    ("Gerente", 8, 3, 0, "R$ 14.000,00", "R$ 17.000,00", "R$ 20.000,00"),
+    ("Chefe de Gabinete Diretoria Executiva", 7, 1, 1, "R$ 12.511,20", "R$ 15.000,00", "R$ 18.000,00"),
+    ("Supervisor", 6, 10, 6, "R$ 11.468,60", "R$ 13.000,00", "R$ 16.000,00"),
+    ("Coordenador", 5, 10, 6, "R$ 9.195,74", "R$ 11.000,00", "R$ 14.000,00"),
+    ("Assistente Administrativo I", 4, 35, 0, "R$ 5.200,00", "R$ 6.234,75", "R$ 6.540,00"),
+    ("Assistente Administrativo II", 4, 35, 0, "R$ 6.828,39", "R$ 6.900,00", "R$ 7.280,00"),
+    ("Assistente Administrativo III", 4, 35, 1, "R$ 7.595,68", "R$ 7.900,00", "R$ 8.500,00"),
+    ("Auxiliar Administrativo Junior", 3, 35, 6, "R$ 3.239,03", "R$ 3.500,00", "R$ 3.790,00"),
+    ("Auxiliar Administrativo Pleno", 3, 35, 1, "R$ 3.800,00", "R$ 4.000,00", "R$ 4.400,00"),
+    ("Auxiliar Administrativo Sênior", 3, 35, 3, "R$ 4.671,60", "R$ 4.900,00", "R$ 5.100,00"),
+    ("Trainee", 3, 5, 0, "R$ 1.848,00", "—", "—"),
+    ("Estagiário Ensino Médio", 2, 5, 2, "R$ 1.300,00", "—", "—"),
+    ("Estagiário Superior", 2, 5, 2, "R$ 1.500,00", "—", "—"),
+    ("Motorista", 2, 2, 2, "R$ 5.535,83", "R$ 5.900,00", "R$ 6.500,00"),
+    ("Aux. Serv. Gerais", 1, 2, 1, "R$ 1.973,58", "R$ 2.100,00", "R$ 3.000,00"),
+    ("Copeiro", 1, 1, 1, "R$ 3.704,40", "R$ 4.100,00", "R$ 5.947,41"),
+    ("Jovem Aprendiz", 1, 5, 3, "R$ 713,00", "—", "—"),
+]
+CAMPOS_CARGO = {
+    "cargo",
+    "nivel",
+    "quadro_total",
+    "quadro_preenchido",
+    "salario_base",
+    "faixa_media",
+    "faixa_maxima",
+    "adicionais",
+}
+CARGOS_QP_UM = (
+    "Secretário Executivo",
+    "Secretário Executivo Adjunto",
+    "Procurador Jurídico",
+)
+CARGOS_QP_ZERO = (
+    "Gerente",
+    "Assistente Administrativo I",
+    "Assistente Administrativo II",
+    "Trainee",
+)
+CARGOS_SEM_FAIXA = (
+    "Trainee",
+    "Estagiário Ensino Médio",
+    "Estagiário Superior",
+    "Jovem Aprendiz",
+)
+
+
+def planilha_remuneratoria(caminho, linhas, cabecalho_salario="Salário Base 2026"):
+    """linhas: (qt, qp, cargo, nivel, base, media, maxima). Cabecalho na linha 1."""
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.cell(1, 1, "Q. T.")
+    ws.cell(1, 2, "Q. P.")
+    ws.cell(1, 3, "Cargo")
+    ws.cell(1, 4, "Nível")
+    ws.cell(1, 5, cabecalho_salario)
+    ws.cell(1, 6, "Faixa Média")
+    ws.cell(1, 7, "Faixa Máxima")
+    for i, (qt, qp, cargo, nivel, base, media, maxima) in enumerate(linhas, start=2):
+        ws.cell(i, 1, qt)
+        ws.cell(i, 2, qp)
+        ws.cell(i, 3, cargo)
+        ws.cell(i, 4, nivel)
+        ws.cell(i, 5, base)
+        ws.cell(i, 6, media)
+        ws.cell(i, 7, maxima)
+    wb.save(caminho)
+    return caminho
+
+
+def _estrutura_remuneratoria(tmp_path, monkeypatch, linhas, cabecalho_salario="Salário Base 2026"):
+    origem = tmp_path / "downloads"
+    origem.mkdir()
+    planilha_remuneratoria(
+        origem / "estrutura-remuneratoria-2026.xlsx",
+        linhas,
+        cabecalho_salario=cabecalho_salario,
+    )
+    monkeypatch.setattr(xlsx_to_json, "ORIGEM", origem)
+    return xlsx_to_json.estrutura_remuneratoria()
+
+
+def test_estrutura_remuneratoria_formata_tipos_mistos_e_travessao(tmp_path, monkeypatch):
+    dados = _estrutura_remuneratoria(
+        tmp_path,
+        monkeypatch,
+        [
+            (1, 0, "Secretário Executivo", 10, "R$ 25.000,00", "R$ 35.000,00", 50000.0),
+            (35, 0, "Assistente Administrativo II", 4, "R$ 6.828,39", "R$6.900,00", "R$ 7.280,00"),
+            (5, 0, "Trainee", 3, 1848.0, "R$ –", "R$ -"),
+            (5, 3, "Jovem Aprendiz ", 1, "R$ 713,00", "R$ –", "R$ –"),
+        ],
+    )
+    por_cargo = {c["cargo"]: c for c in dados["cargos"]}
+
+    assert dados["ano"] == 2026
+    assert por_cargo["Secretário Executivo"]["faixa_maxima"] == "R$ 50.000,00"
+    assert por_cargo["Assistente Administrativo II"]["faixa_media"] == "R$ 6.900,00"
+    assert por_cargo["Trainee"]["salario_base"] == "R$ 1.848,00"
+    assert por_cargo["Trainee"]["faixa_media"] == "—"
+    assert por_cargo["Trainee"]["faixa_maxima"] == "—"
+    assert "Jovem Aprendiz" in por_cargo
+    assert "Jovem Aprendiz " not in por_cargo
+    zeros = ("0", "R$ 0", "R$ 0,00")
+    for cargo in dados["cargos"]:
+        assert cargo["faixa_media"] not in zeros
+        assert cargo["faixa_maxima"] not in zeros
+        assert cargo["adicionais"] == "—"
+
+
+def test_estrutura_remuneratoria_transcreve_qp_sem_override(tmp_path, monkeypatch):
+    dados = _estrutura_remuneratoria(
+        tmp_path,
+        monkeypatch,
+        [
+            (1, 0, "Secretário Executivo", 10, 25000, 35000, 50000),
+            (3, 0, "Gerente", 8, 14000, 17000, 20000),
+        ],
+    )
+    por_cargo = {c["cargo"]: c for c in dados["cargos"]}
+    assert por_cargo["Secretário Executivo"]["quadro_preenchido"] == 0
+    assert por_cargo["Gerente"]["quadro_preenchido"] == 0
+
+
+def test_estrutura_remuneratoria_ordena_por_nivel_depois_cargo(tmp_path, monkeypatch):
+    dados = _estrutura_remuneratoria(
+        tmp_path,
+        monkeypatch,
+        [
+            (1, 1, "Copeiro", 1, "R$ 3.704,40", "R$ 4.100,00", "R$ 5.947,41"),
+            (1, 1, "Aux. Serv. Gerais", 1, "R$ 1.973,58", "R$ 2.100,00", "R$ 3.000,00"),
+            (1, 0, "Secretário Executivo Adjunto", 10, 20000, "R$ 30.000,00", "R$ 35.000,00"),
+            (1, 0, "Secretário Executivo", 10, "R$ 25.000,00", "R$ 35.000,00", 50000),
+        ],
+    )
+    assert [c["cargo"] for c in dados["cargos"]] == [
+        "Secretário Executivo",
+        "Secretário Executivo Adjunto",
+        "Aux. Serv. Gerais",
+        "Copeiro",
+    ]
+
+
+def test_estrutura_remuneratoria_ausente_nao_escreve_json(tmp_path, monkeypatch):
+    origem = tmp_path / "downloads"
+    origem.mkdir()
+    destino = tmp_path / "data"
+    destino.mkdir()
+    monkeypatch.setattr(xlsx_to_json, "ORIGEM", origem)
+    monkeypatch.setattr(xlsx_to_json, "DESTINO", destino)
+    monkeypatch.setattr(
+        xlsx_to_json, "corpo_funcional", lambda: {"ano": 2025, "total": 0, "registros": []}
+    )
+    monkeypatch.setattr(
+        xlsx_to_json, "diretorias", lambda: {"ano": 2025, "colegiados": []}
+    )
+
+    with pytest.raises(FileNotFoundError):
+        xlsx_to_json.estrutura_remuneratoria()
+    assert xlsx_to_json.main() == 1
+    assert not (destino / "estrutura-remuneratoria.json").exists()
+
+
+def test_estrutura_remuneratoria_transcreve_20_cargos_do_xlsx_oficial():
+    dados = xlsx_to_json.estrutura_remuneratoria()
+    por_cargo = {c["cargo"]: c for c in dados["cargos"]}
+
+    assert dados["ano"] == 2026
+    assert set(dados) == {"ano", "total_quadro_preenchido", "cargos"}
+    assert len(dados["cargos"]) == 20
+    assert [c["cargo"] for c in dados["cargos"]] == [linha[0] for linha in CARGOS_ER_2026]
+    for extraido, esperado in zip(dados["cargos"], CARGOS_ER_2026, strict=True):
+        cargo, nivel, qt, qp, base, media, maxima = esperado
+        assert set(extraido) == CAMPOS_CARGO
+        assert extraido == {
+            "cargo": cargo,
+            "nivel": nivel,
+            "quadro_total": qt,
+            "quadro_preenchido": qp,
+            "salario_base": base,
+            "faixa_media": media,
+            "faixa_maxima": maxima,
+            "adicionais": "—",
+        }
+
+    assert por_cargo["Secretário Executivo"]["faixa_maxima"] == "R$ 50.000,00"
+    assert por_cargo["Chefe de Gabinete Diretoria Executiva"]["salario_base"] == "R$ 12.511,20"
+    assert por_cargo["Estagiário Superior"]["salario_base"] == "R$ 1.500,00"
+    assert por_cargo["Copeiro"]["faixa_maxima"] == "R$ 5.947,41"
+    for nome in CARGOS_QP_UM:
+        assert por_cargo[nome]["quadro_preenchido"] == 1
+    for nome in CARGOS_QP_ZERO:
+        assert por_cargo[nome]["quadro_preenchido"] == 0
+    for nome in CARGOS_SEM_FAIXA:
+        assert por_cargo[nome]["faixa_media"] == "—"
+        assert por_cargo[nome]["faixa_maxima"] == "—"
+    assert dados["total_quadro_preenchido"] == sum(
+        c["quadro_preenchido"] for c in dados["cargos"]
+    )

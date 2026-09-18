@@ -6,6 +6,7 @@ sempre que as planilhas forem atualizadas e depois rode tools/build_tables.py.
 import json
 import pathlib
 import re
+import sys
 import unicodedata
 
 import openpyxl
@@ -41,7 +42,8 @@ CORRECOES_CPF = {
 }
 
 # Exibido quando a planilha traz o cargo sem titular associado.
-CARGO_VAGO = "Não preenchido"
+CARGO_VAGO = "VACÂNCIA"
+ARQUIVO_REMUNERATORIA = "estrutura-remuneratoria-2026.xlsx"
 
 # CPF ocupado publicado: mascara da planilha, com hifen ASCII. Qualquer outro
 # valor (nota interna, vazio, lixo) vira o mesmo traco dos cargos vagos.
@@ -87,7 +89,12 @@ def escrever(nome, conteudo):
     caminho.write_text(
         json.dumps(conteudo, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print(f"  {caminho.relative_to(RAIZ)}")
+    visivel = caminho
+    try:
+        visivel = caminho.relative_to(RAIZ)
+    except ValueError:
+        pass
+    print(f"  {visivel}")
 
 
 def corpo_funcional():
@@ -152,8 +159,75 @@ def diretorias():
     return {"ano": ANO, "colegiados": colegiados}
 
 
-if __name__ == "__main__":
+def _inteiro(valor):
+    if valor is None or valor == "":
+        return 0
+    return int(valor)
+
+
+def valor_monetario(celula):
+    """Numero vira R$ X.XXX,00; R$ – / R$ - viram —; R$ colado ganha espaço."""
+    if celula is None or celula == "":
+        return "—"
+    if isinstance(celula, (int, float)):
+        texto = f"{float(celula):,.2f}"
+        return "R$ " + texto.replace(",", "X").replace(".", ",").replace("X", ".")
+    texto = limpar(celula)
+    if re.fullmatch(r"R\$\s*[–\-]", texto):
+        return "—"
+    return re.sub(r"^R\$\s*", "R$ ", texto)
+
+
+def estrutura_remuneratoria():
+    caminho = ORIGEM / ARQUIVO_REMUNERATORIA
+    if not caminho.exists():
+        raise FileNotFoundError(
+            f"Planilha ausente: {caminho}. "
+            "Nada foi escrito em data/estrutura-remuneratoria.json."
+        )
+    ws = openpyxl.load_workbook(caminho, data_only=True).active
+    cabecalho = limpar(ws.cell(1, 5).value)
+    ano_m = re.search(r"(20\d{2})", cabecalho)
+    ano = int(ano_m.group(1)) if ano_m else 2026
+    cargos = []
+    for linha in ws.iter_rows(min_row=2, max_col=7, values_only=True):
+        qt, qp, cargo, nivel, base, media, maxima = linha[:7]
+        cargo = limpar(cargo)
+        if not cargo:
+            continue
+        cargos.append(
+            {
+                "cargo": cargo,
+                "nivel": _inteiro(nivel),
+                "quadro_total": _inteiro(qt),
+                "quadro_preenchido": _inteiro(qp),
+                "salario_base": valor_monetario(base),
+                "faixa_media": valor_monetario(media),
+                "faixa_maxima": valor_monetario(maxima),
+                "adicionais": "—",
+            }
+        )
+    cargos.sort(key=lambda c: (-c["nivel"], c["cargo"]))
+    return {
+        "ano": ano,
+        "total_quadro_preenchido": sum(c["quadro_preenchido"] for c in cargos),
+        "cargos": cargos,
+    }
+
+
+def main():
     DESTINO.mkdir(exist_ok=True)
     print("Gerando JSON a partir das planilhas oficiais:")
+    try:
+        remuneratoria = estrutura_remuneratoria()
+    except FileNotFoundError as erro:
+        print(f"erro: {erro}", file=sys.stderr)
+        return 1
     escrever("corpo-funcional.json", corpo_funcional())
     escrever("diretorias.json", diretorias())
+    escrever("estrutura-remuneratoria.json", remuneratoria)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

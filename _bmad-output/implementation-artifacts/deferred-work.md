@@ -110,3 +110,15 @@
   summary: Links Privacidade, Termos e Suporte do footer da home continuam com `href="#"`.
   evidence: Já era assim antes desta correção; o clique ainda leva ao topo. Destinos reais seriam páginas novas, fora do contrato de só limpar o texto e o pinning.
 
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-hotfix-tabela-remuneracao.md`
+  summary: Specs `done` da remuneratória ainda nomeiam o PDF 2025 como origem e proíbem botão XLSX.
+  evidence: `_bmad-output/specs/spec-estrutura-remuneratoria/SPEC.md` e `spec-estrutura-remuneratoria.md`; a página já serve `estrutura-remuneratoria-2026.xlsx`. Atualizar esses contratos sairia do hotfix.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-hotfix-tabela-remuneracao.md`
+  summary: Specs `done` de dirigentes ainda definem cargo vago como `Não preenchido`.
+  evidence: `spec-dirigentes-colegiados.md` e `spec-fundacao-portal.md`; o HTML publicado já usa `VACÂNCIA`.
+
+- source_spec: `c:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-hotfix-tabela-remuneracao.md`
+  summary: `deferred-work.md` ainda cita `pdf_to_json.py` / `test_pdf_to_json.py` depois da remoção desses arquivos.
+  evidence: Entradas de stories anteriores sobre o extrator PDF; reescrevê-las não altera o portal.
+

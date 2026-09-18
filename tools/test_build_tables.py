@@ -186,25 +186,25 @@ CABECALHOS_ER = (
 )
 
 CARGOS_ER_20 = [
-    ("Secretário Executivo", 10, 1, 0, "R$ 25.000,00", "R$ 35.000,00", "R$ 45.000,00"),
-    ("Secretário Executivo Adjunto", 10, 1, 0, "R$ 20.000,00", "R$ 30.000,00", "R$ 35.000,00"),
-    ("Procurador Jurídico", 9, 1, 0, "R$ 14.000,00", "R$ 17.000,00", "R$ 20.000,00"),
+    ("Secretário Executivo", 10, 1, 1, "R$ 25.000,00", "R$ 35.000,00", "R$ 50.000,00"),
+    ("Secretário Executivo Adjunto", 10, 1, 1, "R$ 20.000,00", "R$ 30.000,00", "R$ 35.000,00"),
+    ("Procurador Jurídico", 9, 1, 1, "R$ 14.000,00", "R$ 17.000,00", "R$ 20.000,00"),
     ("Gerente", 8, 3, 0, "R$ 14.000,00", "R$ 17.000,00", "R$ 20.000,00"),
-    ("Chefe de Gabinete Diretoria Executiva", 7, 1, 1, "R$ 12.000,00", "R$ 15.000,00", "R$ 18.000,00"),
-    ("Supervisor", 6, 10, 6, "R$ 11.000,00", "R$ 13.000,00", "R$ 16.000,00"),
-    ("Coordenador", 5, 10, 6, "R$ 8.820,00", "R$ 13.000,00", "R$ 16.000,00"),
-    ("Assistente Administrativo I", 4, 35, 0, "R$ 5.200,00", "R$ 6.000,00", "R$ 6.540,00"),
-    ("Assistente Administrativo II", 4, 35, 0, "R$ 6.549,38", "R$ 6.900,00", "R$ 7.280,00"),
-    ("Assistente Administrativo III", 4, 35, 1, "R$ 7.285,32", "R$ 7.900,00", "R$ 8.500,00"),
-    ("Auxiliar Administrativo Junior", 3, 35, 6, "R$ 3.106,68", "R$ 3.500,00", "R$ 3.790,00"),
+    ("Chefe de Gabinete Diretoria Executiva", 7, 1, 1, "R$ 12.511,20", "R$ 15.000,00", "R$ 18.000,00"),
+    ("Supervisor", 6, 10, 6, "R$ 11.468,60", "R$ 13.000,00", "R$ 16.000,00"),
+    ("Coordenador", 5, 10, 6, "R$ 9.195,74", "R$ 11.000,00", "R$ 14.000,00"),
+    ("Assistente Administrativo I", 4, 35, 0, "R$ 5.200,00", "R$ 6.234,75", "R$ 6.540,00"),
+    ("Assistente Administrativo II", 4, 35, 0, "R$ 6.828,39", "R$ 6.900,00", "R$ 7.280,00"),
+    ("Assistente Administrativo III", 4, 35, 1, "R$ 7.595,68", "R$ 7.900,00", "R$ 8.500,00"),
+    ("Auxiliar Administrativo Junior", 3, 35, 6, "R$ 3.239,03", "R$ 3.500,00", "R$ 3.790,00"),
     ("Auxiliar Administrativo Pleno", 3, 35, 1, "R$ 3.800,00", "R$ 4.000,00", "R$ 4.400,00"),
-    ("Auxiliar Administrativo Sênior", 3, 35, 3, "R$ 4.480,72", "R$ 4.900,00", "R$ 5.100,00"),
+    ("Auxiliar Administrativo Sênior", 3, 35, 3, "R$ 4.671,60", "R$ 4.900,00", "R$ 5.100,00"),
     ("Trainee", 3, 5, 0, "R$ 1.848,00", "—", "—"),
     ("Estagiário Ensino Médio", 2, 5, 2, "R$ 1.300,00", "—", "—"),
-    ("Estagiário Superior", 2, 5, 2, "R$ 1.400,00", "—", "—"),
-    ("Motorista", 2, 2, 2, "R$ 5.309,64", "R$ 5.900,00", "R$ 6.500,00"),
-    ("Aux. Serv. Gerais", 1, 2, 1, "R$ 1.892,94", "R$ 2.100,00", "R$ 3.000,00"),
-    ("Copeiro", 1, 1, 1, "R$ 3.704,40", "R$ 4.100,00", "R$ 5.000,00"),
+    ("Estagiário Superior", 2, 5, 2, "R$ 1.500,00", "—", "—"),
+    ("Motorista", 2, 2, 2, "R$ 5.535,83", "R$ 5.900,00", "R$ 6.500,00"),
+    ("Aux. Serv. Gerais", 1, 2, 1, "R$ 1.973,58", "R$ 2.100,00", "R$ 3.000,00"),
+    ("Copeiro", 1, 1, 1, "R$ 3.704,40", "R$ 4.100,00", "R$ 5.947,41"),
     ("Jovem Aprendiz", 1, 5, 3, "R$ 713,00", "—", "—"),
 ]
 
@@ -339,19 +339,21 @@ def test_caractere_reservado_e_escapado(tmp_path):
     assert "Auxiliar &amp; Suporte" in saida
 
 
-def test_registro_vago_exibe_nao_preenchido_e_marca_a_linha(repo):
+def test_registro_vago_exibe_vacancia_e_marca_a_linha(repo):
     dados, pagina = repo
     build_tables.gerar(dados, pagina)
     saida = pagina.read_text(encoding="utf-8")
 
     linha_vaga = next(l for l in saida.splitlines() if 'data-vago="true"' in l)
     assert linha_vaga.strip().startswith("<tr")
-    assert "<em class=\"text-on-surface-variant\">Não preenchido</em>" in saida
+    assert "<em class=\"text-on-surface-variant\">VACÂNCIA</em>" in saida
+    assert "Não preenchido" not in saida
     assert "Maria Residual" not in saida
     trecho_vago = trecho_da_linha(saida, 'data-vago="true"', depois=5)
     assert 'whitespace-nowrap">—</td>' in trecho_vago
     # A linha preenchida ao lado nao herda a marcacao.
     assert saida.count('data-vago="true"') == 2
+    assert build_tables.CARGO_VAGO == "VACÂNCIA"
 
 
 def test_legenda_transcreve_total_da_origem(tmp_path):
@@ -679,14 +681,24 @@ def test_estrutura_remuneratoria_travessao_e_adicionais_nao_sao_zero(repo):
         assert _celulas_er(er, nome)[6] == "—"
 
 
+def test_estrutura_remuneratoria_legenda_cita_planilha_nao_pdf(repo):
+    dados, pagina = repo
+    build_tables.gerar(dados, pagina)
+    er = bloco(pagina.read_text(encoding="utf-8"), "estrutura-remuneratoria")
+
+    assert "planilha" in er.lower()
+    assert "PDF" not in er
+    assert "pdf" not in er.lower()
+
+
 def test_estrutura_remuneratoria_injeta_20_linhas_na_ordem_do_json(tmp_path):
     cargos = [_cargo_er(*linha) for linha in CARGOS_ER_20]
     dados = escrever_dados(
         tmp_path / "data",
         ajustes={
             "estrutura-remuneratoria.json": {
-                "ano": 2025,
-                "total_quadro_preenchido": 35,
+                "ano": 2026,
+                "total_quadro_preenchido": sum(c["quadro_preenchido"] for c in cargos),
                 "cargos": cargos,
             }
         },
