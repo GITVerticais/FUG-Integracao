@@ -1,22 +1,68 @@
-"""Cobre a matriz de I/O de tools/build_tables.py.
+"""Cobre VACÂNCIA, CPF, escape e âncoras do render em lib/tabelas.js.
 
 Cada teste monta um repositorio minimo em tmp_path: nada aqui toca os
-arquivos reais de data/ ou estrutura-organizacional/.
+arquivos reais de data/. A página não recebe marcadores BLOCO.
 
-Rodar com: python -m pytest tools/test_build_tables.py -q
+Rodar com: python -m pytest tools/test_py -q
 """
 import json
 import pathlib
 import re
+import subprocess
 import sys
 
 import pytest
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-
-import build_tables  # noqa: E402
+RAIZ = pathlib.Path(__file__).resolve().parent.parent
+RENDER = RAIZ / "tools" / "render_tabelas.js"
 
 SECOES = ("diretorias", "corpo-funcional", "estrutura-remuneratoria")
+
+_ULTIMAS = {}
+
+
+class ErroDeGeracao(Exception):
+    """Falha do render; nada é escrito."""
+
+
+def secoes_de(dados_dir):
+    proc = subprocess.run(
+        ["node", str(RENDER), str(dados_dir)],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if proc.returncode != 0:
+        raise ErroDeGeracao(proc.stderr)
+    return json.loads(proc.stdout)
+
+
+def gerar(dados, pagina):
+    global _ULTIMAS
+    _ULTIMAS = secoes_de(dados)
+    texto = "\n".join(_ULTIMAS[secao] for secao in SECOES)
+    pathlib.Path(pagina).write_text(texto, encoding="utf-8", newline="\n")
+    return True
+
+
+def main(argv):
+    dados = argv[argv.index("--dados") + 1]
+    proc = subprocess.run(
+        ["node", str(RENDER), dados],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if proc.returncode != 0:
+        sys.stderr.write(proc.stderr)
+        return proc.returncode
+    return 0
+
+
+def bloco(saida, secao):
+    html = _ULTIMAS[secao]
+    assert html in saida, secao
+    return html
 
 PAGINA_MODELO = """<!DOCTYPE html>
 <html lang="pt-br">
@@ -255,12 +301,6 @@ def escrever_pagina(caminho, secoes=SECOES, sem_fim=()):
     return caminho
 
 
-def bloco(saida, secao):
-    inicio = saida.index(f"<!-- BLOCO:{secao}:INICIO -->")
-    fim = saida.index(f"<!-- BLOCO:{secao}:FIM -->")
-    return saida[inicio:fim]
-
-
 def trecho_da_linha(saida, texto, antes=5, depois=2):
     linhas = saida.splitlines()
     idx = next(i for i, linha in enumerate(linhas) if texto in linha)
@@ -274,14 +314,12 @@ def repo(tmp_path):
     return dados, pagina
 
 
-def test_injeta_as_tres_secoes_preservando_marcadores(repo):
+def test_renderiza_as_tres_secoes_sem_marcadores(repo):
     dados, pagina = repo
-    assert build_tables.gerar(dados, pagina) is True
+    assert gerar(dados, pagina) is True
 
     saida = pagina.read_text(encoding="utf-8")
-    for secao in SECOES:
-        assert f"<!-- BLOCO:{secao}:INICIO -->" in saida
-        assert f"<!-- BLOCO:{secao}:FIM -->" in saida
+    assert "BLOCO:" not in saida
     assert "Maria de Souza" in saida
     assert "João da Silva" in saida
     assert "Gerente" in saida
@@ -291,24 +329,21 @@ def test_injeta_as_tres_secoes_preservando_marcadores(repo):
 
 def test_reexecucao_nao_altera_bytes(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     primeira = pagina.read_bytes()
 
-    assert build_tables.gerar(dados, pagina) is False
+    gerar(dados, pagina)
     assert pagina.read_bytes() == primeira
+    assert b"BLOCO:" not in primeira
 
 
-def test_marcador_de_fim_ausente_aborta_sem_escrever(tmp_path):
-    dados = escrever_dados(tmp_path / "data")
-    pagina = escrever_pagina(tmp_path / "index.html", sem_fim=("corpo-funcional",))
-    antes = pagina.read_bytes()
-
-    with pytest.raises(build_tables.ErroDeGeracao) as erro:
-        build_tables.gerar(dados, pagina)
-
-    assert "BLOCO:corpo-funcional:FIM" in str(erro.value)
-    assert str(pagina) in str(erro.value)
-    assert pagina.read_bytes() == antes
+def test_rota_nao_injeta_bloco():
+    pagina = (RAIZ / "app" / "estrutura-organizacional" / "page.tsx").read_text(encoding="utf-8")
+    assert "BLOCO:" not in pagina
+    assert "diretorias.json" in pagina
+    assert "corpo-funcional.json" in pagina
+    assert "estrutura-remuneratoria.json" in pagina
+    assert "blocoDiretorias" in pagina
 
 
 def test_json_ausente_aborta_orientando_npm_run_dados(tmp_path):
@@ -316,8 +351,8 @@ def test_json_ausente_aborta_orientando_npm_run_dados(tmp_path):
     pagina = escrever_pagina(tmp_path / "index.html")
     antes = pagina.read_bytes()
 
-    with pytest.raises(build_tables.ErroDeGeracao) as erro:
-        build_tables.gerar(dados, pagina)
+    with pytest.raises(ErroDeGeracao) as erro:
+        gerar(dados, pagina)
 
     assert "diretorias.json" in str(erro.value)
     assert "npm run dados" in str(erro.value)
@@ -331,7 +366,7 @@ def test_caractere_reservado_e_escapado(tmp_path):
     dados = escrever_dados(tmp_path / "data", ajustes={"corpo-funcional.json": ajuste})
     pagina = escrever_pagina(tmp_path / "index.html")
 
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     saida = pagina.read_text(encoding="utf-8")
 
     assert "<script>alert" not in saida
@@ -341,7 +376,7 @@ def test_caractere_reservado_e_escapado(tmp_path):
 
 def test_registro_vago_exibe_vacancia_e_marca_a_linha(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     saida = pagina.read_text(encoding="utf-8")
 
     linha_vaga = next(l for l in saida.splitlines() if 'data-vago="true"' in l)
@@ -353,7 +388,7 @@ def test_registro_vago_exibe_vacancia_e_marca_a_linha(repo):
     assert 'whitespace-nowrap">—</td>' in trecho_vago
     # A linha preenchida ao lado nao herda a marcacao.
     assert saida.count('data-vago="true"') == 2
-    assert build_tables.CARGO_VAGO == "VACÂNCIA"
+    assert "VACÂNCIA" in saida
 
 
 def test_legenda_transcreve_total_da_origem(tmp_path):
@@ -370,7 +405,7 @@ def test_legenda_transcreve_total_da_origem(tmp_path):
     )
     pagina = escrever_pagina(tmp_path / "index.html")
 
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     saida = pagina.read_text(encoding="utf-8")
 
     assert "99 registros." in saida
@@ -384,7 +419,7 @@ def test_main_devolve_1_e_nao_escreve_quando_falta_json(tmp_path, capsys):
     pagina = escrever_pagina(tmp_path / "index.html")
     antes = pagina.read_bytes()
 
-    codigo = build_tables.main(["--dados", str(dados), "--pagina", str(pagina)])
+    codigo = main(["--dados", str(dados), "--pagina", str(pagina)])
 
     assert codigo == 1
     assert "npm run dados" in capsys.readouterr().err
@@ -393,12 +428,12 @@ def test_main_devolve_1_e_nao_escreve_quando_falta_json(tmp_path, capsys):
 
 def test_main_devolve_0_no_caminho_feliz(repo):
     dados, pagina = repo
-    assert build_tables.main(["--dados", str(dados), "--pagina", str(pagina)]) == 0
+    assert main(["--dados", str(dados), "--pagina", str(pagina)]) == 0
 
 
 def test_cinco_colegiados_viram_cinco_tabelas_com_quatro_colunas(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     diretorias = bloco(pagina.read_text(encoding="utf-8"), "diretorias")
 
     assert diretorias.count("<table") == 5
@@ -437,7 +472,7 @@ def _titulos_h3(diretorias):
 
 def test_indice_com_cinco_ancoras_na_ordem_dos_h3(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     diretorias = bloco(pagina.read_text(encoding="utf-8"), "diretorias")
 
     hrefs = _ancoras_indice(diretorias)
@@ -454,7 +489,7 @@ def test_indice_com_um_colegiado(tmp_path):
     dados = escrever_dados(tmp_path / "data", ajustes={"diretorias.json": ajuste})
     pagina = escrever_pagina(tmp_path / "index.html")
 
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     diretorias = bloco(pagina.read_text(encoding="utf-8"), "diretorias")
 
     hrefs = _ancoras_indice(diretorias)
@@ -484,7 +519,7 @@ def _secoes_colegiado(diretorias):
 
 def test_voltar_ao_indice_em_cada_colegiado(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     diretorias = bloco(pagina.read_text(encoding="utf-8"), "diretorias")
 
     nav = re.search(
@@ -508,7 +543,7 @@ def test_voltar_ao_indice_em_cada_colegiado(repo):
 
 def test_cpf_mascarado_sai_identico_na_celula(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     trecho = trecho_da_linha(pagina.read_text(encoding="utf-8"), "Ana Acre")
     assert "826.XXX.XXX-06" in trecho
     assert "data-vago" not in trecho
@@ -516,7 +551,7 @@ def test_cpf_mascarado_sai_identico_na_celula(repo):
 
 def test_traco_unicode_no_cpf_vira_hifen_ascii(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     saida = pagina.read_text(encoding="utf-8")
     trecho = trecho_da_linha(saida, "Katia Damiana Alves Pereira Lobo")
     assert "773.XXX.XXX-04" in trecho
@@ -526,7 +561,7 @@ def test_traco_unicode_no_cpf_vira_hifen_ascii(repo):
 
 def test_cpf_mascarado_da_maria_rita_sai_identico_na_celula(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     saida = pagina.read_text(encoding="utf-8")
     trecho = trecho_da_linha(saida, "Maria Rita Carra Navarro")
 
@@ -538,7 +573,7 @@ def test_cpf_mascarado_da_maria_rita_sai_identico_na_celula(repo):
 
 def test_cpf_ocupado_fora_do_formato_vira_traco_sem_marcar_vago(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     saida = pagina.read_text(encoding="utf-8")
     trecho = trecho_da_linha(saida, "Fulano Nota Interna")
 
@@ -563,7 +598,7 @@ def test_cpf_completo_ocupado_nao_aparece_no_html(tmp_path):
     dados = escrever_dados(tmp_path / "data", ajustes={"diretorias.json": ajuste})
     pagina = escrever_pagina(tmp_path / "index.html")
 
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     saida = pagina.read_text(encoding="utf-8")
     trecho = trecho_da_linha(saida, "Fulano Completo")
 
@@ -575,7 +610,7 @@ def test_cpf_completo_ocupado_nao_aparece_no_html(tmp_path):
 
 def test_corpo_funcional_colunas_nome_cargo_unidade(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     cf = bloco(pagina.read_text(encoding="utf-8"), "corpo-funcional")
 
     cabecalhos = re.findall(
@@ -590,7 +625,7 @@ def test_corpo_funcional_colunas_nome_cargo_unidade(repo):
 
 def test_corpo_funcional_bloco_sem_dinheiro_nem_cpf(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     cf = bloco(pagina.read_text(encoding="utf-8"), "corpo-funcional")
 
     assert "R$" not in cf
@@ -618,7 +653,7 @@ def test_corpo_funcional_injeta_29_linhas_nome_cargo_unidade(tmp_path):
         },
     )
     pagina = escrever_pagina(tmp_path / "index.html")
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     cf = bloco(pagina.read_text(encoding="utf-8"), "corpo-funcional")
 
     assert cf.count("<table") == 1
@@ -640,7 +675,7 @@ def test_json_ausente_corpo_funcional_aborta_sem_escrever(tmp_path, capsys):
     pagina = escrever_pagina(tmp_path / "index.html")
     antes = pagina.read_bytes()
 
-    codigo = build_tables.main(["--dados", str(dados), "--pagina", str(pagina)])
+    codigo = main(["--dados", str(dados), "--pagina", str(pagina)])
 
     assert codigo == 1
     err = capsys.readouterr().err
@@ -651,7 +686,7 @@ def test_json_ausente_corpo_funcional_aborta_sem_escrever(tmp_path, capsys):
 
 def test_estrutura_remuneratoria_oito_cabecalhos_incluindo_adicionais(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     er = bloco(pagina.read_text(encoding="utf-8"), "estrutura-remuneratoria")
 
     cabecalhos = re.findall(r'<th class="[^"]*" scope="col">([^<]+)</th>', er)
@@ -662,7 +697,7 @@ def test_estrutura_remuneratoria_oito_cabecalhos_incluindo_adicionais(repo):
 
 def test_estrutura_remuneratoria_travessao_e_adicionais_nao_sao_zero(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     er = bloco(pagina.read_text(encoding="utf-8"), "estrutura-remuneratoria")
 
     gerente = _celulas_er(er, "Gerente")
@@ -683,7 +718,7 @@ def test_estrutura_remuneratoria_travessao_e_adicionais_nao_sao_zero(repo):
 
 def test_estrutura_remuneratoria_legenda_cita_planilha_nao_pdf(repo):
     dados, pagina = repo
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     er = bloco(pagina.read_text(encoding="utf-8"), "estrutura-remuneratoria")
 
     assert "planilha" in er.lower()
@@ -704,7 +739,7 @@ def test_estrutura_remuneratoria_injeta_20_linhas_na_ordem_do_json(tmp_path):
         },
     )
     pagina = escrever_pagina(tmp_path / "index.html")
-    build_tables.gerar(dados, pagina)
+    gerar(dados, pagina)
     er = bloco(pagina.read_text(encoding="utf-8"), "estrutura-remuneratoria")
 
     assert er.count("<table") == 1

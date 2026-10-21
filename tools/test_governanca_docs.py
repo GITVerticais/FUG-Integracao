@@ -6,8 +6,8 @@ import pathlib
 import re
 from html.parser import HTMLParser
 
-PAGINA = pathlib.Path(__file__).resolve().parent.parent / "governanca" / "index.html"
-RAIZ = PAGINA.parent.parent
+RAIZ = pathlib.Path(__file__).resolve().parent.parent
+PAGINA = RAIZ / "app" / "governanca" / "page.tsx"
 IFRAME_NOME = "visualizador-governanca"
 
 DOCUMENTOS = (
@@ -22,35 +22,29 @@ def _html() -> str:
     return PAGINA.read_text(encoding="utf-8")
 
 
-def _artigos(html: str) -> list[str]:
+def _documentos(html: str) -> list[tuple[str, str]]:
+    bloco = re.search(r"const DOCUMENTOS = \[([\s\S]*?)\] as const;", html)
+    assert bloco, "lista de documentos ausente"
+    return re.findall(r'\["([^"]+)", "([^"]+)"\]', bloco.group(1))
+
+
+def _artigo(html: str) -> str:
     artigos = re.findall(r"<article\b[^>]*>([\s\S]*?)</article>", html)
-    assert len(artigos) == 4, "a página deve ter exatamente quatro documentos"
-    return artigos
+    assert len(artigos) == 1, "um modelo de artigo, repetido para cada PDF"
+    return artigos[0]
 
 
 def _texto(markup: str) -> str:
     return " ".join(re.sub(r"<[^>]+>", " ", markup).split())
 
 
-def _ancoras(markup: str) -> list[tuple[str, str]]:
-    return re.findall(r"<a\b([^>]*)>([\s\S]*?)</a>", markup)
+def _ancoras(markup: str) -> list[str]:
+    return re.findall(r"<a\b([^>]*)>", markup)
 
 
 _VOID = {
-    "area",
-    "base",
-    "br",
-    "col",
-    "embed",
-    "hr",
-    "img",
-    "input",
-    "link",
-    "meta",
-    "param",
-    "source",
-    "track",
-    "wbr",
+    "area", "base", "br", "col", "embed", "hr", "img", "input", "link",
+    "meta", "param", "source", "track", "wbr",
 }
 
 
@@ -68,40 +62,27 @@ class _IframeAncestrais(HTMLParser):
             self.current = node
 
     def handle_endtag(self, tag):
-        if tag in _VOID:
+        if tag in _VOID or self.current is None:
             return
-        if self.current is not None:
-            self.current = self.current["parent"]
+        self.current = self.current["parent"]
 
 
-def _cadeia_ate_main(html: str) -> list[dict]:
-    parser = _IframeAncestrais()
-    parser.feed(html)
-    assert parser.iframe, "iframe nomeado ausente"
-    cadeia = []
-    node = parser.iframe
-    while node is not None:
-        cadeia.append(node)
-        if node["tag"] == "main":
-            break
-        node = node["parent"]
-    assert cadeia[-1]["tag"] == "main", "iframe fora de main"
-    return cadeia
+def _classes(node: dict) -> list[str]:
+    bruto = node["attrs"].get("class") or node["attrs"].get("className") or node["attrs"].get("classname") or ""
+    return bruto.split()
 
 
 def test_titulo_identifica_o_modulo():
     html = _html()
-    titulo = re.search(r"<title>([^<]*)</title>", html)
-    assert titulo, "título ausente"
-    assert "Governança" in titulo.group(1)
+    assert 'title: "Governança - Espaço de Integridade FUG"' in html
     h1 = re.search(r"<h1\b[^>]*>([\s\S]*?)</h1>", html)
     assert h1 and "Governança" in _texto(h1.group(1))
 
 
 def test_quatro_nomes_exatos_nesta_ordem():
     html = _html()
-    h2s = [_texto(bloco) for bloco in re.findall(r"<h2\b[^>]*>([\s\S]*?)</h2>", html)]
-    assert h2s == [nome for nome, _ in DOCUMENTOS]
+    assert _documentos(html) == list(DOCUMENTOS)
+    assert "{nome}" in html
 
 
 def test_visualizar_aponta_o_pdf_no_iframe_da_pagina():
@@ -114,67 +95,52 @@ def test_visualizar_aponta_o_pdf_no_iframe_da_pagina():
     assert re.search(r"(?:^|\s)hidden(?:\s|=|$)", attrs_iframe), "visualizador deve começar oculto"
     assert "pdf.js" not in html.lower()
     assert "pdfjs" not in html.lower()
-    assert re.search(r"</ul>\s*<iframe\b", html) is None, "iframe não pode ficar solto abaixo da lista"
-    iframes = re.findall(r"<iframe\b", html)
-    assert len(iframes) == 1, "um único visualizador nativo"
-    for artigo, (nome, arquivo) in zip(_artigos(html), DOCUMENTOS, strict=True):
-        href = f"../downloads/{arquivo}"
-        visualizar = None
-        for attrs, inner in _ancoras(artigo):
-            if "Visualizar" in _texto(inner):
-                visualizar = attrs
-                break
-        assert visualizar, f"Visualizar ausente em {nome}"
-        href_match = re.search(r'\bhref="([^"]*)"', visualizar)
-        assert href_match and href_match.group(1) == href, nome
-        assert f'target="{IFRAME_NOME}"' in visualizar, nome
-        assert "target=\"_blank\"" not in visualizar
-        assert "download" not in visualizar.split()
-        assert 'data-visualizador-host' in artigo, nome
-        assert "<iframe" not in artigo, f"iframe não começa dentro da box de {nome}"
+    assert re.search(r"</ul>\s*<iframe\b", html) is None
+    assert len(re.findall(r"<iframe\b", html)) == 1
+    artigo = _artigo(html)
+    visualizar, baixar = _ancoras(artigo)
+    assert 'href={`/downloads/${arquivo}`}' in visualizar
+    assert f'target="{IFRAME_NOME}"' in visualizar
+    assert 'target="_blank"' not in visualizar
+    assert "download" not in visualizar.split()
+    assert "Visualizar o PDF oficial do" in visualizar
+    assert "download" not in baixar.split() or re.search(r"(?:^|\s)download(?:\s|=|$)", baixar)
+    assert 'data-visualizador-host' in artigo
+    assert "<iframe" not in artigo
+    for nome, arquivo in DOCUMENTOS:
+        assert arquivo in html
+        assert nome in html
 
 
 def test_script_move_visualizador_para_a_box_clicada():
     html = _html()
-    script = re.search(r"<script>([\s\S]*?)</script>", html)
-    assert script, "script do visualizador ausente"
-    corpo = script.group(1)
-    assert 'closest("article")' in corpo
-    assert "data-visualizador-host" in corpo
-    assert "appendChild" in corpo
-    assert "viewer.hidden = false" in corpo
-    assert "article.scrollIntoView" in corpo
-    assert "ctrlKey" in corpo
-    assert "preventDefault" in corpo
-    assert "viewer.src" in corpo
+    for trecho in (
+        'closest("article")',
+        "data-visualizador-host",
+        "appendChild",
+        "viewer.hidden = false",
+        "article.scrollIntoView",
+        "ctrlKey",
+        "preventDefault",
+        'viewer.src = link.getAttribute("href")',
+    ):
+        assert trecho in html
 
 
 def test_download_entrega_o_pdf_oficial_do_item():
     html = _html()
-    for artigo, (nome, arquivo) in zip(_artigos(html), DOCUMENTOS, strict=True):
-        href = f"../downloads/{arquivo}"
-        rotulo_ok = False
-        baixar = None
-        for attrs, inner in _ancoras(artigo):
-            if "Baixar" in _texto(inner):
-                baixar = attrs
-                break
-        assert baixar, f"Baixar ausente em {nome}"
-        href_match = re.search(r'\bhref="([^"]*)"', baixar)
-        assert href_match and href_match.group(1) == href, nome
-        assert re.search(r"(?:^|\s)download(?:\s|=|$)", baixar), nome
-        aria = re.search(r'aria-label="([^"]*)"', baixar)
-        assert aria and nome in aria.group(1), nome
-        rotulo_ok = True
-        assert rotulo_ok
+    _, baixar = _ancoras(_artigo(html))
+    assert 'href={`/downloads/${arquivo}`}' in baixar
+    assert re.search(r"(?:^|\s)download(?:\s|=|$)", baixar)
+    assert "Baixar o PDF oficial do" in baixar
+    for _nome, arquivo in DOCUMENTOS:
         caminho = RAIZ / "downloads" / arquivo
         assert caminho.is_file(), arquivo
         assert caminho.read_bytes()[:4] == b"%PDF", arquivo
 
 
 def test_artigos_nao_empilham_scroll_margin_no_header():
-    html = _html()
-    for artigo in re.findall(r"<article\b[^>]*>", html):
+    for artigo in re.findall(r"<article\b[^>]*>", _html()):
         assert "scroll-margin" not in artigo
 
 
@@ -187,22 +153,22 @@ def test_nao_publica_estrutura_remuneratoria():
 
 def test_acoes_nomeadas_com_foco_visivel_e_sem_overflow_horizontal():
     html = _html()
-    for node in _cadeia_ate_main(html):
-        classes = node["attrs"].get("class", "").split()
-        assert "min-w-0" in classes, node["tag"]
-    css = (RAIZ / "assets" / "css" / "main.css").read_text(encoding="utf-8")
-    assert re.search(
-        r"\.focus-visible\\:outline-primary:focus-visible\{[^}]*outline-color:#862120",
-        css,
-    )
-    for artigo, (nome, _) in zip(_artigos(html), DOCUMENTOS, strict=True):
-        acoes = []
-        for attrs, inner in _ancoras(artigo):
-            texto = _texto(inner)
-            if "Visualizar" in texto or "Baixar" in texto:
-                acoes.append((attrs, texto))
-                assert "focus-visible:outline-primary" in attrs, nome
-                aria = re.search(r'aria-label="([^"]*)"', attrs)
-                nome_acessivel = aria.group(1) if aria else texto
-                assert nome in nome_acessivel, nome
-        assert len(acoes) == 2, nome
+    parser = _IframeAncestrais()
+    parser.feed(html)
+    assert parser.iframe, "iframe nomeado ausente"
+    cadeia = []
+    node = parser.iframe
+    while node is not None:
+        cadeia.append(node)
+        if node["tag"] == "main":
+            break
+        node = node["parent"]
+    assert cadeia[-1]["tag"] == "main"
+    for node in cadeia:
+        assert "min-w-0" in _classes(node), node["tag"]
+    config = (RAIZ / "tailwind.config.js").read_text(encoding="utf-8")
+    assert 'primary: "#862120"' in config
+    assert "focus-visible:outline-primary" in html
+    assert "className={ACAO}" in _artigo(html)
+    for nome, _arquivo in DOCUMENTOS:
+        assert nome in html

@@ -122,3 +122,19 @@
   summary: `deferred-work.md` ainda cita `pdf_to_json.py` / `test_pdf_to_json.py` depois da remoção desses arquivos.
   evidence: Entradas de stories anteriores sobre o extrator PDF; reescrevê-las não altera o portal.
 
+- source_spec: none
+  summary: Começar a ouvidoria nova (manifestação, consulta, estatística e fila) depois que o portal atual estiver no Next.js.
+  evidence: O contrato em `_bmad-output/specs/spec-migracao-next-ouvidoria/` junta a migração das páginas atuais (fases 0–1, CAP-1, CAP-2, CAP-3, CAP-9) e a feature nova (fases 2–4, CAP-4 a CAP-8). A divisão pedida deixa a ouvidoria para depois da migração.
+
+- source_spec: `C:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-migracao-portal-next.md`
+  summary: O build na Vercel pode falhar se a imagem não tiver openpyxl e pymupdf.
+  evidence: `maybe-false`, gravidade alta se for verdade. `npm run build` chama `python tools/xlsx_to_json.py` e `python tools/render_organograma.py`; `vercel.json` não instala `requirements.txt`. Fecha ao rodar esse build numa imagem limpa da Vercel.
+
+- source_spec: `C:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-migracao-portal-next.md`
+  summary: `.cursor/hooks.json` aponta para um caminho absoluto desta máquina.
+  evidence: O arquivo já estava untracked antes da migração e é contexto de agente. Outro clone não acha `C:/Users/murilo verticais/Documents/GitHub/FUG-Integracao/ponytail/hooks/`.
+
+- source_spec: `C:\Users\murilo verticais\Documents\GitHub\FUG-Integracao\_bmad-output\implementation-artifacts\spec-migracao-portal-next.md`
+  summary: `assets/css/input.css` ainda tem `:target`/`:has()` e o gitignore não cobre `*.tsbuildinfo`.
+  evidence: O app carrega `app/globals.css`, que não tem essas regras. O CSS antigo ficou sem referência. `tsconfig.json` está `incremental: true`.
+

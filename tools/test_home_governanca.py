@@ -5,13 +5,14 @@ Rodar com: python -m pytest tools/test_home_governanca.py -q
 import pathlib
 import re
 
-HOME = pathlib.Path(__file__).resolve().parent.parent / "index.html"
-DESTINO = HOME.parent / "governanca" / "index.html"
+RAIZ = pathlib.Path(__file__).resolve().parent.parent
+HOME = RAIZ / "app" / "page.tsx"
+DESTINO = RAIZ / "app" / "governanca" / "page.tsx"
 
 
 def _cartao_governanca(html: str) -> str:
     match = re.search(
-        r"<!-- Governança -->.*?<!-- Estrutura Organizacional -->",
+        r"\{/\* Governança \*/\}.*?\{/\* Estrutura Organizacional \*/\}",
         html,
         re.DOTALL,
     )
@@ -26,7 +27,7 @@ def test_home_linka_governanca():
     assert ancora, "cartão sem âncora"
     attrs, inner = ancora.group(1), ancora.group(2)
     href = re.search(r'\bhref="([^"]*)"', attrs)
-    assert href and href.group(1) == "governanca/index.html"
+    assert href and href.group(1) == "/governanca"
     assert "target=" not in attrs
     texto = " ".join(re.sub(r"<[^>]+>", " ", inner).split())
     assert "Governança" in texto

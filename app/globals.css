@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Header sticky (~4rem + folga). Nao inclui a nav das abas. */
+    scroll-padding-top: 6rem;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  }
+}
+
+@layer components {
+  .abas {
+    min-width: 0;
+  }
+
+  .aba-painel {
+    scroll-margin-top: 2rem;
+  }
+
+  .organograma-figura {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .organograma-figura-scroll {
+    overflow-x: auto;
+    min-width: 0;
+  }
+}

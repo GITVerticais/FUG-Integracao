@@ -5,13 +5,14 @@ Rodar com: python -m pytest tools/test_home_estrutura.py -q
 import pathlib
 import re
 
-HOME = pathlib.Path(__file__).resolve().parent.parent / "index.html"
-DESTINO = HOME.parent / "estrutura-organizacional" / "index.html"
+RAIZ = pathlib.Path(__file__).resolve().parent.parent
+HOME = RAIZ / "app" / "page.tsx"
+DESTINO = RAIZ / "app" / "estrutura-organizacional" / "page.tsx"
 
 
 def _cartao_estrutura(html: str) -> str:
     match = re.search(
-        r"<!-- Estrutura Organizacional -->.*?<!-- Editais -->",
+        r"\{/\* Estrutura Organizacional \*/\}.*?\{/\* Editais \*/\}",
         html,
         re.DOTALL,
     )
@@ -26,7 +27,7 @@ def test_home_linka_estrutura_organizacional():
     assert ancora, "cartão sem âncora"
     attrs, inner = ancora.group(1), ancora.group(2)
     href = re.search(r'\bhref="([^"]*)"', attrs)
-    assert href and href.group(1) == "estrutura-organizacional/index.html"
+    assert href and href.group(1) == "/estrutura-organizacional"
     assert "target=" not in attrs
     texto = " ".join(re.sub(r"<[^>]+>", " ", inner).split())
     assert "Estrutura Organizacional" in texto

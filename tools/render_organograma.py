@@ -1,4 +1,4 @@
-"""Rasteriza o organograma oficial de downloads/ para assets/img/.
+"""Rasteriza o organograma oficial de downloads/ para public/img/.
 
 Fonte de verdade: downloads/organograma-fug-2025.pdf. Os caminhos sao
 resolvidos a partir da raiz do repositorio, entao o script roda de
@@ -12,7 +12,7 @@ import pymupdf
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 SRC = RAIZ / "downloads" / "organograma-fug-2025.pdf"
-OUT = RAIZ / "assets" / "img"
+OUT = RAIZ / "public" / "img"
 
 
 class ErroDeConversao(Exception):

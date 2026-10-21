@@ -1,7 +1,7 @@
 """Cobre a matriz de I/O de tools/render_organograma.py.
 
 Cada teste monta origem e saida em tmp_path: nada aqui toca os
-arquivos reais de downloads/ ou assets/img/.
+arquivos reais de downloads/ ou public/img/.
 
 Rodar com: python -m pytest tools/test_render_organograma.py -q
 """
@@ -156,6 +156,10 @@ def test_main_devolve_1_quando_pdf_sem_paginas(tmp_path, monkeypatch, capsys):
     assert str(pdf) in capsys.readouterr().err
     for nome in ARQUIVOS:
         assert (saida / nome).read_bytes() == antes[nome]
+
+
+def test_saida_padrao_e_public_img():
+    assert render_organograma.OUT == render_organograma.RAIZ / "public" / "img"
 
 
 def test_main_devolve_0_no_caminho_feliz(tmp_path, monkeypatch):

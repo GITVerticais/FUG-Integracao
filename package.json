@@ -4,15 +4,21 @@
   "private": true,
   "description": "Portal Espaço de Integridade — Fundação Ulysses Guimarães",
   "scripts": {
-    "css": "tailwindcss -i assets/css/input.css -o assets/css/main.css --minify",
-    "css:watch": "tailwindcss -i assets/css/input.css -o assets/css/main.css --watch",
     "dados": "python tools/xlsx_to_json.py",
-    "tabelas": "python tools/build_tables.py",
     "organograma": "python tools/render_organograma.py",
-    "build": "npm run dados && npm run tabelas && npm run organograma && npm run css"
+    "build": "npm run dados && npm run organograma && node tools/copy_downloads.js && next build"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.9",
-    "tailwindcss": "^3.4.17"
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "next": "^16.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   }
 }
